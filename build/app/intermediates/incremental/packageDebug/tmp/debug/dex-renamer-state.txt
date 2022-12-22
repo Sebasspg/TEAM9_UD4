@@ -1,4 +1,0 @@
-#Wed Dec 21 21:58:49 COT 2022
-base.0=D\:\\Clases josue\\FLUTTER FRAGWORK\\Nueva carpeta\\TEAM9_UD4\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
-renamed.0=classes.dex
-path.0=classes.dex

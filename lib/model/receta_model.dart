@@ -10,6 +10,7 @@ class Receta {
   String image;
   String tip_comida;
   int id_nutricional;
+  List<String> ingredientes;
 
   Receta(
     this.id,
@@ -19,6 +20,7 @@ class Receta {
     this.image,
     this.tip_comida,
     this.id_nutricional,
+    this.ingredientes,
   );
 
   factory Receta.fromJson(String str) => Receta.fromMap(json.decode(str));
@@ -33,6 +35,7 @@ class Receta {
         json["image"],
         json["tip_comida"],
         json["id_nutricional"],
+        List<String>.from(json["ingredientes"].map((x) => x)),
       );
 
   Map<String, dynamic> toMap() => {
@@ -43,5 +46,6 @@ class Receta {
         "image": image,
         "tip_comida": tip_comida,
         "id_nutricional": id_nutricional,
+        "ingredientes": List<dynamic>.from(ingredientes.map((x) => x)),
       };
 }

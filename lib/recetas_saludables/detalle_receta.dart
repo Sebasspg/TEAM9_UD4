@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:team9_ud3_project/model/nutri_model.dart';
 import 'package:team9_ud3_project/model/receta_model.dart';
+import 'package:team9_ud3_project/providers/receta_providers.dart';
 
 class DetalleReceta extends StatelessWidget {
   final Receta rrecetas;
@@ -9,6 +12,14 @@ class DetalleReceta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //splita del json ingredientes
+    final String textonew = rrecetas.ingredientes.join(" , ");
+    final String newDescription = textonew.replaceAll(",", "\n");
+
+    //traer datos de valor nutricional
+    final RecetaProvider _dataReceta = Provider.of<RecetaProvider>(context);
+
+    //final ValorNutricional valorN = valor;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -107,9 +118,10 @@ class DetalleReceta extends StatelessWidget {
                                       style: GoogleFonts.montserrat(),
                                       'Prepación'),
                                   Text(
-                                      style: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.bold),
-                                      '5 min.'),
+                                    rrecetas.tiempo,
+                                    style: GoogleFonts.montserrat(
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ],
                               )
                             ],
@@ -158,6 +170,14 @@ class DetalleReceta extends StatelessWidget {
                                         fontWeight: FontWeight.bold),
                                     'Ingredientes'),
                                 Text(
+                                  newDescription,
+                                  textAlign: TextAlign.start,
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 25,
+                                  ),
+                                ),
+                                /*
+                                Text(
                                     style: GoogleFonts.montserrat(),
                                     '1 unidada de soya vegetal'),
                                 Text(
@@ -171,7 +191,7 @@ class DetalleReceta extends StatelessWidget {
                                     '1 unidada de cafe'),
                                 Text(
                                     style: GoogleFonts.montserrat(),
-                                    '5 pizcas de canela  '),
+                                    '5 pizcas de canela  '),*/
                                 SizedBox(
                                   height: 10,
                                 ),
@@ -197,89 +217,36 @@ class DetalleReceta extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       left: 15.0, right: 15),
-                                  child: Table(
-                                    border: TableBorder.all(
-                                        borderRadius: BorderRadius.circular(8),
-                                        color: Colors.grey.withOpacity(0.4),
-                                        width: 1),
-                                    columnWidths: const {
-                                      0: FlexColumnWidth(1.1),
-                                      1: FlexColumnWidth(2),
-                                    },
-                                    children: [
-                                      TableRow(children: [
-                                        Text(
-                                          "1",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 17.0),
-                                        ),
-                                        Text(
-                                          "Kcal",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 17.0),
-                                        ),
-                                      ]),
-                                      TableRow(children: [
-                                        Text(
-                                          "2",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 17.0),
-                                        ),
-                                        Text(
-                                          "Grasas",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 17.0),
-                                        ),
-                                      ]),
-                                      TableRow(children: [
-                                        Text(
-                                          "3",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 17.0),
-                                        ),
-                                        Text(
-                                          "Proteinas",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 17.0),
-                                        ),
-                                      ]),
-                                      TableRow(children: [
-                                        Text(
-                                          "4",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 17.0),
-                                        ),
-                                        Text(
-                                          "Carbohidratos",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 17.0),
-                                        ),
-                                      ]),
-                                      TableRow(children: [
-                                        Text(
-                                          "5",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 17.0),
-                                        ),
-                                        Text(
-                                          "Fibra",
-                                          textAlign: TextAlign.center,
-                                          style: GoogleFonts.montserrat(
-                                              fontSize: 17.0),
-                                        ),
-                                      ]),
-                                    ],
-                                  ),
-                                )
+                                  child: TablaNutricion(),
+                                ), /*
+                                Container(
+                                    width: double.infinity,
+                                    height: 400,
+                                    child: FutureBuilder(
+                                      future: _dataReceta
+                                          .getRecetaxValorNutri(rrecetas.id),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          List _snapshot =
+                                              snapshot.data as List;
+                                          return ListView.builder(
+                                            itemCount: _snapshot.length,
+                                            itemBuilder: (context, index) {
+                                              ValorNutricional val =
+                                                  _snapshot[index];
+                                              return Column(
+                                                children: [
+                                                  Text(val.kcal),
+                                                  Text(val.grasas),
+                                                  Text(val.carbohidratos),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        }
+                                        return CircularProgressIndicator();
+                                      },
+                                    ))*/
                               ],
                             ),
                           )
@@ -293,6 +260,91 @@ class DetalleReceta extends StatelessWidget {
           ),
         ),
       ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+      ),
+    );
+  }
+}
+
+class TablaNutricion extends StatelessWidget {
+  const TablaNutricion({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Table(
+      border: TableBorder.all(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.grey.withOpacity(0.4),
+          width: 1),
+      columnWidths: const {
+        0: FlexColumnWidth(1.1),
+        1: FlexColumnWidth(2),
+      },
+      children: [
+        TableRow(children: [
+          Text(
+            "1",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(fontSize: 17.0),
+          ),
+          Text(
+            "",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(fontSize: 17.0),
+          ),
+        ]),
+        TableRow(children: [
+          Text(
+            "2",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(fontSize: 17.0),
+          ),
+          Text(
+            "Grasas",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(fontSize: 17.0),
+          ),
+        ]),
+        TableRow(children: [
+          Text(
+            "3",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(fontSize: 17.0),
+          ),
+          Text(
+            "Proteinas",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(fontSize: 17.0),
+          ),
+        ]),
+        TableRow(children: [
+          Text(
+            "4",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(fontSize: 17.0),
+          ),
+          Text(
+            "Carbohidratos",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(fontSize: 17.0),
+          ),
+        ]),
+        TableRow(children: [
+          Text(
+            "5",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(fontSize: 17.0),
+          ),
+          Text(
+            "Fibra",
+            textAlign: TextAlign.center,
+            style: GoogleFonts.montserrat(fontSize: 17.0),
+          ),
+        ]),
+      ],
     );
   }
 }

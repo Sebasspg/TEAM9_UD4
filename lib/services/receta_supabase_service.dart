@@ -37,6 +37,22 @@ class DatabaseService {
     }
   }
 
+//Listar las recetas por valornutricional
+  Future getRecetaxValorNutri(int id) async {
+    try {
+      final response = await client.from('receta').select('''
+                  valornutri:id_nutricional(*)
+                  ''').eq('id', id);
+
+      final data = response;
+      print('services---');
+      print(data);
+      return data;
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   //Listar categorias
   Future getCategoria() async {
     try {

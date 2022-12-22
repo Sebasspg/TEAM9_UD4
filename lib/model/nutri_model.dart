@@ -1,19 +1,21 @@
 import 'dart:convert';
 
 class ValorNutricional {
-  ValorNutricional({
-    required this.kcal,
-    required this.grasas,
-    required this.proteinas,
-    required this.carbohidratos,
-    required this.fibra,
-  });
+  int? id;
+  String kcal;
+  String grasas;
+  String proteinas;
+  String carbohidratos;
+  String fibra;
 
-  double kcal;
-  double grasas;
-  double proteinas;
-  double carbohidratos;
-  double fibra;
+  ValorNutricional(
+    this.id,
+    this.kcal,
+    this.grasas,
+    this.proteinas,
+    this.carbohidratos,
+    this.fibra,
+  );
 
   factory ValorNutricional.fromJson(String str) =>
       ValorNutricional.fromMap(json.decode(str));
@@ -22,25 +24,20 @@ class ValorNutricional {
 
   factory ValorNutricional.fromMap(Map<String, dynamic> json) =>
       ValorNutricional(
-        kcal: json["kcal"].toDouble(),
-        grasas: json["grasas"].toDouble(),
-        proteinas: json["proteinas"].toDouble(),
-        carbohidratos: json["carbohidratos"].toDouble(),
-        fibra: json["fibra"].toDouble(),
+        json["id"],
+        json["kcal"],
+        json["grasas"],
+        json["proteinas"],
+        json["carbohidratos"],
+        json["fibra"],
       );
 
   Map<String, dynamic> toMap() => {
+        "id": id,
         "kcal": kcal,
         "grasas": grasas,
         "proteinas": proteinas,
         "carbohidratos": carbohidratos,
         "fibra": fibra,
       };
-
-  ValorNutricional copyWith() => ValorNutricional(
-      kcal: kcal,
-      grasas: grasas,
-      proteinas: proteinas,
-      carbohidratos: carbohidratos,
-      fibra: fibra);
 }

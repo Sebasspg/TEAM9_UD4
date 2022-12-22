@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:team9_ud3_project/principal/nosotros.dart';
 
 class Perfil extends StatefulWidget {
   const Perfil({super.key});
@@ -115,6 +116,21 @@ class _PerfilState extends State<Perfil> {
                 ],
               ),
             ),
+            MaterialButton(
+                child: Text(
+                  'NOSOTROS',
+                  style: GoogleFonts.quicksand(
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NosotrosPage()),
+                  );
+                }),
           ],
         ),
       ),

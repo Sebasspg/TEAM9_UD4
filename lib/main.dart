@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/principal/controlador_principal.dart';
 import 'package:team9_ud3_project/providers/receta_providers.dart';
+import 'package:team9_ud3_project/providers/producto_provider.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,7 +12,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
         overlays: [
           SystemUiOverlay.top,
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
         providers: [
-          // ChangeNotifierProvider(create: (_) => ProductoProvider()),
+          ChangeNotifierProvider(create: (_) => ProductoProvider()),
           ChangeNotifierProvider(create: (_) => RecetaProvider()),
         ],
         child: MaterialApp(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:team9_ud3_project/act_fisicas/pages/hacerejercicio.dart';
 import 'package:team9_ud3_project/alergias/menualergias.dart';
+import 'package:team9_ud3_project/medicacion/pages/menumedicacion_pages.dart';
 import 'package:team9_ud3_project/nutricion/nutripeso_home.dart';
 import 'package:team9_ud3_project/recetas_saludables/nutri_home.dart';
 import 'package:team9_ud3_project/recomendaciones/recomendaciones.dart';
@@ -447,7 +448,14 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(fontSize: 1),
                               )),
-                          onPressed: () {},
+                          onPressed: () {
+                            
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MenupageMedicina()),
+                            );
+                          },
                         ),
                       ),
                     ],

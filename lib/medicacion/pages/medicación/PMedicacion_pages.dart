@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:team9_ud3_project/alergias/pages/alergia_productos/alergycreate_pages.dart';
-import 'package:team9_ud3_project/alergias/pages/alergia_productos/updatealerg_pages.dart';
-import 'package:team9_ud3_project/providers/alergia_provider.dart';
+import 'package:team9_ud3_project/medicacion/pages/medicaci%C3%B3n/crearmedicacion_pages.dart';
+import 'package:team9_ud3_project/medicacion/pages/medicaci%C3%B3n/updatemedicina_pages.dart';
+import 'package:team9_ud3_project/providers/Medicina_provider.dart';
 
-class ProductosAlergiaPage extends StatelessWidget {
-  const ProductosAlergiaPage({super.key});
+class ProductosMedicinaPage extends StatelessWidget {
+  const ProductosMedicinaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final productoData = Provider.of<AlergiaProvider>(context);
-    productoData.queryAllA();
+    final productoData = Provider.of<MedicinaProvider>(context);
+    productoData.queryAllM();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Mis Alergias',
+          'Mis Medicinas',
           style: TextStyle(
               fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
         ),
-        backgroundColor: Color.fromARGB(255, 224, 65, 65),
+        backgroundColor: Color.fromARGB(255, 8, 239, 127),
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {
-              productoData.deleteAllA();
+              productoData.deleteAllM();
             },
             icon: const Icon(Icons.delete),
           ),
@@ -33,19 +33,19 @@ class ProductosAlergiaPage extends StatelessWidget {
         children: [
           SizedBox(
             child: Image.network(
-                "https://cdn.pixabay.com/photo/2021/06/30/18/32/vaccination-6377434_960_720.png"),
+                "https://cdn.pixabay.com/photo/2021/01/13/13/42/coronavirus-5914156_960_720.png"),
           ),
           MaterialButton(
             minWidth: 200,
-            color: Color.fromARGB(255, 224, 65, 65),
+            color: Color.fromARGB(255, 8, 239, 127),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const CreateAlergiaPage()));
+                  MaterialPageRoute(builder: (context) => const CreateMedicinaPage()));
             },
             child: const Text(
-              'Registrar Alergias',
+              'Registrar Medicinas',
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
           ),
@@ -57,8 +57,8 @@ class ProductosAlergiaPage extends StatelessWidget {
                 final data = productoData.product[index];
 
           return ListTile(
-            title: Text('${data.nombre} | ${data.categoria}  '),
-            subtitle: Text(' ${data.describe} '),
+            title: Text('Vía ${data.nombre} : ${data.categoria}'),
+            subtitle: Text('Inicio: ${data.fin} ${data.inicio} | cada ${data.intervalo} hora(s)'),
             trailing: IconButton(
               onPressed: () {
                 productoData.delete(data.id);
@@ -72,7 +72,7 @@ class ProductosAlergiaPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => UpdateAlergiaPage(
+                  builder: (context) => UpdateMedicinaPage(
                     product: data,
                   ),
                 ),
@@ -81,9 +81,9 @@ class ProductosAlergiaPage extends StatelessWidget {
           );
         },
       ),
-          )
-    ]
-      ),
+          ),
+          ],
+            ),
     );
   }
 }

@@ -44,7 +44,7 @@ class _UpdateAlergiaPageState extends State<UpdateAlergiaPage> {
             CustomTextFormField(
               controller: describeController,
               hintText: 'Precio Compra',
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.number,
             ),
 
             MaterialButton(

@@ -46,7 +46,7 @@ class CreateAlergiaPage extends StatelessWidget {
             CustomTextFormField(
               controller: describeController,
               hintText: 'Fecha de detección',
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.number,
             ),
             MaterialButton(
               minWidth: 200,

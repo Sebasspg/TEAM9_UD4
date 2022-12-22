@@ -21,6 +21,75 @@ class _CreatePageState extends State<CreatePage> {
   @override
   Widget build(BuildContext context) {
     final productoProvider = Provider.of<ProductoProvider>(context);
+    void alertCustom(BuildContext context) {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Icon(
+            Icons.notification_important,
+            color: Colors.amber,
+            size: 100,
+          ),
+          content: const Text(
+            "¿Seguro de guardar?",
+            textAlign: TextAlign.center,
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.of(context).pop('false'),
+                child: const Text("Cancelar")),
+            TextButton(
+                onPressed: () => Navigator.of(context).pop('true'),
+                child: const Text("Aceptar"))
+          ],
+        ),
+      ).then((value) => {
+            if (value == 'true')
+              {
+                productoProvider.insertProducto(
+                    nombreController.text,
+                    categoriaController.text,
+                    precioCController.text,
+                    precioVController.text,
+                    stockController.text),
+                nombreController.clear(),
+                categoriaController.clear(),
+                precioCController.clear(),
+                precioVController.clear(),
+                stockController.clear(),
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Icon(
+                      Icons.check,
+                      color: Colors.green,
+                      size: 100,
+                    ),
+                    content: const Text(
+                      'Se Registraron correctamente los datos',
+                      textAlign: TextAlign.center,
+                    ),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop("true");
+                          },
+                          child: const Text("aceptar"))
+                    ],
+                  ),
+                )
+              }
+            else
+              {
+                nombreController.clear(),
+                categoriaController.clear(),
+                precioCController.clear(),
+                precioVController.clear(),
+                stockController.clear(),
+              }
+          });
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 89, 176, 247),
@@ -151,18 +220,7 @@ class _CreatePageState extends State<CreatePage> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 onPressed: () {
-                  productoProvider.insertProducto(
-                      nombreController.text,
-                      categoriaController.text,
-                      precioCController.text,
-                      precioVController.text,
-                      stockController.text);
-
-                  nombreController.clear();
-                  categoriaController.clear();
-                  precioCController.clear();
-                  precioVController.clear();
-                  stockController.clear();
+                  alertCustom(context);
                 },
                 child: const Text(
                   'Guardar Vacuna',

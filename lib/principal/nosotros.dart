@@ -8,6 +8,9 @@ class NosotrosPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var nosotroslogo = 'assets/menuprincipal/otro/nosotroslogo.png';
+
     final redesProvider = Provider.of<LauncherProvider>(context);
     return Scaffold(
       appBar: AppBar(
@@ -17,8 +20,10 @@ class NosotrosPage extends StatelessWidget {
       body: ListView(
         children: [
           SizedBox(
-            child: Image.network(
-                "https://cdn.pixabay.com/photo/2016/03/28/12/35/cat-1285634_960_720.png"),
+            child: Image.asset(nosotroslogo),
+          ),
+          const SizedBox(
+              height: 15,
           ),
           SizedBox(
               child: Text(
@@ -26,10 +31,13 @@ class NosotrosPage extends StatelessWidget {
             textAlign: TextAlign.center,
             style: GoogleFonts.quicksand(
                 textStyle: const TextStyle(
-                    fontSize: 47,
-                    fontWeight: FontWeight.w400,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w800,
                     color: Colors.black)),
           )),
+          const SizedBox(
+              height: 10,
+            ),
           SizedBox(
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.70,
@@ -50,14 +58,14 @@ class NosotrosPage extends StatelessWidget {
                               redesProvider.goMapLauncher();
                             },
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(10),
                               child: SizedBox(
                                 height: 200,
                                 width: 200,
                                 child: SizedBox(
                                   width: 100,
                                   child: Image.network(
-                                    'https://cdn.pixabay.com/photo/2018/05/30/15/31/globe-3441673_960_720.jpg',
+                                    'https://cdn.pixabay.com/photo/2018/04/12/18/13/marker-3314279_960_720.png',
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -68,15 +76,14 @@ class NosotrosPage extends StatelessWidget {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
+                                  horizontal: 15,
                                 ),
                                 child: Text(
-                                  'Ubicacion',
-                                  style: GoogleFonts.montserrat(
-                                      color: const Color.fromARGB(
-                                          255, 22, 73, 114),
+                                  'Ubicación',
+                                  style: GoogleFonts.quicksand(
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 25),
+                                      fontSize: 20),
                                 ),
                               ),
                             ],
@@ -93,12 +100,12 @@ class NosotrosPage extends StatelessWidget {
                             redesProvider.goEmailLauncher();
                           },
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(10),
                             child: SizedBox(
                               height: 200,
                               width: 200,
                               child: Image.network(
-                                'https://www.mundodeportivo.com/urbantecno/hero/2022/07/Descubre-los-mejores-trucos-para-dominar-Gmail.jpg?width=1200&aspect_ratio=16:9',
+                                'https://is3-ssl.mzstatic.com/image/thumb/Purple112/v4/33/ac/a9/33aca988-6a67-57c4-ec1e-b9f5d1e19969/logo_gmail_2020q4_color-0-1x_U007emarketing-0-0-0-6-0-0-0-0-85-220-0.png/1200x630wa.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -108,15 +115,14 @@ class NosotrosPage extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 35,
+                                horizontal: 15,
                               ),
                               child: Text(
                                 'Correo',
-                                style: GoogleFonts.montserrat(
-                                    color:
-                                        const Color.fromARGB(255, 22, 73, 114),
+                                style: GoogleFonts.quicksand(
+                                    color:Colors.black,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 25),
+                                    fontSize: 20),
                               ),
                             ),
                           ],
@@ -132,7 +138,7 @@ class NosotrosPage extends StatelessWidget {
                             redesProvider.goWahtsappLauncher();
                           },
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(10),
                             child: SizedBox(
                               height: 200,
                               width: 200,
@@ -147,14 +153,14 @@ class NosotrosPage extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 25,
+                                horizontal: 15,
                               ),
                               child: Text(
                                 'Telefono',
-                                style: GoogleFonts.montserrat(
-                                    color: Color.fromARGB(255, 22, 73, 114),
+                                style: GoogleFonts.quicksand(
+                                    color: Colors.black,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 25),
+                                    fontSize: 20),
                               ),
                             ),
                           ],
@@ -170,13 +176,13 @@ class NosotrosPage extends StatelessWidget {
                             redesProvider.goBrowserLauncher();
                           },
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(10),
                             child: SizedBox(
                               height: 200,
                               width: 200,
                               child: Image.network(
-                                'https://thumbs.dreamstime.com/z/mundo-ancho-del-web-11899748.jpg',
-                                fit: BoxFit.cover,
+                                'https://cdn-icons-png.flaticon.com/512/6510/6510324.png',
+                                fit: BoxFit.contain,
                               ),
                             ),
                           ),
@@ -185,14 +191,14 @@ class NosotrosPage extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 35,
+                                horizontal: 15,
                               ),
                               child: Text(
-                                'Pagina',
-                                style: GoogleFonts.montserrat(
-                                    color: Color.fromARGB(255, 22, 73, 114),
+                                'Web',
+                                style: GoogleFonts.quicksand(
+                                    color: Colors.black,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 25),
+                                    fontSize: 20),
                               ),
                             ),
                           ],

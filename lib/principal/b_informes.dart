@@ -12,6 +12,7 @@ class _InformesState extends State<Informes> {
   @override
   Widget build(BuildContext context) {
     var cajainformes = 'assets/menuprincipal/bien/cajainformes.png';
+    var cir_culos = 'assets/menuprincipal/otro/cir_culitos.png';
 
     var usuario = Text(
       'Nombre del Usuario',
@@ -276,6 +277,50 @@ class _InformesState extends State<Informes> {
               ),
               width: double.infinity,
               height: 170,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'VACUNAS',
+                              style: GoogleFonts.quicksand(
+                                  textStyle: const TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.white)),
+                            ),
+                            const SizedBox(height: 26,),
+                            SizedBox(
+                              width: 150,
+                              child: Text(
+                                '2/4',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.quicksand(
+                                    textStyle: const TextStyle(
+                                        fontSize: 51,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white)),
+                              ),
+                            ),
+                            const SizedBox(height: 26,),
+                          ],
+                        ),
+                        const SizedBox(width: 20,),
+                        Image.asset(
+                          cir_culos,
+                          width: 100,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
             const SizedBox(
               height: 15,

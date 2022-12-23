@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           color: Colors.blue,
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Gux Health',
           theme: ThemeData(
             useMaterial3: true,
             primarySwatch: Colors.blue,

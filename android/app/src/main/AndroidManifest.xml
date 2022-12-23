@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.team9_ud3_project">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="team9_ud3_project"
+        android:label="Gux Health"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

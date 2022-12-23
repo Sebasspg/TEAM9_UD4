@@ -101,36 +101,87 @@ class _PerfilState extends State<Perfil> {
               ),
               width: double.infinity,
               height: 60,
-              child: Row(
-                children: [
-                  Switch(
-                    value: estaactivo,
-                    onChanged: (value) {
-                      setState(() {
-                        estaactivo = value;
-                      });
-                    },
-                    activeTrackColor: Colors.lightGreenAccent,
-                    activeColor: Colors.green,
-                  ),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Switch(
+                      value: estaactivo,
+                      onChanged: (value) {
+                        setState(() {
+                          estaactivo = value;
+                        });
+                      },
+                      activeTrackColor: Colors.lightGreen,
+                      activeColor: const Color.fromARGB(255, 111, 194, 127),
+                    ),
+                    const Spacer(),
+                    Text(
+                      'TEMA: OSCURO',
+                      style: GoogleFonts.quicksand(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    )
+                  ],
+                ),
               ),
             ),
-            MaterialButton(
-                child: Text(
-                  'NOSOTROS',
-                  style: GoogleFonts.quicksand(
-                      fontSize: 11.5,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black),
+            const SizedBox(
+              height: 15,
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Image.asset(
+                      'assets/menuprincipal/otro/logodeapp.png',
+                      width: 90,
+                    )
+                  ],
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const NosotrosPage()),
-                  );
-                }),
+                const SizedBox(
+                  height: 100,
+                ),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          'DESARROLLADO POR',
+                          style: GoogleFonts.quicksand(
+                              fontSize: 9,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black),
+                        ),
+                        Stack(
+                          children: [
+                            Image.asset(
+                              'assets/menuprincipal/otro/logodeempresa.png',
+                              width: 110,
+                            ),
+                            MaterialButton(
+                              minWidth: 110,
+                              height: 50,
+                              onPressed: (() {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) => NosotrosPage())));
+                            }))
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            )
           ],
         ),
       ),

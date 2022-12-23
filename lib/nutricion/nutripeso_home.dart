@@ -315,8 +315,8 @@ class _NutriPageState extends State<NutriPage> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: SizedBox(
-                              height: 200,
-                              width: 200,
+                              height: 150,
+                              width: 150,
                               child: SizedBox(
                                 width: 100,
                                 child: Image.network(
@@ -326,10 +326,11 @@ class _NutriPageState extends State<NutriPage> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 65, vertical: 65),
+                          SizedBox(
+                            height: 150,
+                            width: 150,
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   '${pesosProvider.calorias}',
@@ -368,18 +369,19 @@ class _NutriPageState extends State<NutriPage> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: SizedBox(
-                            height: 200,
-                            width: 200,
+                            height: 150,
+                            width: 150,
                             child: Image.network(
                               'https://cdn-icons-png.flaticon.com/512/390/390933.png',
-                              fit: BoxFit.cover,
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 65, vertical: 65),
+                        SizedBox(
+                          height: 150,
+                          width: 150,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 '${pesosProvider.carbohidratos}',
@@ -417,18 +419,19 @@ class _NutriPageState extends State<NutriPage> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: SizedBox(
-                            height: 200,
-                            width: 200,
+                            height: 150,
+                            width: 150,
                             child: Image.network(
                               'https://cdn-icons-png.flaticon.com/512/390/390933.png',
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 65, vertical: 65),
+                        SizedBox(
+                          height: 150,
+                          width: 150,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 '${pesosProvider.grasas}',
@@ -466,18 +469,19 @@ class _NutriPageState extends State<NutriPage> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: SizedBox(
-                            height: 200,
-                            width: 200,
+                            height: 150,
+                            width: 150,
                             child: Image.network(
                               'https://cdn-icons-png.flaticon.com/512/390/390933.png',
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 65, vertical: 65),
+                        SizedBox(
+                          height: 150,
+                          width: 150,
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 '${pesosProvider.proteinas}',

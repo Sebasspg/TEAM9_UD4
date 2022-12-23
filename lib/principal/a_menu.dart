@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:team9_ud3_project/act_fisicas/pages/hacerejercicio.dart';
 import 'package:team9_ud3_project/alergias/menualergias.dart';
-import 'package:team9_ud3_project/medicacion/pages/menumedicacion_pages.dart';
 import 'package:team9_ud3_project/nutricion/nutripeso_home.dart';
 import 'package:team9_ud3_project/recetas_saludables/nutri_home.dart';
 import 'package:team9_ud3_project/recomendaciones/recomendaciones.dart';
@@ -50,6 +49,8 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
   }
   //----------------------------------------------------------------------------
 
+  var logodeapp = 'assets/menuprincipal/otro/logodeapp.png';
+
   var iconobien = 'assets/menuprincipal/bien/check.png';
   var iconomedio = 'assets/menuprincipal/medio/circle.png';
   var iconomal = 'assets/menuprincipal/mal/bad.png';
@@ -58,10 +59,19 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
   var cubitonaranja = 'assets/menuprincipal/medio/cubitonaranja.png';
   var cubitorojo = 'assets/menuprincipal/mal/cubitorojo.png';
 
+  var slider1 = 'assets/menuprincipal/otro/slider1.png';
+
+  var botonrecetas = 'assets/menuprincipal/otro/recetas.png';
+  var botonejercicios = 'assets/menuprincipal/otro/actividades.png';
+  var botonvacunas = 'assets/menuprincipal/otro/vacunas.png';
+  var botonnutricion = 'assets/menuprincipal/otro/nutricion.png';
+  var botonmedicacion = 'assets/menuprincipal/otro/medicacion.png';
+  var botonalergias = 'assets/menuprincipal/otro/alergias.png';
+
   var colorbienverde = const Color.fromARGB(255, 111, 194, 127);
   var colorbienceleste = const Color.fromARGB(255, 51, 198, 244);
   var colormedionaranja = const Color.fromARGB(255, 252, 182, 71);
-  var colormedioamarillo = const Color.fromARGB(255, 239, 235, 103);
+  var colormedioamarillo = const Color.fromARGB(255, 252, 207, 93);
   var colormalrojo = const Color.fromARGB(255, 237, 50, 55);
   var colormalnaranja = const Color.fromARGB(255, 248, 156, 50);
 
@@ -100,11 +110,9 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Nombre de App',
-                      style: GoogleFonts.quicksand(
-                          textStyle: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w600)),
+                    Image.asset(
+                      logodeapp,
+                      width: 85,
                     ),
                   ],
                 ),
@@ -173,6 +181,19 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                         width: 105,
                         child: Stack(children: [
                           Image.asset(cubitoverde),
+                          Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Image.asset(botonrecetas),
+                          ),
+                          MaterialButton(
+                              height: 80,
+                              minWidth: 195,
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) => NutriHome())));
+                              })
                         ])),
                     const SizedBox(
                       height: 15,
@@ -181,6 +202,21 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                         width: 105,
                         child: Stack(children: [
                           Image.asset(cubitoverde),
+                          Padding(
+                            padding: const EdgeInsets.all(11.0),
+                            child: Image.asset(botonejercicios),
+                          ),
+                          MaterialButton(
+                              height: 80,
+                              minWidth: 195,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const HacerEjercicio()),
+                                );
+                              })
                         ])),
                   ],
                 ),
@@ -214,7 +250,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.white, width: 1),
-                            color: Colors.transparent,
+                            color: const Color.fromARGB(255, 230, 231, 232),
                             borderRadius: BorderRadius.circular(3),
                           ),
                           height: 20,
@@ -225,7 +261,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                                 style: GoogleFonts.quicksand(
                                     fontSize: 8,
                                     fontWeight: FontWeight.w500,
-                                    color: Colors.white),
+                                    color: Colors.black),
                               ),
                               onPressed: () {
                                 Navigator.push(
@@ -256,29 +292,146 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white, width: 1),
-                          color: Colors.transparent,
+                          color: const Color.fromARGB(255, 230, 231, 232),
                           borderRadius: BorderRadius.circular(3),
                         ),
                         height: 20,
                         width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 7, horizontal: 15),
+                          child: Row(
+                            children: [
+                              Image.asset(slider1),
+                              SizedBox(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'EVALÚA TU IMC',
+                                        style: GoogleFonts.quicksand(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black),
+                                      ),
+                                      SizedBox(
+                                        width: 170,
+                                        child: Text(
+                                          'Presione para empezar el test de su Índice de Masa Corporal',
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 9,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white, width: 1),
-                          color: Colors.transparent,
+                          color: const Color.fromARGB(255, 230, 231, 232),
                           borderRadius: BorderRadius.circular(3),
                         ),
                         height: 20,
                         width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 7, horizontal: 15),
+                          child: Row(
+                            children: [
+                              Image.asset(slider1),
+                              SizedBox(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'EVALÚA TU IMC',
+                                        style: GoogleFonts.quicksand(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black),
+                                      ),
+                                      SizedBox(
+                                        width: 170,
+                                        child: Text(
+                                          'Presione para empezar el test de su Índice de Masa Corporal',
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 9,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white, width: 1),
-                          color: Colors.transparent,
+                          color: const Color.fromARGB(255, 230, 231, 232),
                           borderRadius: BorderRadius.circular(3),
                         ),
                         height: 20,
                         width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 7, horizontal: 15),
+                          child: Row(
+                            children: [
+                              Image.asset(slider1),
+                              SizedBox(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'EVALÚA TU IMC',
+                                        style: GoogleFonts.quicksand(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black),
+                                      ),
+                                      SizedBox(
+                                        width: 170,
+                                        child: Text(
+                                          'Presione para empezar el test de su Índice de Masa Corporal',
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 9,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -294,26 +447,28 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                   borderRadius: BorderRadius.circular(5),
                   color: colorbienceleste),
               width: double.infinity,
-              height: 245,
+              height: 230,
               child: Column(
                 children: [
+                  //DIFERENCIA DE DIMENSIONES EN BOTONES B x H: 52
                   const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
+                        width: 145,
+                        height: 93,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 1),
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(3),
+                          image: DecorationImage(
+                            image: AssetImage(botonvacunas),
+                            fit: BoxFit.contain,
+                          ),
                         ),
                         child: MaterialButton(
-                          minWidth: 88,
-                          height: 88,
-                          child: const Text(
-                            'VACUNAS',
-                            style: TextStyle(fontSize: 1),
-                          ),
+                          // child: const Text(
+                          //   'VACUNAS',
+                          //   style: TextStyle(fontSize: 1),
+                          // ),
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -327,50 +482,24 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                         width: 10,
                       ),
                       Container(
+                        width: 145,
+                        height: 93,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 1),
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(3),
+                          image: DecorationImage(
+                            image: AssetImage(botonnutricion),
+                            fit: BoxFit.contain,
+                          ),
                         ),
                         child: MaterialButton(
-                          minWidth: 88,
-                          height: 88,
-                          child: const Text(
-                            'NUTRICIÓN',
-                            style: TextStyle(fontSize: 1),
-                          ),
+                          // child: const Text(
+                          //   'NUTRICIÓN',
+                          //   style: TextStyle(fontSize: 1),
+                          // ),
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: ((context) => NutriPage())));
-                          },
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 1),
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(3),
-                        ),
-                        child: MaterialButton(
-                          minWidth: 88,
-                          height: 88,
-                          child: const SizedBox(
-                              width: 50,
-                              child: Text(
-                                'RECETAS SALUDABLES',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 1),
-                              )),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: ((context) => NutriHome())));
                           },
                         ),
                       ),
@@ -381,123 +510,127 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
+                        width: 145,
+                        height: 93,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 1),
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(3),
-                        ),
-                        child: MaterialButton(
-                          minWidth: 88,
-                          height: 88,
-                          child: const Text(
-                            'ALERGIAS',
-                            style: TextStyle(fontSize: 1),
+                          image: DecorationImage(
+                            image: AssetImage(botonmedicacion),
+                            fit: BoxFit.contain,
                           ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MenupageAlergia()));
-                          },
+                        ),
+                        child: MaterialButton(
+                          // child: const Text(
+                          //   'MEDICACIÓN',
+                          //   style: TextStyle(fontSize: 1),
+                          // ),
+                          onPressed: () {},
                         ),
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Container(
+                        width: 145,
+                        height: 93,
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 1),
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(3),
+                          image: DecorationImage(
+                            image: AssetImage(botonalergias),
+                            fit: BoxFit.contain,
+                          ),
                         ),
                         child: MaterialButton(
-                          minWidth: 88,
-                          height: 88,
-                          child: const SizedBox(
-                              width: 50,
-                              child: Text(
-                                'ACTIVIDADES FÍSICAS',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 1),
-                              )),
+                          // child: const Text(
+                          //   'ALERGIAS',
+                          //   style: TextStyle(fontSize: 1),
+                          // ),
                           onPressed: () {
                             Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const HacerEjercicio()),
-                            );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const MenupageAlergia()));
                           },
                         ),
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 1),
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(3),
-                        ),
-                        child: MaterialButton(
-                          minWidth: 88,
-                          height: 88,
-                          child: const SizedBox(
-                              width: 50,
-                              child: Text(
-                                'MEDICACIÓN',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 1),
-                              )),
-                          onPressed: () {
-                            
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MenupageMedicina()),
-                            );
-                          },
-                        ),
-                      ),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //     border: Border.all(color: Colors.white, width: 1),
+                      //     color: Colors.transparent,
+                      //     borderRadius: BorderRadius.circular(3),
+                      //   ),
+                      //   child: MaterialButton(
+                      //     minWidth: 88,
+                      //     height: 88,
+                      //     child: const SizedBox(
+                      //         width: 50,
+                      //         child: Text(
+                      //           'ACTIVIDADES FÍSICAS',
+                      //           textAlign: TextAlign.center,
+                      //           style: TextStyle(fontSize: 1),
+                      //         )),
+                      //     onPressed: () {
+                      //       Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => const HacerEjercicio()),
+                      //       );
+                      //     },
+                      //   ),
+                      // ),
                     ],
                   ),
                   const Spacer(),
                 ],
               ),
             ),
-            MaterialButton(
-                onPressed: (() {
-                  setState(() {
-                    iconobien = 'assets/menuprincipal/bien/check.png';
-                    videoPlayerControllera = VideoPlayerController.asset(
-                        "assets/menuprincipal/bien/arobien.mp4");
-                    cubitoverde = 'assets/menuprincipal/bien/cubitoverde.png';
-                    colorbienverde = const Color.fromARGB(255, 111, 194, 127);
-                    colorbienceleste = const Color.fromARGB(255, 51, 198, 244);
-                  });
-                }),
-                child: const Text('VERDE')),
-            MaterialButton(
-                onPressed: (() {
-                  setState(() {
-                    iconobien = iconomedio;
-                    videoPlayerControllera = videoPlayerControllerb;
-                    cubitoverde = cubitonaranja;
-                    colorbienverde = colormedionaranja;
-                    colorbienceleste = colormedioamarillo;
-                  });
-                }),
-                child: const Text('NARANJA')),
-            MaterialButton(
-                onPressed: (() {
-                  setState(() {
-                    iconobien = iconomal;
-                    videoPlayerControllera = videoPlayerControllerc;
-                    cubitoverde = cubitorojo;
-                    colorbienverde = colormalrojo;
-                    colorbienceleste = colormalnaranja;
-                  });
-                }),
-                child: const Text('ROJO')),
+            Row(
+              children: [
+                MaterialButton(
+                  minWidth: 20,
+                  height: 20,
+                  color: Colors.lightGreen,
+                  onPressed: (() {
+                    setState(() {
+                      iconobien = 'assets/menuprincipal/bien/check.png';
+                      videoPlayerControllera = VideoPlayerController.asset(
+                          "assets/menuprincipal/bien/arobien.mp4");
+                      cubitoverde = 'assets/menuprincipal/bien/cubitoverde.png';
+                      colorbienverde = const Color.fromARGB(255, 111, 194, 127);
+                      colorbienceleste =
+                          const Color.fromARGB(255, 51, 198, 244);
+                    });
+                  }),
+                ),
+                MaterialButton(
+                  minWidth: 20,
+                  height: 20,
+                  color: Colors.orange,
+                  onPressed: (() {
+                    setState(() {
+                      iconobien = iconomedio;
+                      videoPlayerControllera = videoPlayerControllerb;
+                      cubitoverde = cubitonaranja;
+                      colorbienverde = colormedionaranja;
+                      colorbienceleste = colormedioamarillo;
+                    });
+                  }),
+                ),
+                MaterialButton(
+                  minWidth: 20,
+                  height: 20,
+                  color: Colors.red,
+                  onPressed: (() {
+                    setState(() {
+                      iconobien = iconomal;
+                      videoPlayerControllera = videoPlayerControllerc;
+                      cubitoverde = cubitorojo;
+                      colorbienverde = colormalrojo;
+                      colorbienceleste = colormalnaranja;
+                    });
+                  }),
+                ),
+              ],
+            ),
           ],
         ),
       ),

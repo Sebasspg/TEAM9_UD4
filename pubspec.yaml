@@ -80,6 +80,7 @@ flutter:
     - assets/menuprincipal/bien/
     - assets/menuprincipal/mal/
     - assets/menuprincipal/medio/
+    - assets/menuprincipal/otro/
     - assets/menuprincipal/bien/arobien.mp4
     - assets/menuprincipal/medio/aromedio.mp4
     - assets/menuprincipal/mal/aromal.mp4

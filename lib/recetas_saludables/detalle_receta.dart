@@ -175,7 +175,7 @@ class DetalleReceta extends StatelessWidget {
                                   newDescription,
                                   textAlign: TextAlign.start,
                                   style: GoogleFonts.montserrat(
-                                    fontSize: 25,
+                                    fontSize: 17,
                                   ),
                                 ),
                                 /*

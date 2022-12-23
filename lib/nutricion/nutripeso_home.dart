@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:team9_ud3_project/providers/peso_provider.dart';
+
+final edad_Controller = TextEditingController();
+final altura_Controller = TextEditingController();
+final peso_Controller = TextEditingController();
 
 class NutriPage extends StatefulWidget {
   const NutriPage({super.key});
@@ -11,6 +17,8 @@ class NutriPage extends StatefulWidget {
 class _NutriPageState extends State<NutriPage> {
   @override
   Widget build(BuildContext context) {
+    final pesosProvider = Provider.of<PesoProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Control Nutricional'),
@@ -18,41 +26,6 @@ class _NutriPageState extends State<NutriPage> {
       ),
       body: ListView(
         children: [
-          /*
-          SizedBox(
-            height: 100,
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  Container(
-                    height: 100,
-                    width: 120,
-                    color: Colors.green,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Container(
-                    height: 100,
-                    width: 120,
-                    color: Colors.red,
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Container(
-                    height: 100,
-                    width: 120,
-                    color: Colors.pink,
-                  ),
-                ],
-              ),
-            ),
-          ),*/
-
           SizedBox(
             height: 10,
           ),
@@ -61,16 +34,56 @@ class _NutriPageState extends State<NutriPage> {
             textAlign: TextAlign.center,
             style: GoogleFonts.montserrat(fontSize: 20),
           ),
-          /*
-          Text(
-            'Ultimo peso:',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 16),
-          ),*/
-          Text(
-            'Categoria : Sobrepeso',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Categoria : ${pesosProvider.msg}',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.montserrat(fontSize: 20),
+              ),
+              (pesosProvider.msg == 'Normal')
+                  ? Icon(
+                      Icons.check,
+                      color: Colors.green,
+                      size: 50,
+                    )
+                  : (pesosProvider.msg == 'Sobrepeso')
+                      ? Icon(
+                          Icons.warning_amber_rounded,
+                          color: Colors.red,
+                          size: 50,
+                        )
+                      : (pesosProvider.msg == 'Bajo')
+                          ? Icon(
+                              Icons.warning_amber_rounded,
+                              color: Colors.amber,
+                              size: 50,
+                            )
+                          : (pesosProvider.msg == 'Obesidad I')
+                              ? Icon(
+                                  Icons.warning_amber_rounded,
+                                  color: Colors.red,
+                                  size: 50,
+                                )
+                              : (pesosProvider.msg == 'Obesidad II')
+                                  ? Icon(
+                                      Icons.warning_amber_rounded,
+                                      color: Colors.red,
+                                      size: 50,
+                                    )
+                                  : (pesosProvider.msg == 'Obesidad III')
+                                      ? Icon(
+                                          Icons.warning_amber_rounded,
+                                          color: Colors.red,
+                                          size: 50,
+                                        )
+                                      : Icon(
+                                          Icons.warning_amber_rounded,
+                                          color: Colors.white,
+                                          size: 1,
+                                        ),
+            ],
           ),
           SizedBox(
             height: 20,
@@ -78,20 +91,66 @@ class _NutriPageState extends State<NutriPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                width: 150,
-                height: 60,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    style: TextStyle(fontSize: 25),
-                    decoration: InputDecoration(
-                        border: InputBorder.none, icon: Icon(Icons.balance)),
+              Column(
+                children: [
+                  Container(
+                    width: 150,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.grey)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: edad_Controller,
+                        keyboardType: TextInputType.number,
+                        style: TextStyle(fontSize: 25),
+                        decoration: InputDecoration(
+                            hintText: 'Edad',
+                            border: InputBorder.none,
+                            icon: Icon(Icons.numbers)),
+                      ),
+                    ),
                   ),
-                ),
+                  Container(
+                    width: 150,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.grey)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: peso_Controller,
+                        keyboardType: TextInputType.number,
+                        style: TextStyle(fontSize: 25),
+                        decoration: InputDecoration(
+                            hintText: 'Peso',
+                            border: InputBorder.none,
+                            icon: Icon(Icons.balance)),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 150,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.grey)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: altura_Controller,
+                        keyboardType: TextInputType.number,
+                        style: TextStyle(fontSize: 25),
+                        decoration: InputDecoration(
+                            hintText: 'Altura 0.0',
+                            border: InputBorder.none,
+                            icon: Icon(Icons.run_circle_outlined)),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 width: 20,
@@ -102,7 +161,15 @@ class _NutriPageState extends State<NutriPage> {
                 height: 60,
                 minWidth: 70,
                 color: Colors.lightBlue,
-                onPressed: () {},
+                onPressed: () {
+                  pesosProvider.getCalorias(int.parse(edad_Controller.text));
+                  pesosProvider.getCategoriaxIMC(
+                      int.parse(peso_Controller.text),
+                      double.parse(altura_Controller.text));
+                  pesosProvider.getProteinas(int.parse(peso_Controller.text));
+                  pesosProvider
+                      .getCarbohidratos(int.parse(peso_Controller.text));
+                },
                 child: Icon(
                   Icons.save,
                   color: Colors.white,
@@ -128,68 +195,90 @@ class _NutriPageState extends State<NutriPage> {
             height: 20,
           ),
           SizedBox(
+            height: 200,
             width: double.infinity,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
                 children: [
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 55, // Image radius
-                        backgroundImage: NetworkImage(
-                            'https://cdn.pixabay.com/photo/2016/11/06/23/31/breakfast-1804457_960_720.jpg'),
-                      ),
-                      Text(
-                        '09:00',
-                        style: GoogleFonts.montserrat(fontSize: 18),
-                      ),
-                      Text(
-                        'Desayuno',
-                        style: GoogleFonts.montserrat(fontSize: 18),
-                      ),
-                    ],
+                  SizedBox(
+                    width: 50,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      pesosProvider
+                          .getCalorias(int.parse(edad_Controller.text));
+                    },
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 55, // Image radius
+                          backgroundImage: NetworkImage(
+                              'https://cdn.pixabay.com/photo/2016/11/06/23/31/breakfast-1804457_960_720.jpg'),
+                        ),
+                        Text(
+                          '09:00',
+                          style: GoogleFonts.montserrat(fontSize: 18),
+                        ),
+                        Text(
+                          'Desayuno',
+                          style: GoogleFonts.montserrat(fontSize: 18),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
-                    width: 10,
+                    width: 50,
                   ),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 55, // Image radius
-                        backgroundImage: NetworkImage(
-                            'https://cdn.pixabay.com/photo/2016/11/06/23/31/breakfast-1804457_960_720.jpg'),
-                      ),
-                      Text(
-                        '13:00',
-                        style: GoogleFonts.montserrat(fontSize: 18),
-                      ),
-                      Text(
-                        'Almuerzo',
-                        style: GoogleFonts.montserrat(fontSize: 18),
-                      ),
-                    ],
+                  InkWell(
+                    onTap: () {
+                      pesosProvider.getCaloriasxAlmuerzo(
+                          int.parse(edad_Controller.text));
+                    },
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 55, // Image radius
+                          backgroundImage: NetworkImage(
+                              'https://cdn.pixabay.com/photo/2017/09/12/21/47/noodles-2743779_960_720.jpg'),
+                        ),
+                        Text(
+                          '13:00',
+                          style: GoogleFonts.montserrat(fontSize: 18),
+                        ),
+                        Text(
+                          'Almuerzo',
+                          style: GoogleFonts.montserrat(fontSize: 18),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
-                    width: 10,
+                    width: 50,
                   ),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 55, // Image radius
-                        backgroundImage: NetworkImage(
-                            'https://cdn.pixabay.com/photo/2016/11/06/23/31/breakfast-1804457_960_720.jpg'),
-                      ),
-                      Text(
-                        '20:00',
-                        style: GoogleFonts.montserrat(fontSize: 18),
-                      ),
-                      Text(
-                        'Cena',
-                        style: GoogleFonts.montserrat(fontSize: 18),
-                      ),
-                    ],
+                  InkWell(
+                    onTap: () {
+                      pesosProvider
+                          .getCaloriasxCena(int.parse(edad_Controller.text));
+                    },
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 55, // Image radius
+                          backgroundImage: NetworkImage(
+                              'https://cdn.pixabay.com/photo/2014/09/11/11/17/prawn-441623_960_720.jpg'),
+                        ),
+                        Text(
+                          '20:00',
+                          style: GoogleFonts.montserrat(fontSize: 18),
+                        ),
+                        Text(
+                          'Cena',
+                          style: GoogleFonts.montserrat(fontSize: 18),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -200,11 +289,11 @@ class _NutriPageState extends State<NutriPage> {
           ),
           SizedBox(
             width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.56,
+            height: MediaQuery.of(context).size.height * 0.58,
             child: GridView.count(
                 primary: false,
                 padding: const EdgeInsets.all(15),
-                childAspectRatio: 2.25 / 2.5,
+                childAspectRatio: 2.25 / 2.8,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 0,
                 crossAxisCount: 2,
@@ -239,11 +328,11 @@ class _NutriPageState extends State<NutriPage> {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 50, vertical: 60),
+                                horizontal: 65, vertical: 65),
                             child: Column(
                               children: [
                                 Text(
-                                  '0/1841',
+                                  '${pesosProvider.calorias}',
                                   style: GoogleFonts.montserrat(
                                       color: Color.fromARGB(255, 22, 73, 114),
                                       fontWeight: FontWeight.bold,
@@ -289,11 +378,11 @@ class _NutriPageState extends State<NutriPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 50, vertical: 60),
+                              horizontal: 65, vertical: 65),
                           child: Column(
                             children: [
                               Text(
-                                '0/261',
+                                '${pesosProvider.carbohidratos}',
                                 style: GoogleFonts.montserrat(
                                     color: Color.fromARGB(255, 22, 73, 114),
                                     fontWeight: FontWeight.bold,
@@ -338,11 +427,11 @@ class _NutriPageState extends State<NutriPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 50, vertical: 60),
+                              horizontal: 65, vertical: 65),
                           child: Column(
                             children: [
                               Text(
-                                '0/261',
+                                '${pesosProvider.grasas}',
                                 style: GoogleFonts.montserrat(
                                     color: Color.fromARGB(255, 22, 73, 114),
                                     fontWeight: FontWeight.bold,
@@ -387,11 +476,12 @@ class _NutriPageState extends State<NutriPage> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 50, vertical: 60),
+                              horizontal: 65, vertical: 65),
                           child: Column(
                             children: [
                               Text(
-                                '0/261',
+                                '${pesosProvider.proteinas}',
+                                textAlign: TextAlign.center,
                                 style: GoogleFonts.montserrat(
                                     color: Color.fromARGB(255, 22, 73, 114),
                                     fontWeight: FontWeight.bold,

@@ -145,9 +145,10 @@ class DetalleReceta extends StatelessWidget {
                                       style: GoogleFonts.montserrat(),
                                       'Tipo de Comida'),
                                   Text(
-                                      style: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.bold),
-                                      'Deyuno | Snack'),
+                                    rrecetas.tip_comida,
+                                    style: GoogleFonts.montserrat(
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ],
                               )
                             ],
@@ -158,6 +159,7 @@ class DetalleReceta extends StatelessWidget {
                           Container(
                             color: Colors.grey.withOpacity(0.1),
                             width: double.infinity,
+                            height: MediaQuery.of(context).size.height * 0.6,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -201,10 +203,10 @@ class DetalleReceta extends StatelessWidget {
                                         fontWeight: FontWeight.bold),
                                     'Prepación: '),
                                 Text(
-                                    style: GoogleFonts.montserrat(),
+                                    style: GoogleFonts.montserrat(fontSize: 20),
                                     '1. Echa el yogurt eb un bol y añadir los copos de avena junto con las semillas'),
                                 Text(
-                                    style: GoogleFonts.montserrat(),
+                                    style: GoogleFonts.montserrat(fontSize: 20),
                                     '2. Añadir las fresas (o las fruta que tengamos) y canela al gusto'),
                                 const SizedBox(height: 10.0),
                                 Text(
@@ -260,9 +262,6 @@ class DetalleReceta extends StatelessWidget {
           ),
         ),
       ]),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-      ),
     );
   }
 }
@@ -286,62 +285,62 @@ class TablaNutricion extends StatelessWidget {
       children: [
         TableRow(children: [
           Text(
-            "1",
+            "345.40",
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 17.0),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
           Text(
-            "",
+            "Kcal",
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 17.0),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
         ]),
         TableRow(children: [
           Text(
-            "2",
+            "15.4 g.",
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 17.0),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
           Text(
             "Grasas",
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 17.0),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
         ]),
         TableRow(children: [
           Text(
-            "3",
+            "17.51 g.",
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 17.0),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
           Text(
             "Proteinas",
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 17.0),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
         ]),
         TableRow(children: [
           Text(
-            "4",
+            "52.56 g.",
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 17.0),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
           Text(
             "Carbohidratos",
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 17.0),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
         ]),
         TableRow(children: [
           Text(
-            "5",
+            "12.25 g.",
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 17.0),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
           Text(
             "Fibra",
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 17.0),
+            style: GoogleFonts.montserrat(fontSize: 20),
           ),
         ]),
       ],

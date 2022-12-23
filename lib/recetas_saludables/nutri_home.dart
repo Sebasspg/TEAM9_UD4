@@ -20,7 +20,7 @@ class NutriHome extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.58,
+              height: MediaQuery.of(context).size.height * 0.55,
               child: GridView.count(
                   primary: false,
                   padding: const EdgeInsets.all(20),
@@ -35,10 +35,11 @@ class NutriHome extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           child: InkWell(
                             onTap: () {
-                              /*  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: ((context) => NutriHome())));*/
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          const BusquePorPage(id_cat: '5'))));
                             },
                             child: Container(
                               child: Image.network(
@@ -103,10 +104,11 @@ class NutriHome extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           child: InkWell(
                             onTap: () {
-                              /*  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: ((context) => CatImages())));*/
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          const BusquePorPage(id_cat: '7'))));
                             },
                             child: Container(
                               child: Image.network(
@@ -136,10 +138,11 @@ class NutriHome extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           child: InkWell(
                             onTap: () {
-                              /*  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: ((context) => CatImages())));*/
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          const BusquePorPage(id_cat: '8'))));
                             },
                             child: Container(
                               child: Image.network(
@@ -169,10 +172,11 @@ class NutriHome extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           child: InkWell(
                             onTap: () {
-                              /*  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: ((context) => CatImages())));*/
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          const BusquePorPage(id_cat: '9'))));
                             },
                             child: Container(
                               child: Image.network(
@@ -202,14 +206,15 @@ class NutriHome extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           child: InkWell(
                             onTap: () {
-                              /*  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: ((context) => CatImages())));*/
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          const BusquePorPage(id_cat: '10'))));
                             },
                             child: Container(
                               child: Image.network(
-                                'https://picsum.photos/id/28/250/190',
+                                'https://cdn.pixabay.com/photo/2016/03/05/23/01/prawn-1239427_960_720.jpg',
                                 fit: BoxFit.cover,
                               ),
                               height: 190,
@@ -220,7 +225,7 @@ class NutriHome extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Naturaleza',
+                            'Recetas con Mariscos',
                             style: GoogleFonts.montserrat(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

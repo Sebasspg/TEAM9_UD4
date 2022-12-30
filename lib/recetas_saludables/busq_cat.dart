@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/model/receta_model.dart';
 import 'package:team9_ud3_project/providers/receta_providers.dart';
 import 'package:team9_ud3_project/recetas_saludables/detalle_receta.dart';
+import 'package:team9_ud3_project/widgets/loading_custom.dart';
 
 class BusquePorPage extends StatelessWidget {
   final String id_cat;
@@ -38,7 +39,9 @@ class BusquePorPage extends StatelessWidget {
                 },
               );
             }
-            return CircularProgressIndicator();
+            return LoadingCustom(
+              textoCarga: 'Cargando recetas...',
+            );
           },
         ),
       ),

@@ -11,6 +11,7 @@ import 'package:team9_ud3_project/providers/launcher_provider.dart';
 import 'package:team9_ud3_project/providers/peso_provider.dart';
 import 'package:team9_ud3_project/providers/receta_providers.dart';
 import 'package:team9_ud3_project/providers/producto_provider.dart';
+import 'package:team9_ud3_project/widgets/loading_custom.dart';
 
 void main() => runApp(const MyApp());
 

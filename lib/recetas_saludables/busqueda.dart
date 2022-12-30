@@ -5,6 +5,7 @@ import 'package:team9_ud3_project/model/receta_model.dart';
 import 'package:team9_ud3_project/providers/receta_providers.dart';
 import 'package:team9_ud3_project/recetas_saludables/detalle_receta.dart';
 import 'package:team9_ud3_project/widgets/CardRecetas_custom.dart';
+import 'package:team9_ud3_project/widgets/loading_custom.dart';
 
 class BusquedaPage extends StatelessWidget {
   const BusquedaPage({super.key});
@@ -15,9 +16,10 @@ class BusquedaPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Recetas test',
+          'Recetas',
           style: GoogleFonts.montserrat(),
         ),
+        centerTitle: true,
       ),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -35,7 +37,9 @@ class BusquedaPage extends StatelessWidget {
                 },
               );
             }
-            return CircularProgressIndicator();
+            return LoadingCustom(
+              textoCarga: 'Cargando recetas...',
+            );
           },
         ),
       ),

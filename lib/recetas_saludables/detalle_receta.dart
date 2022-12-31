@@ -12,7 +12,7 @@ class DetalleReceta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //splita del json ingredientes
+    //splita del json ingredientesa
     final String textonew = rrecetas.ingredientes.join(" , ");
     final String newDescription = textonew.replaceAll(",", "\n");
 

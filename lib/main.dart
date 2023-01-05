@@ -4,15 +4,26 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:team9_ud3_project/login/home_page.dart';
+import 'package:team9_ud3_project/login/signin_page.dart';
+import 'package:team9_ud3_project/login/signup_page.dart';
+import 'package:team9_ud3_project/login/simpleapp_page.dart';
+import 'package:team9_ud3_project/preferences/logearse_preferences.dart';
 import 'package:team9_ud3_project/principal/controlador_principal.dart';
 import 'package:team9_ud3_project/providers/Medicina_provider.dart';
 import 'package:team9_ud3_project/providers/alergia_provider.dart';
 import 'package:team9_ud3_project/providers/launcher_provider.dart';
+import 'package:team9_ud3_project/providers/logearse_providers.dart';
 import 'package:team9_ud3_project/providers/peso_provider.dart';
 import 'package:team9_ud3_project/providers/receta_providers.dart';
 import 'package:team9_ud3_project/providers/producto_provider.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Preferences.init();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -32,6 +43,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => LauncherProvider()),
           ChangeNotifierProvider(create: (_) => MedicinaProvider()),
           ChangeNotifierProvider(create: (_) => PesoProvider()),
+          ChangeNotifierProvider(create: (_) => AuthService()),
         ],
         child: MaterialApp(
           color: Colors.blue,
@@ -41,7 +53,13 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             primarySwatch: Colors.blue,
           ),
-          home: const SplashScreen(),
+          initialRoute: Preferences.token != '' ? '/simpleapp' : '/signin',
+          routes: {
+            '/': (context) => const TerminosCondiciones(),
+            '/signin': (context) => const SignInPage(),
+            '/signup': (context) => const SignUpPage(),
+            '/simpleapp': (context) => const SimpleAppPage(),
+          },
         ));
   }
 }

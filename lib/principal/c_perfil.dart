@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/principal/nosotros.dart';
+import 'package:team9_ud3_project/providers/logearse_providers.dart';
 
 class Perfil extends StatefulWidget {
   const Perfil({super.key});
@@ -22,7 +24,7 @@ class _PerfilState extends State<Perfil> {
     );
 
     bool estaactivo = false;
-
+    final authService = Provider.of<AuthService>(context, listen: false);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -83,7 +85,10 @@ class _PerfilState extends State<Perfil> {
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white),
                               ),
-                              onPressed: () {}),
+                              onPressed: () {
+                                authService.cerrarSesion();
+                                Navigator.pushNamed(context, '/signin');
+                              }),
                         ),
                       ],
                     ),
@@ -166,14 +171,15 @@ class _PerfilState extends State<Perfil> {
                               width: 110,
                             ),
                             MaterialButton(
-                              minWidth: 110,
-                              height: 50,
-                              onPressed: (() {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) => NosotrosPage())));
-                            }))
+                                minWidth: 110,
+                                height: 50,
+                                onPressed: (() {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) =>
+                                              NosotrosPage())));
+                                }))
                           ],
                         ),
                       ],

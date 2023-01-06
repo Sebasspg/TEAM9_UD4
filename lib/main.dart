@@ -17,6 +17,7 @@ import 'package:team9_ud3_project/providers/logearse_providers.dart';
 import 'package:team9_ud3_project/providers/peso_provider.dart';
 import 'package:team9_ud3_project/providers/receta_providers.dart';
 import 'package:team9_ud3_project/providers/producto_provider.dart';
+import 'package:team9_ud3_project/providers/usuarios_provides.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => MedicinaProvider()),
           ChangeNotifierProvider(create: (_) => PesoProvider()),
           ChangeNotifierProvider(create: (_) => AuthService()),
+          ChangeNotifierProvider(create: (_) => UsuarioProvider()),
         ],
         child: MaterialApp(
           color: Colors.blue,
@@ -58,7 +60,7 @@ class MyApp extends StatelessWidget {
             '/': (context) => const TerminosCondiciones(),
             '/signin': (context) => const SignInPage(),
             '/signup': (context) => const SignUpPage(),
-            '/simpleapp': (context) => const SimpleAppPage(),
+            '/simpleapp': (context) => const ControladorPrincipal(),
           },
         ));
   }

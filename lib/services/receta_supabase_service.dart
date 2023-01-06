@@ -1,6 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class DatabaseService {
+class UsuarioDataService {
 //STORAGE
   final SupabaseClient client = SupabaseClient(
       'https://rwbskzkchsmilqhonvxm.supabase.co',

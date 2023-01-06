@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:team9_ud3_project/principal/editar_perfil.dart';
+
 import 'package:team9_ud3_project/principal/nosotros.dart';
 import 'package:team9_ud3_project/providers/logearse_providers.dart';
 
@@ -12,19 +14,20 @@ class Perfil extends StatefulWidget {
 }
 
 class _PerfilState extends State<Perfil> {
+  dynamic dataUsuarios = {};
+  @override
+  void initState() {
+    super.initState();
+    actualizarEstado();
+  }
+
   @override
   Widget build(BuildContext context) {
     var cajaperfil = 'assets/menuprincipal/bien/cajaperfil.png';
 
-    var usuario = Text(
-      'Nombre del Usuario',
-      style: GoogleFonts.quicksand(
-          textStyle: const TextStyle(
-              fontSize: 21, fontWeight: FontWeight.w800, color: Colors.white)),
-    );
-
     bool estaactivo = false;
     final authService = Provider.of<AuthService>(context, listen: false);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
@@ -62,7 +65,14 @@ class _PerfilState extends State<Perfil> {
                     const SizedBox(
                       height: 15,
                     ),
-                    usuario,
+                    Text(
+                      dataUsuarios['nombre'] ?? '',
+                      style: GoogleFonts.quicksand(
+                          textStyle: const TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white)),
+                    ),
                     const Spacer(
                       flex: 4,
                     ),
@@ -86,8 +96,13 @@ class _PerfilState extends State<Perfil> {
                                     color: Colors.white),
                               ),
                               onPressed: () {
-                                authService.cerrarSesion();
-                                Navigator.pushNamed(context, '/signin');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => EditarPerfil()),
+                                );
+                                // authService.cerrarSesion();
+                                // Navigator.pushNamed(context, '/signin');
                               }),
                         ),
                       ],
@@ -192,5 +207,14 @@ class _PerfilState extends State<Perfil> {
         ),
       ),
     );
+  }
+
+  void actualizarEstado() async {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    final datosfinales = await authService.traerDataUser();
+    setState(() {
+      dataUsuarios = datosfinales;
+      print(datosfinales);
+    });
   }
 }

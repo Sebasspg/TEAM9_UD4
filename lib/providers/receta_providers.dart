@@ -6,7 +6,7 @@ import 'package:team9_ud3_project/model/receta_model.dart';
 import 'package:team9_ud3_project/services/receta_supabase_service.dart';
 
 class RecetaProvider extends ChangeNotifier {
-  final DatabaseService _dataBaseService = new DatabaseService();
+  final UsuarioDataService _dataBaseService = UsuarioDataService();
 
   //listar categorias
   Future getReceta() async {

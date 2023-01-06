@@ -23,6 +23,7 @@ class AuthService extends ChangeNotifier {
 
     final url = Uri.https(_baseUrl, '/auth/v1/signup', {'apikey': _apikey});
     final response = await http.post(url, body: json.encode(authData));
+    print(response);
 
     final Map<String, dynamic> decodeResponse = json.decode(response.body);
     print(decodeResponse.containsKey('id'));
@@ -60,7 +61,7 @@ class AuthService extends ChangeNotifier {
 
   //TRAER DATOS DEL USUARIO
   Future traerDataUser() async {
-    final url = Uri.parse('$urlbase?usuario=eq.${Preferences.identificador}');
+    final url = Uri.parse('$urlbase?uuid=eq.${Preferences.identificador}');
 
     Map<String, String> header = {
       'apikey': _apikey,
@@ -111,5 +112,39 @@ class AuthService extends ChangeNotifier {
   //VERIFICAR TOKEN
   Future<String> leerToken() async {
     return Preferences.token;
+  }
+
+  //Actualizar datos
+  Future<String> ActualizarDatitos(String nombre) async {
+    final url = Uri.parse('$urlbase?uuid=eq.${Preferences.identificador}');
+    final String msg;
+
+    Map<String, String> header = {
+      'apikey': _apikey,
+      'Authorization': autorization,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    };
+
+    final body = jsonEncode({
+      'nombre': nombre != '' ? null : nombre,
+      // 'idVacuna':idVacuna ,
+      // 'idMedicacion':idMedicacion ,
+      // 'idAlergia':idAlergia ,
+      // 'edad':edad ,
+      // 'genero':genero ,
+      // 'image':image ,
+      // 'peso':peso ,
+      // 'altura':altura ,
+      // 'tipoSangre':tipoSangre ,
+    });
+    final response = await http.patch(url, body: body, headers: header);
+
+    if (response.statusCode != 204) {
+      msg = 'MSG=> NO SE GUARDO CORRECTAMENTE';
+    } else {
+      msg = 'MSG=> SE GUARDO CORRECTAMENTE';
+    }
+    return msg;
   }
 }

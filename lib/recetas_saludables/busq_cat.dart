@@ -16,10 +16,22 @@ class BusquePorPage extends StatelessWidget {
     final RecetaProvider _dataReceta = Provider.of<RecetaProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Recetas Por Categoria',
-          style: GoogleFonts.montserrat(),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'TODAS LAS RECETAS',
+              style: GoogleFonts.quicksand(
+                  fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            Image.asset(
+              'assets/recetas/rslogo.png',
+              height: 50,
+              width: 110,
+            ),
+          ],
         ),
+        centerTitle: true,
       ),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -57,7 +69,7 @@ class RecetasCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 460,
+      height: MediaQuery.of(context).size.height * 0.56,
       width: double.infinity,
       child: Card(
           shape:

@@ -1,4 +1,4 @@
-#Fri Jan 06 10:40:13 COT 2023
-base.0=D\:\\Clases josue\\PROYECTO FINAL\\proyecto finalisimo\\TEAM9_UD4\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Fri Jan 06 12:34:54 COT 2023
+base.0=D\:\\Personal\\Docu\\GitHUB\\TEAM9_UD4\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

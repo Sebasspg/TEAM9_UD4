@@ -79,6 +79,7 @@ flutter:
     - assets/icons/
     - assets/menuprincipal/
     - assets/login/
+    - assets/recetas/
     - assets/menuprincipal/bien/
     - assets/menuprincipal/mal/
     - assets/menuprincipal/medio/

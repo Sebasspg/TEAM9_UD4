@@ -13,7 +13,7 @@ class PesoProvider extends ChangeNotifier {
     print(resultadoIMC);
 
     if (resultadoIMC < 18.5) {
-      msg = 'Bajo';
+      msg = 'Delgadez';
     } else if (resultadoIMC >= 18.5 && resultadoIMC <= 24.9) {
       msg = 'Normal';
     } else if (resultadoIMC >= 25.0 && resultadoIMC <= 29.9) {

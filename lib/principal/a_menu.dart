@@ -10,23 +10,17 @@ import 'package:team9_ud3_project/recomendaciones/recomendaciones.dart';
 import 'package:team9_ud3_project/vacunas/pages/producto/productos_page.dart';
 import 'package:video_player/video_player.dart';
 
-class MenuPrincipal extends StatefulWidget {
-  const MenuPrincipal({super.key});
+class MenuPrincipalf extends StatefulWidget {
+  const MenuPrincipalf({super.key});
 
   @override
-  State<MenuPrincipal> createState() => _MenuPrincipalState();
+  State<MenuPrincipalf> createState() => _MenuPrincipalfState();
 }
 
-class _MenuPrincipalState extends State<MenuPrincipal> {
+class _MenuPrincipalfState extends State<MenuPrincipalf> {
   //REPRODUCIR VIDEO------------------------------------------------------------
   var videoPlayerControllera =
       VideoPlayerController.asset("assets/menuprincipal/bien/arobien.mp4");
-
-  var videoPlayerControllerb =
-      VideoPlayerController.asset("assets/menuprincipal/medio/aromedio.mp4");
-
-  var videoPlayerControllerc =
-      VideoPlayerController.asset("assets/menuprincipal/mal/aromal.mp4");
 
   ChewieController? chewieControllera;
   @override
@@ -81,7 +75,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
       'Nombre del Usuario',
       style: GoogleFonts.quicksand(
           textStyle:
-              const TextStyle(fontSize: 25.5, fontWeight: FontWeight.w800)),
+              const TextStyle(fontSize: 25.8, fontWeight: FontWeight.w800)),
     );
     var estado = Text(
       'ESTADO',
@@ -608,7 +602,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                   onPressed: (() {
                     setState(() {
                       iconobien = iconomedio;
-                      videoPlayerControllera = videoPlayerControllerb;
+
                       cubitoverde = cubitonaranja;
                       colorbienverde = colormedionaranja;
                       colorbienceleste = colormedioamarillo;
@@ -622,7 +616,6 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                   onPressed: (() {
                     setState(() {
                       iconobien = iconomal;
-                      videoPlayerControllera = videoPlayerControllerc;
                       cubitoverde = cubitorojo;
                       colorbienverde = colormalrojo;
                       colorbienceleste = colormalnaranja;

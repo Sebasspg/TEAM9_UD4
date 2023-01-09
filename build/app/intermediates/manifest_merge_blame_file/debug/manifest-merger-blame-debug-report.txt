@@ -13,16 +13,16 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->D:\Personal\Docu\GitHUB\TEAM9_UD4\android\app\src\main\AndroidManifest.xml:3:5-66
-15-->D:\Personal\Docu\GitHUB\TEAM9_UD4\android\app\src\main\AndroidManifest.xml:3:22-64
+15-->C:\Users\Admin\Documents\GitHub\TEAM9_UD4\android\app\src\main\AndroidManifest.xml:3:5-66
+15-->C:\Users\Admin\Documents\GitHub\TEAM9_UD4\android\app\src\main\AndroidManifest.xml:3:22-64
 16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-16-->[com.google.android.exoplayer:exoplayer-core:2.18.1] C:\Users\User\.gradle\caches\transforms-3\6ec2c823b2ddfa9d4aff16fd99b56b89\transformed\jetified-exoplayer-core-2.18.1\AndroidManifest.xml:24:5-79
-16-->[com.google.android.exoplayer:exoplayer-core:2.18.1] C:\Users\User\.gradle\caches\transforms-3\6ec2c823b2ddfa9d4aff16fd99b56b89\transformed\jetified-exoplayer-core-2.18.1\AndroidManifest.xml:24:22-76
+16-->[com.google.android.exoplayer:exoplayer-core:2.18.1] C:\Users\Admin\.gradle\caches\transforms-3\6ec2c823b2ddfa9d4aff16fd99b56b89\transformed\jetified-exoplayer-core-2.18.1\AndroidManifest.xml:24:5-79
+16-->[com.google.android.exoplayer:exoplayer-core:2.18.1] C:\Users\Admin\.gradle\caches\transforms-3\6ec2c823b2ddfa9d4aff16fd99b56b89\transformed\jetified-exoplayer-core-2.18.1\AndroidManifest.xml:24:22-76
 17
 18    <application
 19        android:name="android.app.Application"
 20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-20-->[androidx.core:core:1.7.0] C:\Users\User\.gradle\caches\transforms-3\5e083c06c9925c2309f02468fc66e376\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+20-->[androidx.core:core:1.7.0] C:\Users\Admin\.gradle\caches\transforms-3\5e083c06c9925c2309f02468fc66e376\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
 21        android:debuggable="true"
 22        android:icon="@mipmap/ic_launcher"
 23        android:label="Gux Health" >
@@ -60,26 +60,26 @@
 55            android:value="2" />
 56
 57        <activity
-57-->[:url_launcher_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-13:74
+57-->[:url_launcher_android] C:\Users\Admin\Documents\GitHub\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-13:74
 58            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-58-->[:url_launcher_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
+58-->[:url_launcher_android] C:\Users\Admin\Documents\GitHub\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
 59            android:exported="false"
-59-->[:url_launcher_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
+59-->[:url_launcher_android] C:\Users\Admin\Documents\GitHub\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
 60            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-60-->[:url_launcher_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-71
+60-->[:url_launcher_android] C:\Users\Admin\Documents\GitHub\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-71
 61
 62        <uses-library
-62-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+62-->[androidx.window:window:1.0.0-beta04] C:\Users\Admin\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
 63            android:name="androidx.window.extensions"
-63-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+63-->[androidx.window:window:1.0.0-beta04] C:\Users\Admin\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
 64            android:required="false" />
-64-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+64-->[androidx.window:window:1.0.0-beta04] C:\Users\Admin\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
 65        <uses-library
-65-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+65-->[androidx.window:window:1.0.0-beta04] C:\Users\Admin\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
 66            android:name="androidx.window.sidecar"
-66-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+66-->[androidx.window:window:1.0.0-beta04] C:\Users\Admin\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
 67            android:required="false" />
-67-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+67-->[androidx.window:window:1.0.0-beta04] C:\Users\Admin\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
 68    </application>
 69
 70</manifest>

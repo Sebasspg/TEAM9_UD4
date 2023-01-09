@@ -6,14 +6,14 @@ import 'package:team9_ud3_project/principal/editar_perfil.dart';
 import 'package:team9_ud3_project/principal/nosotros.dart';
 import 'package:team9_ud3_project/providers/logearse_providers.dart';
 
-class Perfil extends StatefulWidget {
-  const Perfil({super.key});
+class PerfilAntiwo extends StatefulWidget {
+  const PerfilAntiwo({super.key});
 
   @override
-  State<Perfil> createState() => _PerfilState();
+  State<PerfilAntiwo> createState() => _PerfilAntiwoState();
 }
 
-class _PerfilState extends State<Perfil> {
+class _PerfilAntiwoState extends State<PerfilAntiwo> {
   dynamic dataUsuarios = {};
   @override
   void initState() {

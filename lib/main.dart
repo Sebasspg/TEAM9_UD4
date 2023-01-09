@@ -31,10 +31,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
-        overlays: [
-          SystemUiOverlay.top,
-        ]);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+    //     overlays: [
+    //       SystemUiOverlay.top,
+    //     ]);
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.light,
+    ));
 
     return MultiProvider(
         providers: [
@@ -48,16 +54,13 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => UsuarioProvider()),
         ],
         child: MaterialApp(
-          color: Colors.blue,
           debugShowCheckedModeBanner: false,
           title: 'Gux Health',
           theme: ThemeData(
             useMaterial3: true,
-            primarySwatch: Colors.blue,
           ),
           initialRoute: Preferences.token != '' ? '/simpleapp' : '/signin',
           routes: {
-            '/': (context) => const TerminosCondiciones(),
             '/signin': (context) => const SignInPage(),
             '/signup': (context) => const SignUpPage(),
             '/simpleapp': (context) => const ControladorPrincipal(),
@@ -94,7 +97,7 @@ class _SplashScreenState extends State<SplashScreen> {
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              colors: [Colors.lightBlue, Colors.green]),
+              colors: [Colors.lightBlue, Colors.green],),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

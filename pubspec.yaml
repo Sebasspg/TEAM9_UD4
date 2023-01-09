@@ -81,12 +81,8 @@ flutter:
     - assets/login/
     - assets/recetas/
     - assets/menuprincipal/bien/
-    - assets/menuprincipal/mal/
-    - assets/menuprincipal/medio/
     - assets/menuprincipal/otro/
     - assets/menuprincipal/bien/arobien.mp4
-    - assets/menuprincipal/medio/aromedio.mp4
-    - assets/menuprincipal/mal/aromal.mp4
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

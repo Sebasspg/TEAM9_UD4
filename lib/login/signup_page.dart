@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:team9_ud3_project/login/home_page.dart';
 import 'package:team9_ud3_project/providers/logearse_providers.dart';
 import 'package:team9_ud3_project/utils/constant.dart';
 
@@ -24,107 +26,142 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
+  var colorbienceleste = const Color.fromARGB(255, 51, 198, 244);
+
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context, listen: false);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 28),
+        child: SingleChildScrollView(
+          child: Column(
             children: [
-              Image.asset(
-                'assets/login/login_logo.png',
-                scale: 2,
-
-                // fit: BoxFit.fill,
-                // isAntiAlias: true,
-              ),
-              const SizedBox(
-                width: 150,
-              )
-            ],
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 15,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: Text(
-                    "REGISTRO",
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: FittedBox(
+                          child: FloatingActionButton(
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                            child: Image.asset(
+                                'assets/menuprincipal/bien/flecha_negra_volver.png'),
+                            onPressed: () {
+                              Navigator.pop(
+                                (context),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.046,
+                            ),
+                      Image.asset(
+                        'assets/login/login_logo.png',
+                        width: MediaQuery.of(context).size.width * 0.245,
+                      ),
+                    ],
                   ),
                 ),
-                Image.asset(
-                  'assets/login/registergux.png',
-                )
-              ],
-            ),
-            largeGap,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
+              ),
+              SizedBox(height: MediaQuery.of(context).size.width * 0.08,),
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Correo Electronico ",
-                    style: TextStyle(color: Colors.black, fontSize: 18),
+                  Text(
+                    "REGISTRO",
+                    style: GoogleFonts.quicksand(
+                        fontSize: 19.7, fontWeight: FontWeight.w800),
                   ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * 0.06,
+                  ),
+                  Image.asset(
+                    'assets/login/registergux.png',
+                  )
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.width * 0.12,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Correo Electrónico ",
+                    style: GoogleFonts.quicksand(
+                        fontSize: 13.001,
+                        fontWeight: FontWeight.w500,
+                        height: 1.9,
+                        color: Colors.black),
+                  ),
+                  SizedBox(
+                    height: 20,
+                    child: TextFormField(
+                      style: GoogleFonts.quicksand(
+                          fontSize: 13.001,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
+                      autocorrect: false,
+                      keyboardType: TextInputType.emailAddress,
+                      onChanged: (value) => emailController.text = value,
+                      validator: (value) {
+                        String caracteres =
+                            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
-                  TextFormField(
-                    style: const TextStyle(color: Colors.black),
-                    autocorrect: false,
-                    keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) => emailController.text = value,
-                    validator: (value) {
-                      String caracteres =
-                          r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-
-                      RegExp regExp = RegExp(caracteres);
-                      return regExp.hasMatch(value ?? "")
-                          ? null
-                          : "No es un correo valido";
-                    },
+                        RegExp regExp = RegExp(caracteres);
+                        return regExp.hasMatch(value ?? "")
+                            ? null
+                            : "No es un correo valido";
+                      },
+                    ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 25,
                   ),
-                  const Text(
-                    "Contraseña :",
-                    style: TextStyle(color: Colors.black, fontSize: 18),
+                  Text(
+                    "Contraseña:",
+                    style: GoogleFonts.quicksand(
+                        fontSize: 13.001,
+                        fontWeight: FontWeight.w500,
+                        height: 1.9,
+                        color: Colors.black),
                   ),
-
-                  TextFormField(
-                    style: const TextStyle(color: Colors.black),
-                    autocorrect: false,
-                    obscureText: _ispassword,
-                    keyboardType: TextInputType.text,
-                    decoration: _buildDecoration(
-                      suffixIcon: InkWell(
-                        onTap: () {
-                          _viewpassword();
-                        },
-                        child: Icon(_ispassword
-                            ? Icons.visibility
-                            : Icons.visibility_off),
-                      ),
+                  SizedBox(
+                    height: 20,
+                    child: TextFormField(
+                      style: GoogleFonts.quicksand(
+                          fontSize: 13.001,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
+                      autocorrect: false,
+                      obscureText: _ispassword,
+                      keyboardType: TextInputType.text,
+                      // decoration: _buildDecoration(
+                      //   suffixIcon: InkWell(
+                      //     onTap: () {
+                      //       _viewpassword();
+                      //     },
+                      //     child: Icon(_ispassword
+                      //         ? Icons.visibility
+                      //         : Icons.visibility_off),
+                      //   ),
+                      // ),
+                      onChanged: (value) => passwordController.text = value,
+                      validator: ((value) {
+                        print(value);
+                        return (value != null && value.length >= 8)
+                            ? null
+                            : "Debe tener minimo 8 caracteres";
+                      }),
                     ),
-                    onChanged: (value) => passwordController.text = value,
-                    validator: ((value) {
-                      print(value);
-                      return (value != null && value.length >= 8)
-                          ? null
-                          : "Debe tener minimo 8 caracteres";
-                    }),
                   ),
                   // TextFormField(
                   //   controller: _emailController,
@@ -135,35 +172,47 @@ class _SignUpPageState extends State<SignUpPage> {
                   // ),
                 ],
               ),
-            ),
-            Row(
-              children: [
-                Checkbox(
-                  checkColor: Colors.red,
-                  value: isChecked,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      // isChecked = value!;
-                      isChecked = value ?? false;
-                    });
-                  },
-                ),
-                const Text("He leido y acepto los"),
-                TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/');
+              SizedBox(
+                height: MediaQuery.of(context).size.width * 0.075,
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                    checkColor: Colors.white,
+                    value: isChecked,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        // isChecked = value!;
+                        isChecked = value ?? false;
+                      });
                     },
-                    child: const Text("Terminos y condiciones"))
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                color: Colors.blue.withOpacity(0.5),
-                height: 50,
+                  ),
+                  Text(
+                    "He leido y acepto los",
+                    style: GoogleFonts.quicksand(
+                        fontSize: 9.777, fontWeight: FontWeight.w600),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TerminosCondiciones()),
+                        );
+                      },
+                      child: Text(
+                        "términos y condiciones",
+                        style: GoogleFonts.quicksand(
+                            fontSize: 9.777, fontWeight: FontWeight.w800),
+                      ))
+                ],
+              ),
+              Container(
+                color: colorbienceleste.withOpacity(0.5),
+                height: 45,
                 child: MaterialButton(
                   minWidth: double.infinity,
-                  color: Colors.blue,
+                  color: colorbienceleste,
                   onPressed: isChecked
                       ? () async {
                           // Login(_emailController.text, _passwordController.text);
@@ -175,22 +224,19 @@ class _SignUpPageState extends State<SignUpPage> {
 
                           if (errorMessage == null) {
                             // ignore: use_build_context_synchronously
-                            Navigator.pushNamed(context, '/signin');
+                            Navigator.pop(context, '/signin');
                           }
                         }
                       : null,
-                  child: const Text(
-                    'COMPLETADO',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                  child: Text(
+                    '¡COMPLETADO!',
+                    style: GoogleFonts.quicksand(
+                        fontSize: 11, fontWeight: FontWeight.w900, color: Colors.white),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 15,
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -209,6 +255,6 @@ InputDecoration _buildDecoration({
     hintStyle: const TextStyle(color: Colors.grey),
     prefixIcon: prefixIcon,
     suffixIcon: suffixIcon,
-    contentPadding: const EdgeInsets.all(5),
+    contentPadding: const EdgeInsets.all(0),
   );
 }

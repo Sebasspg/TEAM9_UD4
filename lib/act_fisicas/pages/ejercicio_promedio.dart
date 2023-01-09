@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/act_fisicas/widgets/plantillaparatarea.dart';
+import 'package:team9_ud3_project/providers/launcher_provider.dart';
 
 import 'package:tiktoklikescroller/tiktoklikescroller.dart';
 
@@ -73,6 +75,7 @@ class _EjercicioPromedioState extends State<EjercicioPromedio> {
 
   @override
   Widget build(BuildContext context) {
+    final redesProvider = Provider.of<LauncherProvider>(context);
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -107,6 +110,9 @@ class _EjercicioPromedioState extends State<EjercicioPromedio> {
             title: sitios["title"],
             subtitle: sitios["subtitle"],
             repetir: sitios["repetir"],
+            onPressed: () {
+              redesProvider.goYoutubeEjercicio(sitios['url']);
+            },
           );
         },
       ),

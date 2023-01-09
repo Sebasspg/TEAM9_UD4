@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:team9_ud3_project/providers/launcher_provider.dart';
 
 class PlantillaParaTarea extends StatelessWidget {
   final String? img;
   final String? title;
   final String? subtitle;
   final String? repetir;
+  final Function()? onPressed;
 
   const PlantillaParaTarea(
-      {super.key, this.img, this.title, this.subtitle, this.repetir});
+      {super.key,
+      this.img,
+      this.title,
+      this.subtitle,
+      this.repetir,
+      this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +78,7 @@ class PlantillaParaTarea extends StatelessWidget {
             height: 10,
           ),
           InkWell(
+            onTap: onPressed,
             child: Container(
               height: 50,
               width: double.infinity,
@@ -94,7 +103,6 @@ class PlantillaParaTarea extends StatelessWidget {
                 ],
               ),
             ),
-            onTap: () {},
           ),
           Image.asset(
             "assets/ejercicio/abajonegra.png",

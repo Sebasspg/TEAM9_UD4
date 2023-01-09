@@ -31,6 +31,29 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context, listen: false);
+    void alertCustom(BuildContext context) {
+      showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+                title: SizedBox(
+                  height: 200,
+                  child: Image.asset("assets/vacunas/rg_gux_register.png"),
+                ),
+                content: const Text(
+                  'Por favor, revise su bandeja de entrada y verifique su correo',
+                  textAlign: TextAlign.center,
+                ),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop("true");
+                        Navigator.pop(context, '/signin');
+                      },
+                      child: const Text("aceptar"))
+                ],
+              ));
+    }
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 28),
@@ -61,8 +84,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.046,
-                            ),
+                        width: MediaQuery.of(context).size.width * 0.046,
+                      ),
                       Image.asset(
                         'assets/login/login_logo.png',
                         width: MediaQuery.of(context).size.width * 0.245,
@@ -71,7 +94,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.width * 0.08,),
+              SizedBox(
+                height: MediaQuery.of(context).size.width * 0.08,
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -197,7 +222,8 @@ class _SignUpPageState extends State<SignUpPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const TerminosCondiciones()),
+                              builder: (context) =>
+                                  const TerminosCondiciones()),
                         );
                       },
                       child: Text(
@@ -224,14 +250,17 @@ class _SignUpPageState extends State<SignUpPage> {
 
                           if (errorMessage == null) {
                             // ignore: use_build_context_synchronously
-                            Navigator.pop(context, '/signin');
+                            alertCustom(context);
+                            //Navigator.pop(context, '/signin');
                           }
                         }
                       : null,
                   child: Text(
                     '¡COMPLETADO!',
                     style: GoogleFonts.quicksand(
-                        fontSize: 11, fontWeight: FontWeight.w900, color: Colors.white),
+                        fontSize: 11,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white),
                   ),
                 ),
               ),

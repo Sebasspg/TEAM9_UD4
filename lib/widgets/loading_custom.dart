@@ -12,24 +12,44 @@ class LoadingCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.8),
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(color: Colors.white),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SpinKitRing(
-              color: Colors.orange,
-              size: 80,
+            const Text(
+              "UN MOMENTO...",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const Text("Gux esta preparando todo para ti"),
+            const SpinKitRing(
+              color: Colors.blue,
+              size: 50,
+            ),
+            const SizedBox(
               height: 15,
             ),
             Text(
               textoCarga,
               style: GoogleFonts.montserrat(
                   fontSize: 20, color: Colors.black.withOpacity(0.5)),
+            ),
+            const SizedBox(
+              height: 120,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Image.asset(
+                    'assets/vacunas/rg_gux_register.png',
+                    scale: 4,
+                  ),
+                ],
+              ),
             ),
           ],
         ),

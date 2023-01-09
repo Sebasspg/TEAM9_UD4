@@ -3,6 +3,7 @@ import 'package:team9_ud3_project/act_fisicas/pages/ejercicio_basico.dart';
 import 'package:team9_ud3_project/act_fisicas/pages/ejercicio_experto.dart';
 import 'package:team9_ud3_project/act_fisicas/pages/ejercicio_iniciante.dart';
 import 'package:team9_ud3_project/act_fisicas/pages/ejercicio_promedio.dart';
+import 'package:team9_ud3_project/widgets/loading_custom.dart';
 
 class HacerEjercicio extends StatelessWidget {
   const HacerEjercicio({super.key});

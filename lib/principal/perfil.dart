@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/principal/nosotros.dart';
+import 'package:team9_ud3_project/providers/logearse_providers.dart';
 
 class PerfilPrincipal extends StatefulWidget {
   const PerfilPrincipal({super.key});
@@ -15,6 +17,7 @@ class _PerfilPrincipalState extends State<PerfilPrincipal> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context, listen: false);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 17),
@@ -199,7 +202,10 @@ class _PerfilPrincipalState extends State<PerfilPrincipal> {
                       height: MediaQuery.of(context).size.width * 0.18,
                       width: MediaQuery.of(context).size.width,
                       child: MaterialButton(
-                        onPressed: (() {}),
+                        onPressed: (() {
+                          authService.cerrarSesion();
+                          Navigator.pushNamed(context, '/signin');
+                        }),
                       ),
                     )
                   ],

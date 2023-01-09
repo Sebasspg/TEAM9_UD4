@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/act_fisicas/widgets/plantillaparatarea.dart';
+import 'package:team9_ud3_project/providers/launcher_provider.dart';
 
 import 'package:tiktoklikescroller/tiktoklikescroller.dart';
 
@@ -19,7 +21,8 @@ class _EjercicioInicianteState extends State<EjercicioIniciante> {
       'title': 'Elevaciones de rodilla',
       'subtitle':
           'Parate con los pies separados al ancho de tus caderas. Levantá una rodilla hacia el pecho y luego hacé lo mismo con la otra. Continuá el movimiento alternando las piernas.',
-      'repetir': '15 veces'
+      'repetir': '15 veces',
+      'url': 'https://www.youtube.com/watch?v=VP8In2738AQ'
     },
     {
       'img':
@@ -27,7 +30,8 @@ class _EjercicioInicianteState extends State<EjercicioIniciante> {
       'title': 'Saltos',
       'subtitle':
           'Podés hacer diferentes tipos de saltos. En los saltos en estrella, por ejemplo, te impulsás hacia arriba mientras alejás los brazos y piernas del cuerpo. También podés probar los saltos con rodillas al pecho, subiendo las dos piernas lo más alto posible. ',
-      'repetir': '10 veces'
+      'repetir': '10 veces',
+      'url': 'https://www.youtube.com/shorts/Y0ttEbv0e60'
     },
     {
       'img':
@@ -35,7 +39,8 @@ class _EjercicioInicianteState extends State<EjercicioIniciante> {
       'title': 'Sentadillas',
       'subtitle':
           'Parate con los pies paralelos y, luego, flexioná las rodillas y bajá la cadera hacia el suelo, como si fueras a sentarte. Mantené el pecho elevado y la mirada hacia delante. La espalda debe permanecer lo más recta posible. ',
-      'repetir': '5 veces'
+      'repetir': '5 veces',
+      'url': 'https://www.youtube.com/watch?v=G8mX-VJrUi8'
     },
     {
       'img':
@@ -43,7 +48,8 @@ class _EjercicioInicianteState extends State<EjercicioIniciante> {
       'title': 'Tablas',
       'subtitle':
           'Ubicate boca abajo, apoyá las manos al ancho de hombros y estirá los brazos. Las piernas deben estar rectas, el abdomen contraído y la espalda derecha. Mantené la postura durante, al menos, 20 segundos.',
-      'repetir': 'Por 20 segundos'
+      'repetir': 'Por 20 segundos',
+      'url': 'https://www.youtube.com/watch?v=_mMe3LAfQQA'
     },
   ];
 
@@ -65,6 +71,7 @@ class _EjercicioInicianteState extends State<EjercicioIniciante> {
 
   @override
   Widget build(BuildContext context) {
+    final redesProvider = Provider.of<LauncherProvider>(context);
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -100,6 +107,9 @@ class _EjercicioInicianteState extends State<EjercicioIniciante> {
             title: sitios["title"],
             subtitle: sitios["subtitle"],
             repetir: sitios["repetir"],
+            onPressed: () {
+              redesProvider.goYoutubeEjercicio(sitios['url']);
+            },
           );
         },
       ),

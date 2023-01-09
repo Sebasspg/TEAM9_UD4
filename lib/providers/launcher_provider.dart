@@ -61,4 +61,12 @@ class LauncherProvider extends ChangeNotifier {
       await launchUrlString(urlEncode, mode: LaunchMode.externalApplication);
     }
   }
+
+  void goYoutubeEjercicio(String direccion) async {
+    String url = direccion;
+    String urlEncode = Uri.encodeFull(url);
+    if (await canLaunchUrlString(urlEncode)) {
+      await launchUrlString(urlEncode, mode: LaunchMode.externalApplication);
+    }
+  }
 }

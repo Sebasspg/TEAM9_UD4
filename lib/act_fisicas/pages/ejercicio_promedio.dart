@@ -75,9 +75,23 @@ class _EjercicioPromedioState extends State<EjercicioPromedio> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ejercicio Promedio"),
-        elevation: 0,
-        centerTitle: true,
+        actions: [
+          Row(
+            children: [
+              const Text(
+                "INTERMEDIO",
+                style: TextStyle(fontSize: 18),
+              ),
+              const SizedBox(
+                width: 100,
+              ),
+              Image.asset(
+                'assets/login/login_logo.png',
+                scale: 2.5,
+              ),
+            ],
+          ),
+        ],
       ),
       body: TikTokStyleFullPageScroller(
         contentSize: data.length,

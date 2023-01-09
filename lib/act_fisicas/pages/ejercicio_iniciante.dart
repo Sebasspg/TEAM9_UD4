@@ -67,9 +67,24 @@ class _EjercicioInicianteState extends State<EjercicioIniciante> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ejercicio Iniciante"),
-        elevation: 0,
-        centerTitle: true,
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const Text(
+                "BASICOS",
+                style: TextStyle(fontSize: 18),
+              ),
+              const SizedBox(
+                width: 100,
+              ),
+              Image.asset(
+                'assets/login/login_logo.png',
+                scale: 2.5,
+              ),
+            ],
+          ),
+        ],
       ),
       body: TikTokStyleFullPageScroller(
         contentSize: data.length,

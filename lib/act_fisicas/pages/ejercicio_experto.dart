@@ -83,9 +83,23 @@ class _EjercicioExpertoState extends State<EjercicioExperto> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ejercicio Experto"),
-        elevation: 0,
-        centerTitle: true,
+        actions: [
+          Row(
+            children: [
+              const Text(
+                "AVANZADO",
+                style: TextStyle(fontSize: 18),
+              ),
+              const SizedBox(
+                width: 100,
+              ),
+              Image.asset(
+                'assets/login/login_logo.png',
+                scale: 2.5,
+              ),
+            ],
+          ),
+        ],
       ),
       body: TikTokStyleFullPageScroller(
         contentSize: data.length,

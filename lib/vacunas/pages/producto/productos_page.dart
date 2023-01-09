@@ -14,78 +14,159 @@ class ProductosPage extends StatelessWidget {
     productoData.queryAll();
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Mis Vacunas',
-          style: TextStyle(
-              fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        backgroundColor: const Color.fromARGB(255, 89, 176, 247),
-        centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: () {
-              productoData.deleteAll();
-            },
-            icon: const Icon(Icons.delete),
+          Row(
+            children: [
+              const Text(
+                "REGISTRO DE VACUNAS",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                width: 17,
+              ),
+              Image.asset(
+                'assets/login/login_logo.png',
+                scale: 2.5,
+              ),
+            ],
           ),
         ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       productoData.deleteAll();
+        //     },
+        //     icon: const Icon(Icons.delete),
+        //   ),
+        // ],
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            child: Image.network(
-                "https://cdn.pixabay.com/photo/2017/10/04/09/56/laboratory-2815639_960_720.jpg"),
-          ),
-          MaterialButton(
-            minWidth: 200,
-            color: const Color.fromARGB(255, 17, 0, 255),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const CreatePage()));
-            },
-            child: const Text(
-              'Registrar Vacuna',
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: productoData.product.length,
-              itemBuilder: (BuildContext context, int index) {
-                final data = productoData.product[index];
-
-                return ListTile(
-                  title: Text(
-                      '${data.nombre} | Duracion:  ${data.categoria}  meses'),
-                  subtitle: Text(' Fecha de Inyeccion: ${data.stock} '),
-                  textColor: Colors.blueGrey,
-                  trailing: IconButton(
-                    onPressed: () {
-                      productoData.delete(data.id);
-                    },
-                    icon: const Icon(
-                      Icons.delete,
-                      color: Colors.red,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                SizedBox(
+                  child: Image.asset("assets/vacunas/vc_imgtodo.png"),
+                ),
+                Column(
+                  children: [
+                    const SizedBox(
+                      height: 45,
                     ),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => UpdatePage(
-                          product: data,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        Text(
+                          "MIS VACUNAS",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
                         ),
+                        SizedBox(
+                          width: 15,
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          MaterialButton(
+                            minWidth: 100,
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            onPressed: () {
+                              productoData.deleteAll();
+                            },
+                            child: const Text(
+                              'BORRAR TODO',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 15),
+                            ),
+                          ),
+                        ],
                       ),
-                    );
-                  },
-                );
+                    )
+                  ],
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              child: Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    gradient: const LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [Colors.blue, Colors.green])),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Text(
+                      "AÑADIR VACUNA",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    Image.asset(
+                      "assets/ejercicio/derechablanca.png",
+                      scale: 2,
+                    ),
+                  ],
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CreatePage()));
               },
             ),
-          ),
-        ],
+            Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: productoData.product.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final data = productoData.product[index];
+
+                  return ListTile(
+                    title: Text(
+                        '${data.nombre} | Duracion:  ${data.categoria}  meses'),
+                    subtitle: Text(' Fecha de Inyeccion: ${data.stock} '),
+                    textColor: Colors.blueGrey,
+                    trailing: IconButton(
+                      onPressed: () {
+                        productoData.delete(data.id);
+                      },
+                      icon: const Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UpdatePage(
+                            product: data,
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

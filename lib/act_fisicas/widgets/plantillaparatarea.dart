@@ -12,54 +12,96 @@ class PlantillaParaTarea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 500,
-          height: 350,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage("$img"), fit: BoxFit.cover)),
-        ),
-        Text(
-          "$title",
-          style: const TextStyle(
-              fontSize: 35,
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 54, 57, 244)),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            child: Text(
-              "$subtitle",
-              textAlign: TextAlign.justify,
-              style: GoogleFonts.quicksand(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Container(
+            width: 500,
+            height: 350,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage("$img"), fit: BoxFit.cover)),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                child: Text(
+                  "$title",
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.justify,
+                ),
+              ),
+              SizedBox(
+                  height: 50,
+                  width: 10,
+                  child: Image.asset("assets/ejercicio/div.png")),
+              Column(
+                children: [
+                  const Text("REPETICIONES"),
+                  Text(
+                    "$repetir",
+                    style: const TextStyle(color: Colors.black, fontSize: 15),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              child: Text("$subtitle",
+                  textAlign: TextAlign.justify,
+                  style: GoogleFonts.quicksand(
                       fontSize: 14,
                       fontWeight: FontWeight.w800,
                       color: Colors.black)),
+            ),
           ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        MaterialButton(
-          height: 50,
-          minWidth: 100,
-          elevation: 1,
-          color: const Color.fromARGB(255, 231, 118, 74),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          onPressed: (() {}),
-          child: Text(
-            "$repetir",
-            style: const TextStyle(color: Colors.white, fontSize: 15),
+          const SizedBox(
+            height: 10,
           ),
-        )
-      ],
+          InkWell(
+            child: Container(
+              height: 50,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  gradient: const LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [Colors.blue, Colors.green])),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  const Text(
+                    "IR AL TUTORIAL",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  Image.asset(
+                    "assets/ejercicio/derechablanca.png",
+                    scale: 2,
+                  ),
+                ],
+              ),
+            ),
+            onTap: () {},
+          ),
+          Image.asset(
+            "assets/ejercicio/abajonegra.png",
+            scale: 2,
+          ),
+        ],
+      ),
     );
   }
 }

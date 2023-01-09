@@ -79,7 +79,9 @@ flutter:
     - assets/icons/
     - assets/menuprincipal/
     - assets/login/
+    - assets/ejercicio/
     - assets/recetas/
+    - assets/vacunas/
     - assets/menuprincipal/bien/
     - assets/menuprincipal/otro/
     - assets/menuprincipal/bien/arobien.mp4

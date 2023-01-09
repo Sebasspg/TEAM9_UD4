@@ -29,10 +29,9 @@ class _UpdatePageState extends State<UpdatePage> {
       showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: const Icon(
-            Icons.notification_important,
-            color: Colors.orange,
-            size: 100,
+          title: SizedBox(
+            height: 200,
+            child: Image.asset("assets/vacunas/vc_valid_guxalert.png"),
           ),
           content: const Text(
             "¿Seguro desea Actualizar?",
@@ -60,10 +59,10 @@ class _UpdatePageState extends State<UpdatePage> {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                    title: const Icon(
-                      Icons.check,
-                      color: Colors.green,
-                      size: 100,
+                    title: SizedBox(
+                      height: 200,
+                      child:
+                          Image.asset("assets/vacunas/vc_valid_guxcheck.png"),
                     ),
                     content: const Text(
                       'Se Actualizaron correctamente los datos',
@@ -84,67 +83,57 @@ class _UpdatePageState extends State<UpdatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar Vacuna'),
-        centerTitle: true,
+        actions: [
+          Row(
+            children: [
+              const Text(
+                "ACTUALIZAR VACUNA",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                width: 45,
+              ),
+              Image.asset(
+                'assets/login/login_logo.png',
+                scale: 2.5,
+              ),
+            ],
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(12.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                  "https://cdn.pixabay.com/photo/2021/01/28/18/38/vaccination-5958739_960_720.png"),
               const SizedBox(
-                height: 20,
+                height: 100,
+              ),
+              const Text(
+                "EDITAR VACUNA",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                "Nombre de la vacuna",
+                style: TextStyle(color: Colors.black, fontSize: 18),
               ),
               TextField(
-                  controller: nombreController,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 2, color: Colors.blueGrey),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                          width: 2, color: Color.fromARGB(255, 81, 181, 251)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    filled: true,
-                    fillColor: const Color.fromARGB(255, 149, 246, 255),
-                    contentPadding: const EdgeInsets.all(15),
-                    hintText: "Nombre de la vacuna",
-                    hintStyle: const TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
-                    icon: const Icon(
-                      Icons.person,
-                      color: Colors.blue,
-                    ),
-                  )),
+                controller: nombreController,
+              ),
               const SizedBox(
-                height: 20,
+                height: 10,
+              ),
+              const Text(
+                "Fecha de Inyeccion",
+                style: TextStyle(color: Colors.black, fontSize: 18),
               ),
               TextField(
                 controller: stockController,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(width: 2, color: Colors.blueGrey),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                        width: 2, color: Color.fromARGB(255, 81, 181, 251)),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  filled: true,
-                  fillColor: const Color.fromARGB(255, 149, 246, 255),
-                  contentPadding: const EdgeInsets.all(15),
-                  icon: const Icon(
-                    Icons.calendar_today_outlined,
-                    color: Colors.blue,
-                  ),
-                ),
                 onTap: () async {
                   DateTime? pickeDates = await showDatePicker(
                       context: context,
@@ -159,49 +148,44 @@ class _UpdatePageState extends State<UpdatePage> {
                 },
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
+              ),
+              const Text(
+                "Duracion de la vacuna (en meses)",
+                style: TextStyle(color: Colors.black, fontSize: 18),
               ),
               TextField(
-                  controller: categoriaController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 2, color: Colors.blueGrey),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                          width: 2, color: Color.fromARGB(255, 81, 181, 251)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    filled: true,
-                    fillColor: const Color.fromARGB(255, 149, 246, 255),
-                    contentPadding: const EdgeInsets.all(15),
-                    hintText: "Duracion de la vacuna en meses",
-                    hintStyle: const TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
-                    icon: const Icon(
-                      Icons.timelapse_outlined,
-                      color: Colors.blue,
-                    ),
-                  )),
+                controller: categoriaController,
+                keyboardType: TextInputType.number,
+              ),
               const SizedBox(
                 height: 20,
               ),
-              MaterialButton(
-                minWidth: 200,
-                color: Colors.green,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                onPressed: () {
+              InkWell(
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      gradient: const LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [Colors.blue, Colors.green])),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const [
+                      Text(
+                        "ACTUALIZAR",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                onTap: () {
                   alertCustom2(context);
                 },
-                child: const Text(
-                  'Actualizar Vacuna',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              )
+              ),
             ],
           ),
         ),

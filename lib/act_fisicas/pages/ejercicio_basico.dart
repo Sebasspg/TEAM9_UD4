@@ -67,9 +67,23 @@ class _EjercicioBasicoState extends State<EjercicioBasico> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ejercicio Basico"),
-        elevation: 0,
-        centerTitle: true,
+        actions: [
+          Row(
+            children: [
+              const Text(
+                "PRINCIPIANTE",
+                style: TextStyle(fontSize: 18),
+              ),
+              const SizedBox(
+                width: 70,
+              ),
+              Image.asset(
+                'assets/login/login_logo.png',
+                scale: 2.5,
+              ),
+            ],
+          ),
+        ],
       ),
       body: TikTokStyleFullPageScroller(
         contentSize: data.length,

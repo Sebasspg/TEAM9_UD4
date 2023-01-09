@@ -25,10 +25,9 @@ class _CreatePageState extends State<CreatePage> {
       showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: const Icon(
-            Icons.notification_important,
-            color: Colors.amber,
-            size: 100,
+          title: SizedBox(
+            height: 200,
+            child: Image.asset("assets/vacunas/vc_valid_guxalert.png"),
           ),
           content: const Text(
             "¿Seguro de guardar?",
@@ -60,10 +59,10 @@ class _CreatePageState extends State<CreatePage> {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
-                    title: const Icon(
-                      Icons.check,
-                      color: Colors.green,
-                      size: 100,
+                    title: SizedBox(
+                      height: 200,
+                      child:
+                          Image.asset("assets/vacunas/vc_valid_guxcheck.png"),
                     ),
                     content: const Text(
                       'Se Registraron correctamente los datos',
@@ -92,76 +91,57 @@ class _CreatePageState extends State<CreatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 89, 176, 247),
-        title: const Text(
-          'Ingresar sus Vacunas',
-          style: TextStyle(
-              fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        centerTitle: true,
+        actions: [
+          Row(
+            children: [
+              const Text(
+                "AÑADIR VACUNA",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                width: 70,
+              ),
+              Image.asset(
+                'assets/login/login_logo.png',
+                scale: 2.5,
+              ),
+            ],
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(12.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                  "https://cdn.pixabay.com/photo/2021/04/10/00/51/vaccine-6165772_960_720.jpg"),
               const SizedBox(
-                height: 20,
+                height: 100,
+              ),
+              const Text(
+                "NUEVA VACUNA",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),
+              ),
+              const Text(
+                "Nombre de la vacuna",
+                style: TextStyle(color: Colors.black, fontSize: 18),
               ),
               TextField(
-                  controller: nombreController,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 2, color: Colors.blueGrey),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                          width: 2, color: Color.fromARGB(255, 81, 181, 251)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    filled: true,
-                    fillColor: const Color.fromARGB(255, 149, 246, 255),
-                    contentPadding: const EdgeInsets.all(15),
-                    hintText: "Nombre de la vacuna",
-                    hintStyle: const TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
-                    icon: const Icon(
-                      Icons.person,
-                      color: Colors.blue,
-                    ),
-                  )),
+                controller: nombreController,
+              ),
               const SizedBox(
-                height: 20,
+                height: 10,
+              ),
+              const Text(
+                "Fecha de Inyeccion",
+                style: TextStyle(color: Colors.black, fontSize: 18),
               ),
               TextField(
                 controller: stockController,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(width: 2, color: Colors.blueGrey),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                        width: 2, color: Color.fromARGB(255, 81, 181, 251)),
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  filled: true,
-                  fillColor: const Color.fromARGB(255, 149, 246, 255),
-                  contentPadding: const EdgeInsets.all(15),
-                  icon: const Icon(
-                    Icons.calendar_today_outlined,
-                    color: Colors.blue,
-                  ),
-                  hintText: "Seleccionar fecha de Inyeccion",
-                  hintStyle: const TextStyle(
-                      color: Colors.blue, fontWeight: FontWeight.bold),
-                ),
                 onTap: () async {
                   DateTime? pickeDate = await showDatePicker(
                       context: context,
@@ -178,33 +158,16 @@ class _CreatePageState extends State<CreatePage> {
                 },
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
+              ),
+              const Text(
+                "Duracion de la vacuna (en meses)",
+                style: TextStyle(color: Colors.black, fontSize: 18),
               ),
               TextField(
-                  controller: categoriaController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 2, color: Colors.blueGrey),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                          width: 2, color: Color.fromARGB(255, 81, 181, 251)),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    filled: true,
-                    fillColor: const Color.fromARGB(255, 149, 246, 255),
-                    contentPadding: const EdgeInsets.all(15),
-                    hintText: "Duracion de la vacuna en meses",
-                    hintStyle: const TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
-                    icon: const Icon(
-                      Icons.timelapse_outlined,
-                      color: Colors.blue,
-                    ),
-                  )),
+                controller: categoriaController,
+                keyboardType: TextInputType.number,
+              ),
               const SizedBox(
                 height: 20,
               ),
@@ -214,19 +177,32 @@ class _CreatePageState extends State<CreatePage> {
                 hintText: 'Stock',
                 keyboardType: TextInputType.number,
               ), */
-              MaterialButton(
-                minWidth: 300,
-                color: const Color.fromARGB(255, 83, 76, 175),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                onPressed: () {
+
+              InkWell(
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      gradient: const LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [Colors.blue, Colors.green])),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const [
+                      Text(
+                        "GUARDAR",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                onTap: () {
                   alertCustom(context);
                 },
-                child: const Text(
-                  'Guardar Vacuna',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              )
+              ),
             ],
           ),
         ),

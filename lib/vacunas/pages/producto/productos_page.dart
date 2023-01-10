@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:team9_ud3_project/model/vacuna_model.dart';
+import 'package:team9_ud3_project/preferences/logearse_preferences.dart';
+import 'package:team9_ud3_project/providers/vacuna_provider.dart';
+import 'package:team9_ud3_project/vacunas/pages/producto/add_vacuna.dart';
 import 'package:team9_ud3_project/vacunas/pages/producto/create_page.dart';
 import 'package:team9_ud3_project/vacunas/pages/producto/update_page.dart';
 import 'package:team9_ud3_project/providers/producto_provider.dart';
+import 'package:team9_ud3_project/widgets/loading_custom.dart';
 //import 'package:intl/intl.dart
 
 class ProductosPage extends StatelessWidget {
@@ -11,6 +16,7 @@ class ProductosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productoData = Provider.of<ProductoProvider>(context);
+    final vacunaData = Provider.of<VacunasProvider>(context);
     productoData.queryAll();
     return Scaffold(
       appBar: AppBar(
@@ -124,50 +130,66 @@ class ProductosPage extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const CreatePage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const addVacuna()));
               },
             ),
-            Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: productoData.product.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final data = productoData.product[index];
-
-                  return ListTile(
-                    title: Text(
-                        '${data.nombre} | Duracion:  ${data.categoria}  meses'),
-                    subtitle: Text(' Fecha de Inyeccion: ${data.stock} '),
-                    textColor: Colors.blueGrey,
-                    trailing: IconButton(
-                      onPressed: () {
-                        productoData.delete(data.id);
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: FutureBuilder(
+                future: vacunaData.getVacunas(Preferences.identificador),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    List _snapshot = snapshot.data as List;
+                    return ListView.builder(
+                      itemCount: _snapshot.length,
+                      itemBuilder: (context, index) {
+                        Vacuna rec = _snapshot[index];
+                        return listadovacuna(vacunita: rec);
                       },
-                      icon: const Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => UpdatePage(
-                            product: data,
-                          ),
-                        ),
-                      );
-                    },
-                  );
+                    );
+                  }
+                  return Text("data");
                 },
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class listadovacuna extends StatelessWidget {
+  final Vacuna vacunita;
+
+  const listadovacuna({super.key, required this.vacunita});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(vacunita.nombre + ' | Duracion:   meses' + vacunita.duracion),
+      subtitle: Text(' Fecha de Inyeccion:  ' + vacunita.fecha),
+      textColor: Colors.blueGrey,
+      trailing: IconButton(
+        onPressed: () {
+          // productoData.delete(data.id);
+        },
+        icon: const Icon(
+          Icons.delete,
+          color: Colors.red,
+        ),
+      ),
+      onTap: () {
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => UpdatePage(
+        //       product: data,
+        //     ),
+        //   ),
+        // );
+      },
     );
   }
 }

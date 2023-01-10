@@ -17,4 +17,12 @@ class VacunasProvider extends ChangeNotifier {
       String uid, String nombre, String fecha, String duracion) async {
     await _dataBaseService.createVacuna(uid, nombre, fecha, duracion);
   }
+
+  Future deleteVacuna(String id_vacuna) async {
+    await _dataBaseService.DeleteVacuna(id_vacuna);
+  }
+
+  Future deleteVacunas(String uuid) async {
+    await _dataBaseService.BorrarTodoVacuna(uuid);
+  }
 }

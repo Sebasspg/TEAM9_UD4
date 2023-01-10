@@ -15,6 +15,7 @@ import 'package:team9_ud3_project/providers/peso_provider.dart';
 import 'package:team9_ud3_project/providers/receta_providers.dart';
 import 'package:team9_ud3_project/providers/producto_provider.dart';
 import 'package:team9_ud3_project/providers/usuarios_provides.dart';
+import 'package:team9_ud3_project/providers/vacuna_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(create: (_) => PesoProvider()),
           ChangeNotifierProvider(create: (_) => AuthService()),
           ChangeNotifierProvider(create: (_) => UsuarioProvider()),
+          ChangeNotifierProvider(create: (_) => VacunasProvider()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -75,7 +77,7 @@ class SplashScreen extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
-        splashIconSize: double.infinity,
+          splashIconSize: double.infinity,
           splash: Scaffold(
             backgroundColor: const Color.fromARGB(255, 250, 250, 250),
             body: Padding(
@@ -108,7 +110,6 @@ class SplashScreen extends StatelessWidget {
           duration: 3000,
           pageTransitionType: PageTransitionType.leftToRightWithFade,
           nextScreen: MyApp()),
-          
     );
   }
 }

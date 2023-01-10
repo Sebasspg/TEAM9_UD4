@@ -54,4 +54,29 @@ class VacunaService {
       print(r.toString());
     }
   }
+
+  Future DeleteVacuna(String id_vacuna) async {
+    try {
+      final response =
+          await cliente.from('vacunas').delete().eq('id', id_vacuna);
+      final data = response;
+      print('services--vacunas--insert');
+      print(data);
+      return data;
+    } catch (r) {
+      print(r.toString());
+    }
+  }
+
+  Future BorrarTodoVacuna(String uuid) async {
+    try {
+      final response = await cliente.from('vacunas').delete().eq('uuid', uuid);
+      final data = response;
+      print('services--vacunas--insert');
+      print(data);
+      return data;
+    } catch (r) {
+      print(r.toString());
+    }
+  }
 }

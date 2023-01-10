@@ -8,6 +8,7 @@ import 'package:team9_ud3_project/nutricion/nutri_main.dart';
 import 'package:team9_ud3_project/nutricion/nutripeso_home.dart';
 import 'package:team9_ud3_project/recetas_saludables/nutri_home.dart';
 import 'package:team9_ud3_project/vacunas/pages/producto/productos_page.dart';
+import 'package:team9_ud3_project/vacunas/pages/producto/read_vacuna.dart';
 import 'package:video_player/video_player.dart';
 
 class PanelPrincipal extends StatefulWidget {
@@ -294,7 +295,7 @@ class _PanelPrincipalState extends State<PanelPrincipal> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const ProductosPage()),
+                                            const VacunaTest()),
                                   );
                                 }),
                               ),

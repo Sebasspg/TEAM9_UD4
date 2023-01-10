@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:team9_ud3_project/act_fisicas/pages/hacerejercicio.dart';
 import 'package:team9_ud3_project/alergias/menualergias.dart';
 import 'package:team9_ud3_project/medicacion/pages/menumedicacion_pages.dart';
+import 'package:team9_ud3_project/nutricion/nutri_main.dart';
 import 'package:team9_ud3_project/nutricion/nutripeso_home.dart';
 import 'package:team9_ud3_project/recetas_saludables/nutri_home.dart';
 import 'package:team9_ud3_project/vacunas/pages/producto/productos_page.dart';
@@ -230,7 +231,7 @@ class _PanelPrincipalState extends State<PanelPrincipal> {
                                         context,
                                         MaterialPageRoute(
                                             builder: ((context) =>
-                                                NutriPage())));
+                                                NutriMain())));
                                   }),
                                 ),
                               )

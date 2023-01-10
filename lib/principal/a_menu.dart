@@ -2,9 +2,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/act_fisicas/pages/hacerejercicio.dart';
 import 'package:team9_ud3_project/alergias/menualergias.dart';
+import 'package:team9_ud3_project/model/usuarios_model.dart';
 import 'package:team9_ud3_project/nutricion/nutripeso_home.dart';
+import 'package:team9_ud3_project/preferences/logearse_preferences.dart';
+import 'package:team9_ud3_project/providers/usuarios_provides.dart';
 import 'package:team9_ud3_project/recetas_saludables/nutri_home.dart';
 import 'package:team9_ud3_project/recomendaciones/recomendaciones.dart';
 import 'package:team9_ud3_project/vacunas/pages/producto/productos_page.dart';
@@ -83,7 +87,7 @@ class _MenuPrincipalfState extends State<MenuPrincipalf> {
           textStyle:
               const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
     );
-
+    final usuarioProdiver = Provider.of<UsuarioProvider>(context);
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 250, 250, 250),
 
@@ -124,12 +128,35 @@ class _MenuPrincipalfState extends State<MenuPrincipalf> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Bienvenido',
+                          'Bienvenidos',
                           style: GoogleFonts.quicksand(
                               textStyle: const TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w500)),
                         ),
-                        usuario,
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.05,
+                          width: MediaQuery.of(context).size.width * 0.25,
+                          child: FutureBuilder(
+                            future: usuarioProdiver
+                                .getusuario(Preferences.identificador),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                List _snapshot = snapshot.data as List;
+                                return ListView.builder(
+                                  itemCount: _snapshot.length,
+                                  itemBuilder: (context, index) {
+                                    Users usuarioss = _snapshot[index];
+                                    return Text(usuarioss.nombre,
+                                        style: GoogleFonts.quicksand(
+                                            fontSize: 25.5,
+                                            fontWeight: FontWeight.bold));
+                                  },
+                                );
+                              }
+                              return CircularProgressIndicator();
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),

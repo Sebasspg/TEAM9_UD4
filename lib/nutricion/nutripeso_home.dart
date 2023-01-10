@@ -21,7 +21,21 @@ class _NutriPageState extends State<NutriPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Control Nutricional'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'NUTRICIÓN',
+              style: GoogleFonts.quicksand(
+                  fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            Image.asset(
+              'assets/recetas/rslogo.png',
+              height: 50,
+              width: 110,
+            ),
+          ],
+        ),
         centerTitle: true,
       ),
       body: ListView(
@@ -30,9 +44,9 @@ class _NutriPageState extends State<NutriPage> {
             height: 10,
           ),
           Text(
-            'Control de Peso',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 20),
+            'CONTROL NUTRICIONAL',
+            style: GoogleFonts.quicksand(
+                fontSize: 20, fontWeight: FontWeight.bold),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +54,7 @@ class _NutriPageState extends State<NutriPage> {
               Text(
                 'Categoria : ${pesosProvider.msg}',
                 textAlign: TextAlign.center,
-                style: GoogleFonts.montserrat(fontSize: 20),
+                style: GoogleFonts.quicksand(fontSize: 20),
               ),
               (pesosProvider.msg == 'Normal')
                   ? Icon(
@@ -152,6 +166,7 @@ class _NutriPageState extends State<NutriPage> {
                   ),
                 ],
               ),
+              //------------------------------------------------------calculadora
               SizedBox(
                 width: 20,
               ),
@@ -164,7 +179,7 @@ class _NutriPageState extends State<NutriPage> {
                 onPressed: () {
                   pesosProvider.getCalorias(int.parse(edad_Controller.text));
                   pesosProvider.getCategoriaxIMC(
-                      int.parse(peso_Controller.text),
+                      double.parse(peso_Controller.text),
                       double.parse(altura_Controller.text));
                   pesosProvider.getProteinas(int.parse(peso_Controller.text));
                   pesosProvider
@@ -184,12 +199,12 @@ class _NutriPageState extends State<NutriPage> {
           Text(
             'Calculadora Alimenticia',
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 20),
+            style: GoogleFonts.quicksand(fontSize: 20),
           ),
           Text(
             'Seleccione una comida para calcularla',
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(fontSize: 20),
+            style: GoogleFonts.quicksand(fontSize: 20),
           ),
           SizedBox(
             height: 20,
@@ -219,11 +234,11 @@ class _NutriPageState extends State<NutriPage> {
                         ),
                         Text(
                           '09:00',
-                          style: GoogleFonts.montserrat(fontSize: 18),
+                          style: GoogleFonts.quicksand(fontSize: 18),
                         ),
                         Text(
                           'Desayuno',
-                          style: GoogleFonts.montserrat(fontSize: 18),
+                          style: GoogleFonts.quicksand(fontSize: 18),
                         ),
                       ],
                     ),
@@ -245,11 +260,11 @@ class _NutriPageState extends State<NutriPage> {
                         ),
                         Text(
                           '13:00',
-                          style: GoogleFonts.montserrat(fontSize: 18),
+                          style: GoogleFonts.quicksand(fontSize: 18),
                         ),
                         Text(
                           'Almuerzo',
-                          style: GoogleFonts.montserrat(fontSize: 18),
+                          style: GoogleFonts.quicksand(fontSize: 18),
                         ),
                       ],
                     ),
@@ -271,11 +286,11 @@ class _NutriPageState extends State<NutriPage> {
                         ),
                         Text(
                           '20:00',
-                          style: GoogleFonts.montserrat(fontSize: 18),
+                          style: GoogleFonts.quicksand(fontSize: 18),
                         ),
                         Text(
                           'Cena',
-                          style: GoogleFonts.montserrat(fontSize: 18),
+                          style: GoogleFonts.quicksand(fontSize: 18),
                         ),
                       ],
                     ),
@@ -303,7 +318,7 @@ class _NutriPageState extends State<NutriPage> {
                       children: [
                         Text(
                           'Calorias',
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.quicksand(
                               color: Color.fromARGB(255, 22, 73, 114),
                               fontWeight: FontWeight.bold,
                               fontSize: 20),
@@ -334,14 +349,14 @@ class _NutriPageState extends State<NutriPage> {
                               children: [
                                 Text(
                                   '${pesosProvider.calorias}',
-                                  style: GoogleFonts.montserrat(
+                                  style: GoogleFonts.quicksand(
                                       color: Color.fromARGB(255, 22, 73, 114),
                                       fontWeight: FontWeight.bold,
                                       fontSize: 25),
                                 ),
                                 Text(
                                   'Calorias',
-                                  style: GoogleFonts.montserrat(
+                                  style: GoogleFonts.quicksand(
                                       color: Color.fromARGB(255, 22, 73, 114),
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15),
@@ -357,7 +372,7 @@ class _NutriPageState extends State<NutriPage> {
                     children: [
                       Text(
                         'Carbohidratos',
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.quicksand(
                             color: Color.fromARGB(255, 22, 73, 114),
                             fontWeight: FontWeight.bold,
                             fontSize: 20),
@@ -385,14 +400,14 @@ class _NutriPageState extends State<NutriPage> {
                             children: [
                               Text(
                                 '${pesosProvider.carbohidratos}',
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.quicksand(
                                     color: Color.fromARGB(255, 22, 73, 114),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 25),
                               ),
                               Text(
                                 'gramos',
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.quicksand(
                                     color: Color.fromARGB(255, 22, 73, 114),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15),
@@ -407,7 +422,7 @@ class _NutriPageState extends State<NutriPage> {
                     children: [
                       Text(
                         'Grasas',
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.quicksand(
                             color: Color.fromARGB(255, 22, 73, 114),
                             fontWeight: FontWeight.bold,
                             fontSize: 20),
@@ -435,14 +450,14 @@ class _NutriPageState extends State<NutriPage> {
                             children: [
                               Text(
                                 '${pesosProvider.grasas}',
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.quicksand(
                                     color: Color.fromARGB(255, 22, 73, 114),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 25),
                               ),
                               Text(
                                 'gramos',
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.quicksand(
                                     color: Color.fromARGB(255, 22, 73, 114),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15),
@@ -457,7 +472,7 @@ class _NutriPageState extends State<NutriPage> {
                     children: [
                       Text(
                         'Proteinas',
-                        style: GoogleFonts.montserrat(
+                        style: GoogleFonts.quicksand(
                             color: Color.fromARGB(255, 22, 73, 114),
                             fontWeight: FontWeight.bold,
                             fontSize: 20),
@@ -486,14 +501,14 @@ class _NutriPageState extends State<NutriPage> {
                               Text(
                                 '${pesosProvider.proteinas}',
                                 textAlign: TextAlign.center,
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.quicksand(
                                     color: Color.fromARGB(255, 22, 73, 114),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 25),
                               ),
                               Text(
                                 'gramos',
-                                style: GoogleFonts.montserrat(
+                                style: GoogleFonts.quicksand(
                                     color: Color.fromARGB(255, 22, 73, 114),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15),

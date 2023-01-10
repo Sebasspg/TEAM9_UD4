@@ -1,118 +1,197 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:team9_ud3_project/preferences/logearse_preferences.dart';
+import 'package:team9_ud3_project/providers/usuarios_provides.dart';
 
-class EditarPerfil extends StatelessWidget {
+class EditarPerfil extends StatefulWidget {
+  EditarPerfil({super.key});
+
+  @override
+  State<EditarPerfil> createState() => _EditarPerfilState();
+}
+
+class _EditarPerfilState extends State<EditarPerfil> {
   final TextEditingController nombre = TextEditingController();
   final TextEditingController apellidos = TextEditingController();
-  final TextEditingController telefono = TextEditingController();
   final TextEditingController edad = TextEditingController();
   final TextEditingController peso = TextEditingController();
   final TextEditingController altura = TextEditingController();
   final TextEditingController tiposangre = TextEditingController();
 
+  final items = ['A+', 'O+', 'B+', 'AB+'];
+
+  String? values;
+  String genero = 'No definido';
+
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UsuarioProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Hola soy editar"),
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Image.asset(
-                'assets/login/login_logo.png',
-                scale: 2,
-
-                // fit: BoxFit.fill,
-                // isAntiAlias: true,
-              ),
-              const SizedBox(
-                width: 150,
-              )
-            ],
-          ),
-        ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              'assets/login/login_logo.png',
+              scale: 3,
+            )
+          ],
+        ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "EDITAR PERFIL",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-          const Text(
-            'INFORMACION BÁSICA',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const Text('Nombres'),
-          TextFormField(
-            controller: nombre,
-            decoration: _buildDecoration(),
-          ),
-          const Text('Apellido'),
-          TextFormField(
-            controller: apellidos,
-            decoration: _buildDecoration(),
-          ),
-          const Text('Edad'),
-          TextFormField(
-            controller: telefono,
-            decoration: _buildDecoration(),
-          ),
-          const Text('Genero'),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              MaterialButton(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "EDITAR PERFIL",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            const Text(
+              'INFORMACION BÁSICA',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const Text('Nombres'),
+            TextFormField(
+              controller: nombre,
+              decoration: _buildDecoration(),
+            ),
+            const Text('Apellido'),
+            TextFormField(
+              controller: apellidos,
+              decoration: _buildDecoration(),
+            ),
+            const Text('Edad'),
+            TextFormField(
+              controller: edad,
+              decoration: _buildDecoration(),
+            ),
+            const Text('Genero'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      genero = " Masculino";
+                    });
+                  },
+                  color: Colors.blue,
+                  child: const Text(
+                    "Masculino",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                MaterialButton(
+                  onPressed: () {
+                    setState(() {
+                      genero = " Femenino";
+                    });
+                  },
+                  color: Colors.blue,
+                  child: const Text(
+                    "Femenino",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+            IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const Text("Altura"),
+                  Container(
+                    width: 80,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black, width: 2)),
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      controller: altura,
+                    ),
+                  ),
+                  const VerticalDivider(
+                    color: Colors.black,
+                    width: 1,
+                    thickness: 1,
+                  ),
+                  const Text("Peso"),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.black, width: 2)),
+                    width: 80,
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      controller: peso,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text("Tipo de Sangre"),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.black, width: 2)),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton(
+                  value: values,
+                  isExpanded: true,
+                  items: items
+                      .map((String item) => DropdownMenuItem(
+                            value: item,
+                            child: Text(item),
+                          ))
+                      .toList(),
+                  onChanged: (value) => setState(() => values = value),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: MaterialButton(
+                color: Colors.blueAccent,
                 onPressed: () {
-                  edad.text = " Masculino";
+                  final serpiente = SnackBar(
+                    content: Text(
+                      'Datos Actualizados!!!',
+                      style: GoogleFonts.quicksand(fontSize: 20),
+                    ),
+                    backgroundColor: Colors.green,
+                  );
+
+                  userProvider.uptusuario(
+                      Preferences.identificador,
+                      nombre.text,
+                      edad.text,
+                      genero,
+                      peso.text,
+                      altura.text,
+                      values!);
+                  print(values);
+                  ScaffoldMessenger.of(context).showSnackBar(serpiente);
                 },
-                color: Colors.blue,
-                child: const Text(
-                  "Masculino",
-                  style: TextStyle(
+                child: Text(
+                  'Actualizar datos',
+                  style: GoogleFonts.quicksand(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),
-              MaterialButton(
-                onPressed: () {
-                  edad.text = " Femenino";
-                },
-                color: Colors.blue,
-                child: const Text(
-                  "Femenino",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const Text("Altura"),
-              SizedBox(
-                width: 40,
-                child: TextFormField(
-                  controller: altura,
-                ),
-              ),
-              const Text("Peso"),
-              SizedBox(
-                width: 40,
-                child: TextFormField(
-                  controller: peso,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text("Tipo de Sangre"),
-          TextFormField(
-            controller: tiposangre,
-          )
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

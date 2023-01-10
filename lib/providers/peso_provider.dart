@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class PesoProvider extends ChangeNotifier {
-  String msg = '';
-  int calorias = 0;
-  int carbohidratos = 0;
+  String msg = 'X';
+  double calorias = 0;
+  double carbohidratos = 0;
+
   double grasas = 7.3;
   double proteinas = 0;
   Widget? icon;
-  void getCategoriaxIMC(int peso, double estatura) {
+  void getCategoriaxIMC(double peso, double estatura) {
 //IMC = peso (kg)/ estatura (m2) y,
     final resultadoIMC = peso / (estatura * estatura);
     print(resultadoIMC);

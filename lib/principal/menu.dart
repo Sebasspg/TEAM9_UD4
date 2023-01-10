@@ -2,8 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:team9_ud3_project/model/usuarios_model.dart';
+import 'package:team9_ud3_project/preferences/logearse_preferences.dart';
+import 'package:team9_ud3_project/providers/usuarios_provides.dart';
 import 'package:team9_ud3_project/recomendaciones/recomendaciones.dart';
 import 'package:video_player/video_player.dart';
+import 'package:provider/provider.dart';
 
 class MenuPrincipal extends StatefulWidget {
   const MenuPrincipal({super.key});
@@ -49,6 +53,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
 
   @override
   Widget build(BuildContext context) {
+    final usuarioProdiver = Provider.of<UsuarioProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -88,10 +93,29 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                       style: GoogleFonts.quicksand(
                           fontSize: 15.092, fontWeight: FontWeight.w600),
                     ),
-                    Text(
-                      "Nombre del Usuario",
-                      style: GoogleFonts.quicksand(
-                          fontSize: 25.4, fontWeight: FontWeight.w800),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.075,
+                      width: double.infinity,
+                      child: FutureBuilder(
+                        future: usuarioProdiver
+                            .getusuario(Preferences.identificador),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            List _snapshot = snapshot.data as List;
+                            return ListView.builder(
+                              itemCount: _snapshot.length,
+                              itemBuilder: (context, index) {
+                                Users usuarioss = _snapshot[index];
+                                return Text(usuarioss.nombre,
+                                    style: GoogleFonts.quicksand(
+                                        fontSize: 20.5,
+                                        fontWeight: FontWeight.bold));
+                              },
+                            );
+                          }
+                          return Text('-');
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -160,16 +184,37 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                                 ),
                               ),
                             ),
-                            Text(
-                              "18",
-                              style: GoogleFonts.quicksand(
-                                  fontSize: 46.656,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
                             SizedBox(
                               height:
-                                  MediaQuery.of(context).size.width * 0.03,
+                                  MediaQuery.of(context).size.height * 0.125,
+                              width: double.infinity,
+                              child: FutureBuilder(
+                                future: usuarioProdiver
+                                    .getusuario(Preferences.identificador),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    List _snapshot = snapshot.data as List;
+                                    return ListView.builder(
+                                      itemCount: _snapshot.length,
+                                      itemBuilder: (context, index) {
+                                        Users usuarioss = _snapshot[index];
+                                        return Text(
+                                          usuarioss.edad,
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 46.656,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                          textAlign: TextAlign.center,
+                                        );
+                                      },
+                                    );
+                                  }
+                                  return Text('-');
+                                },
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.width * 0.03,
                             ),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
@@ -189,12 +234,34 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                                 ),
                               ),
                             ),
-                            Text(
-                              "1.7",
-                              style: GoogleFonts.quicksand(
-                                  fontSize: 46.656,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
+                            SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.125,
+                              width: double.infinity,
+                              child: FutureBuilder(
+                                future: usuarioProdiver
+                                    .getusuario(Preferences.identificador),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    List _snapshot = snapshot.data as List;
+                                    return ListView.builder(
+                                      itemCount: _snapshot.length,
+                                      itemBuilder: (context, index) {
+                                        Users usuarioss = _snapshot[index];
+                                        return Text(
+                                          usuarioss.altura,
+                                          style: GoogleFonts.quicksand(
+                                              fontSize: 46.656,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                          textAlign: TextAlign.center,
+                                        );
+                                      },
+                                    );
+                                  }
+                                  return Text('-');
+                                },
+                              ),
                             ),
                           ],
                         ),
@@ -225,7 +292,9 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                         child: Text(
                           "Recomendaciones",
                           style: GoogleFonts.quicksand(
-                              fontSize: 15.4, fontWeight: FontWeight.w600, color: Colors.black),
+                              fontSize: 15.4,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black),
                         )),
                   ],
                 ),
@@ -327,18 +396,45 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                                       MediaQuery.of(context).size.width * 0.35,
                                   child: Center(
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
                                       children: [
-                                        Text(
-                                          "60",
-                                          style: GoogleFonts.quicksand(
-                                              fontSize: 31.575,
-                                              fontWeight: FontWeight.w500,
-                                              height: 0.97),
-                                        ),
+                                        /*
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.1,
+                                          child: FutureBuilder(
+                                            future: usuarioProdiver.getusuario(
+                                                Preferences.identificador),
+                                            builder: (context, snapshot) {
+                                              if (snapshot.hasData) {
+                                                List _snapshot =
+                                                    snapshot.data as List;
+                                                return ListView.builder(
+                                                  itemCount: _snapshot.length,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    Users usuarioss =
+                                                        _snapshot[index];
+                                                    return Text(
+                                                      usuarioss.peso,
+                                                      style:
+                                                          GoogleFonts.quicksand(
+                                                              fontSize: 25,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                      //height: 0.97),
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    );
+                                                  },
+                                                );
+                                              }
+                                              return Text('-');
+                                            },
+                                          ),
+                                        ),*/
                                         Text(
                                           "kg",
                                           style: GoogleFonts.quicksand(

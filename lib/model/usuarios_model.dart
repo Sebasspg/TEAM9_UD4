@@ -9,8 +9,6 @@ class Users {
   String uuid;
   String email;
   String nombre;
-  int idMedicacion;
-  int idAlergia;
   String edad;
   String genero;
   String image;
@@ -23,8 +21,6 @@ class Users {
     this.uuid,
     this.email,
     this.nombre,
-    this.idMedicacion,
-    this.idAlergia,
     this.edad,
     this.genero,
     this.image,
@@ -42,8 +38,6 @@ class Users {
         json["uuid"],
         json["email"],
         json["nombre"],
-        json["id_medicacion"],
-        json["id_alergia"],
         json["edad"],
         json["genero"],
         json["image"],
@@ -57,8 +51,6 @@ class Users {
         "uuid": uuid,
         "email": email,
         "nombre": nombre,
-        "id_medicacion": idMedicacion,
-        "id_alergia": idAlergia,
         "edad": edad,
         "genero": genero,
         "image": image,

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Clases josue\\PROYECTO FINAL\\PROYECTODEFINITIVO\\TEAM9_UD4\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "C:\\Users\\Admin\\Documents\\GitHub\\TEAM9_UD4\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "D:\\Clases josue\\PROYECTO FINAL\\PROYECTODEFINITIVO\\TEAM9_UD4\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\Admin\\Documents\\GitHub\\TEAM9_UD4\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

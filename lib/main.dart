@@ -1,13 +1,10 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:team9_ud3_project/login/home_page.dart';
 import 'package:team9_ud3_project/login/signin_page.dart';
 import 'package:team9_ud3_project/login/signup_page.dart';
-import 'package:team9_ud3_project/login/simpleapp_page.dart';
 import 'package:team9_ud3_project/preferences/logearse_preferences.dart';
 import 'package:team9_ud3_project/principal/controlador_principal.dart';
 import 'package:team9_ud3_project/providers/Medicina_provider.dart';
@@ -23,7 +20,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Preferences.init();
-  runApp(const MyApp());
+  runApp(const SplashScreen());
 }
 
 class MyApp extends StatelessWidget {
@@ -35,12 +32,6 @@ class MyApp extends StatelessWidget {
     //     overlays: [
     //       SystemUiOverlay.top,
     //     ]);
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.white,
-      systemNavigationBarIconBrightness: Brightness.dark,
-      statusBarColor: Colors.transparent,
-      statusBarBrightness: Brightness.light,
-    ));
 
     return MultiProvider(
         providers: [
@@ -69,55 +60,55 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//======================Splash scren flutter============================
-class SplashScreen extends StatefulWidget {
+//-SPLASH SCREEN :3-------
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration(seconds: 3)).then((value) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: ((context) => ControladorPrincipal())));
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.8),
-      body: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.lightBlue, Colors.green],),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Lottie.network(
-                'https://assets10.lottiefiles.com/packages/lf20_vc2wqkee.json'),
-            Text(
-              '',
-              style: GoogleFonts.montserrat(fontSize: 50, color: Colors.white),
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.light,
+    ));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AnimatedSplashScreen(
+        splashIconSize: double.infinity,
+          splash: Scaffold(
+            backgroundColor: const Color.fromARGB(255, 250, 250, 250),
+            body: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  const Spacer(),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/splashscreen/splashlogo.gif",
+                          scale: 3.25,
+                        ),
+                      ],
+                    ),
+                  ),
+                  const Spacer(),
+                  Image.asset(
+                    "assets/splashscreen/base.png",
+                    scale: 4,
+                  ),
+                ],
+              ),
             ),
-            SizedBox(
-              height: 90,
-            ),
-            SpinKitChasingDots(
-              color: Colors.white,
-              size: 100,
-            )
-          ],
-        ),
-      ),
+          ),
+          backgroundColor: const Color.fromARGB(255, 250, 250, 250),
+          duration: 3000,
+          pageTransitionType: PageTransitionType.leftToRightWithFade,
+          nextScreen: MyApp()),
+          
     );
   }
 }

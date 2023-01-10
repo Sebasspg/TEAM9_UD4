@@ -13,7 +13,7 @@ class EditarPerfilInicial extends StatefulWidget {
 
 class _EditarPerfilInicialState extends State<EditarPerfilInicial> {
   void unmomentotiempo() {
-    Timer(const Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 8), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => ControladorPrincipal()),

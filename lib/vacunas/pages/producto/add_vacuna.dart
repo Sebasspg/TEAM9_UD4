@@ -68,7 +68,10 @@ class _addVacunaState extends State<addVacuna> {
                             nombreController.clear();
                             duracionController.clear();
                             fechaController.clear();
+
                             Navigator.of(context).pop("true");
+                            vacunaProvider
+                                .getVacunas(Preferences.identificador);
                           },
                           child: const Text("aceptar"))
                     ],

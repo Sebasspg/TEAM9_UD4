@@ -13,16 +13,16 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->D:\Personal\Docu\GitHUB\TEAM9_UD4\android\app\src\main\AndroidManifest.xml:3:5-66
-15-->D:\Personal\Docu\GitHUB\TEAM9_UD4\android\app\src\main\AndroidManifest.xml:3:22-64
+15-->D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\android\app\src\main\AndroidManifest.xml:3:5-66
+15-->D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\android\app\src\main\AndroidManifest.xml:3:22-64
 16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-16-->[com.google.android.exoplayer:exoplayer-core:2.18.1] C:\Users\User\.gradle\caches\transforms-3\6ec2c823b2ddfa9d4aff16fd99b56b89\transformed\jetified-exoplayer-core-2.18.1\AndroidManifest.xml:24:5-79
-16-->[com.google.android.exoplayer:exoplayer-core:2.18.1] C:\Users\User\.gradle\caches\transforms-3\6ec2c823b2ddfa9d4aff16fd99b56b89\transformed\jetified-exoplayer-core-2.18.1\AndroidManifest.xml:24:22-76
+16-->[com.google.android.exoplayer:exoplayer-core:2.18.1] C:\Users\Moises Sanchez\.gradle\caches\transforms-3\6ec2c823b2ddfa9d4aff16fd99b56b89\transformed\jetified-exoplayer-core-2.18.1\AndroidManifest.xml:24:5-79
+16-->[com.google.android.exoplayer:exoplayer-core:2.18.1] C:\Users\Moises Sanchez\.gradle\caches\transforms-3\6ec2c823b2ddfa9d4aff16fd99b56b89\transformed\jetified-exoplayer-core-2.18.1\AndroidManifest.xml:24:22-76
 17
 18    <application
 19        android:name="android.app.Application"
 20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-20-->[androidx.core:core:1.8.0] C:\Users\User\.gradle\caches\transforms-3\d363e3b5616f580c766e3e2b3c05f27d\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
+20-->[androidx.core:core:1.8.0] C:\Users\Moises Sanchez\.gradle\caches\transforms-3\d363e3b5616f580c766e3e2b3c05f27d\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
 21        android:debuggable="true"
 22        android:icon="@mipmap/ic_launcher"
 23        android:label="Gux Health" >
@@ -60,44 +60,44 @@
 55            android:value="2" />
 56
 57        <provider
-57-->[:image_picker_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+57-->[:image_picker_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
 58            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-58-->[:image_picker_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-82
+58-->[:image_picker_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-82
 59            android:authorities="com.example.team9_ud3_project.flutter.image_provider"
-59-->[:image_picker_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
+59-->[:image_picker_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-74
 60            android:exported="false"
-60-->[:image_picker_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+60-->[:image_picker_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
 61            android:grantUriPermissions="true" >
-61-->[:image_picker_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+61-->[:image_picker_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
 62            <meta-data
-62-->[:image_picker_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:75
+62-->[:image_picker_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:75
 63                android:name="android.support.FILE_PROVIDER_PATHS"
-63-->[:image_picker_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+63-->[:image_picker_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
 64                android:resource="@xml/flutter_image_picker_file_paths" />
-64-->[:image_picker_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-72
+64-->[:image_picker_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-72
 65        </provider>
 66
 67        <activity
-67-->[:url_launcher_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-13:74
+67-->[:url_launcher_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-13:74
 68            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-68-->[:url_launcher_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
+68-->[:url_launcher_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-74
 69            android:exported="false"
-69-->[:url_launcher_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
+69-->[:url_launcher_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-37
 70            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-70-->[:url_launcher_android] D:\Personal\Docu\GitHUB\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-71
+70-->[:url_launcher_android] D:\Clases josue\PROYECTO FINAL\PROYECTODEFINITIVO\TEAM9_UD4\build\url_launcher_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-71
 71
 72        <uses-library
-72-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+72-->[androidx.window:window:1.0.0-beta04] C:\Users\Moises Sanchez\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
 73            android:name="androidx.window.extensions"
-73-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+73-->[androidx.window:window:1.0.0-beta04] C:\Users\Moises Sanchez\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
 74            android:required="false" />
-74-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+74-->[androidx.window:window:1.0.0-beta04] C:\Users\Moises Sanchez\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
 75        <uses-library
-75-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+75-->[androidx.window:window:1.0.0-beta04] C:\Users\Moises Sanchez\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
 76            android:name="androidx.window.sidecar"
-76-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+76-->[androidx.window:window:1.0.0-beta04] C:\Users\Moises Sanchez\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
 77            android:required="false" />
-77-->[androidx.window:window:1.0.0-beta04] C:\Users\User\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+77-->[androidx.window:window:1.0.0-beta04] C:\Users\Moises Sanchez\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
 78    </application>
 79
 80</manifest>

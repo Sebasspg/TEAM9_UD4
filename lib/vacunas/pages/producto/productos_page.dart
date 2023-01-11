@@ -137,7 +137,7 @@ class ProductosPage extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height,
               child: FutureBuilder(
-                future: vacunaData.getVacunas(Preferences.identificador),
+                //future: vacunaData.getVacunas(Preferences.identificador),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     List _snapshot = snapshot.data as List;

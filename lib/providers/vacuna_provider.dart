@@ -3,13 +3,17 @@ import 'package:team9_ud3_project/model/vacuna_model.dart';
 import 'package:team9_ud3_project/services/vacuna_service.dart';
 
 class VacunasProvider extends ChangeNotifier {
-  final VacunaService _dataBaseService = new VacunaService();
-
+  final VacunaService _dataBaseService = VacunaService();
+  List<dynamic> listvacuna = [];
   //Traer datos de vacuno x usuario
-  Future getVacunas(String uid) async {
+  void getVacunas(String uid) async {
     List<dynamic> data = await _dataBaseService.getVacunas(uid);
 
-    return data.map((vacElement) => Vacuna.fromMap(vacElement)).toList();
+    listvacuna = data;
+    print('DATA GET=> $data');
+    notifyListeners();
+    //return data;
+    // return data.map((vacElement) => Vacuna.fromMap(vacElement)).toList();
   }
 
   //crear vacunas x uuid

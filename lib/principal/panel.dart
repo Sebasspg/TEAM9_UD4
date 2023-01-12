@@ -1,11 +1,14 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/act_fisicas/pages/hacerejercicio.dart';
 import 'package:team9_ud3_project/alergias/menualergias.dart';
 import 'package:team9_ud3_project/medicacion/pages/menumedicacion_pages.dart';
 import 'package:team9_ud3_project/nutricion/nutri_main.dart';
 import 'package:team9_ud3_project/nutricion/nutripeso_home.dart';
+import 'package:team9_ud3_project/providers/usuarios_provides.dart';
+import 'package:team9_ud3_project/providers/vacuna_provider.dart';
 import 'package:team9_ud3_project/recetas_saludables/nutri_home.dart';
 import 'package:team9_ud3_project/vacunas/pages/producto/productos_page.dart';
 import 'package:team9_ud3_project/vacunas/pages/producto/read_vacuna.dart';
@@ -55,6 +58,7 @@ class _PanelPrincipalState extends State<PanelPrincipal> {
 
   @override
   Widget build(BuildContext context) {
+    final vacunasProvider = Provider.of<VacunasProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -317,7 +321,7 @@ class _PanelPrincipalState extends State<PanelPrincipal> {
                             width: MediaQuery.of(context).size.width * 0.2,
                             child: Center(
                               child: Text(
-                                "0",
+                                "${vacunasProvider.contadorVacuna}",
                                 style: GoogleFonts.quicksand(
                                   fontSize: 33,
                                   fontWeight: FontWeight.w500,

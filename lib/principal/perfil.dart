@@ -18,11 +18,14 @@ class PerfilPrincipal extends StatefulWidget {
 class _PerfilPrincipalState extends State<PerfilPrincipal> {
   //--Colores :3--
   var colormediogris = const Color.fromARGB(255, 230, 231, 232);
+  final String baseURL =
+      'https://ezwalmhqmrrhyrynmrjs.supabase.co/storage/v1/object/public/images/img/';
 
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context, listen: false);
-    final usuarioProvider = Provider.of<UsuarioProvider>(context);
+    final usuarioProvider =
+        Provider.of<UsuarioProvider>(context, listen: false);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 17),
@@ -84,14 +87,27 @@ class _PerfilPrincipalState extends State<PerfilPrincipal> {
                       child: SizedBox(
                         width: MediaQuery.of(context).size.width * 0.42,
                         height: MediaQuery.of(context).size.width * 0.42,
-                        child: const CircleAvatar(
-                          backgroundColor: Color.fromARGB(255, 210, 211, 213),
-                        ),
+                        child: (usuarioProvider.imagenlocal == "")
+                            ? Icon(
+                                Icons.person,
+                                size: 150,
+                                color: Colors.grey,
+                              )
+                            : CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                    baseURL + usuarioProvider.imagenlocal),
+                              ),
                       ),
                     ),
                   ),
                 ],
               ),
+              // Text(
+              //   usuarioProvider.nombrelocal,
+              //   style: GoogleFonts.quicksand(
+              //       fontSize: 22.7, fontWeight: FontWeight.w800),
+              //   textAlign: TextAlign.center,
+              //),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.079,
                 child: FutureBuilder(

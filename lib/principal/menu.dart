@@ -53,7 +53,8 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
 
   @override
   Widget build(BuildContext context) {
-    final usuarioProdiver = Provider.of<UsuarioProvider>(context);
+    final usuarioProdiver =
+        Provider.of<UsuarioProvider>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -93,30 +94,35 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                       style: GoogleFonts.quicksand(
                           fontSize: 15.092, fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.075,
-                      width: double.infinity,
-                      child: FutureBuilder(
-                        future: usuarioProdiver
-                            .getusuario(Preferences.identificador),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            List _snapshot = snapshot.data as List;
-                            return ListView.builder(
-                              itemCount: _snapshot.length,
-                              itemBuilder: (context, index) {
-                                Users usuarioss = _snapshot[index];
-                                return Text(usuarioss.nombre,
-                                    style: GoogleFonts.quicksand(
-                                        fontSize: 20.5,
-                                        fontWeight: FontWeight.bold));
-                              },
-                            );
-                          }
-                          return Text('-');
-                        },
-                      ),
+                    Text(
+                      usuarioProdiver.nombrelocal,
+                      style: GoogleFonts.quicksand(
+                          fontSize: 15.092, fontWeight: FontWeight.w600),
                     ),
+                    // SizedBox(
+                    //   height: MediaQuery.of(context).size.height * 0.075,
+                    //   width: double.infinity,
+                    //   child: FutureBuilder(
+                    //     future: usuarioProdiver
+                    //         .getusuario(Preferences.identificador),
+                    //     builder: (context, snapshot) {
+                    //       if (snapshot.hasData) {
+                    //         List _snapshot = snapshot.data as List;
+                    //         return ListView.builder(
+                    //           itemCount: _snapshot.length,
+                    //           itemBuilder: (context, index) {
+                    //             Users usuarioss = _snapshot[index];
+                    //             return Text(usuarioss.nombre,
+                    //                 style: GoogleFonts.quicksand(
+                    //                     fontSize: 20.5,
+                    //                     fontWeight: FontWeight.bold));
+                    //           },
+                    //         );
+                    //       }
+                    //       return Text('-');
+                    //     },
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -184,6 +190,14 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                                 ),
                               ),
                             ),
+                            // Text(
+                            //   usuarioProdiver.edadlocal,
+                            //   style: GoogleFonts.quicksand(
+                            //       fontSize: 46.656,
+                            //       fontWeight: FontWeight.w500,
+                            //       color: Colors.white),
+                            //   textAlign: TextAlign.center,
+                            //),
                             SizedBox(
                               height:
                                   MediaQuery.of(context).size.height * 0.125,
@@ -234,35 +248,43 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.125,
-                              width: double.infinity,
-                              child: FutureBuilder(
-                                future: usuarioProdiver
-                                    .getusuario(Preferences.identificador),
-                                builder: (context, snapshot) {
-                                  if (snapshot.hasData) {
-                                    List _snapshot = snapshot.data as List;
-                                    return ListView.builder(
-                                      itemCount: _snapshot.length,
-                                      itemBuilder: (context, index) {
-                                        Users usuarioss = _snapshot[index];
-                                        return Text(
-                                          usuarioss.altura,
-                                          style: GoogleFonts.quicksand(
-                                              fontSize: 46.656,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.white),
-                                          textAlign: TextAlign.center,
-                                        );
-                                      },
-                                    );
-                                  }
-                                  return Text('-');
-                                },
-                              ),
+                            Text(
+                              usuarioProdiver.alturalocal,
+                              style: GoogleFonts.quicksand(
+                                  fontSize: 46.656,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                              textAlign: TextAlign.center,
                             ),
+                            // SizedBox(
+                            //   height:
+                            //       MediaQuery.of(context).size.height * 0.125,
+                            //   width: double.infinity,
+                            //   child: FutureBuilder(
+                            //     future: usuarioProdiver
+                            //         .getusuario(Preferences.identificador),
+                            //     builder: (context, snapshot) {
+                            //       if (snapshot.hasData) {
+                            //         List _snapshot = snapshot.data as List;
+                            //         return ListView.builder(
+                            //           itemCount: _snapshot.length,
+                            //           itemBuilder: (context, index) {
+                            //             Users usuarioss = _snapshot[index];
+                            //             return Text(
+                            //               usuarioss.altura,
+                            //               style: GoogleFonts.quicksand(
+                            //                   fontSize: 46.656,
+                            //                   fontWeight: FontWeight.w500,
+                            //                   color: Colors.white),
+                            //               textAlign: TextAlign.center,
+                            //             );
+                            //           },
+                            //         );
+                            //       }
+                            //       return Text('-');
+                            //     },
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
@@ -397,6 +419,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                                   child: Center(
                                     child: Row(
                                       children: [
+                                        Text(usuarioProdiver.pesolocal),
                                         /*
                                         SizedBox(
                                           height: MediaQuery.of(context)
@@ -511,7 +534,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "AB+",
+                                          usuarioProdiver.tipo_sangrelocal,
                                           style: GoogleFonts.quicksand(
                                               fontSize: 31.575,
                                               fontWeight: FontWeight.w800),

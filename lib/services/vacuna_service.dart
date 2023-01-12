@@ -10,7 +10,7 @@ class VacunaService {
     try {
       final response = await cliente.from('vacunas').select().eq('uuid', uid);
       final data = response;
-      print('services--userrs--vacunas');
+      print('services--vacunas--getdata');
       print(data);
       return data;
     } catch (e) {
@@ -47,7 +47,7 @@ class VacunaService {
         'uuid': ''
       }).eq('uuid', uid);
       final data = response;
-      print('services--vacunas--insert');
+      print('services--vacunas--update');
       print(data);
       return data;
     } catch (r) {
@@ -60,7 +60,7 @@ class VacunaService {
       final response =
           await cliente.from('vacunas').delete().eq('id', id_vacuna);
       final data = response;
-      print('services--vacunas--insert');
+      print('services--vacunas--delxuuid');
       print(data);
       return data;
     } catch (r) {
@@ -72,7 +72,7 @@ class VacunaService {
     try {
       final response = await cliente.from('vacunas').delete().eq('uuid', uuid);
       final data = response;
-      print('services--vacunas--insert');
+      print('services--vacunas--alldel');
       print(data);
       return data;
     } catch (r) {

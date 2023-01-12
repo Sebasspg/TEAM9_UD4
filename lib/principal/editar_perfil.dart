@@ -144,12 +144,19 @@ class _EditarPerfilState extends State<EditarPerfil> {
                   border: Border.all(color: Colors.black, width: 2)),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton(
+                  hint: Text(
+                    'Seleccione: ',
+                    style: GoogleFonts.quicksand(),
+                  ),
                   value: values,
                   isExpanded: true,
                   items: items
                       .map((String item) => DropdownMenuItem(
                             value: item,
-                            child: Text(item),
+                            child: Text(
+                              item,
+                              style: GoogleFonts.quicksand(),
+                            ),
                           ))
                       .toList(),
                   onChanged: (value) => setState(() => values = value),
@@ -158,6 +165,35 @@ class _EditarPerfilState extends State<EditarPerfil> {
             ),
             SizedBox(
               height: 20,
+            ),
+            InkWell(
+              onTap: () {
+                userProvider.activeGalleryImg();
+              },
+              child: Container(
+                width: 300,
+                height: 300,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(150),
+                  color: Colors.grey,
+                ),
+                child: (userProvider.image != null)
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: SizedBox.fromSize(
+                          size: const Size.fromRadius(48),
+                          child: Image.file(
+                            userProvider.image!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
+                    : const Icon(
+                        Icons.add_a_photo_rounded,
+                        color: Colors.white,
+                        size: 100,
+                      ),
+              ),
             ),
             SizedBox(
               width: double.infinity,
@@ -172,6 +208,7 @@ class _EditarPerfilState extends State<EditarPerfil> {
                     backgroundColor: Colors.green,
                   );
 
+                  userProvider.subirImgStorage();
                   userProvider.uptusuario(
                       Preferences.identificador,
                       nombre.text,

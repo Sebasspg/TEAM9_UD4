@@ -19,13 +19,13 @@ class UsuarioDataService {
 
   //Actualizar informacion x uuid
   Future updateUsuarios(String uid, String nombre, String edad, String genero,
-      String peso, String altura, String tipo_sangre) async {
+      String image, String peso, String altura, String tipo_sangre) async {
     try {
       final response = await usuario.from('usuarios').update({
         'nombre': nombre,
         'edad': edad,
         'genero': genero,
-        //'image': image,
+        'image': image,
         'peso': peso,
         'altura': altura,
         'tipo_sangre': tipo_sangre,

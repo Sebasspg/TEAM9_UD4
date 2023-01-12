@@ -184,7 +184,7 @@ class CreateMedicinaPage extends StatelessWidget {
                   filled: true,
                   fillColor:Colors.white,
                   contentPadding: const EdgeInsets.all(15),
-                  hintText: "Intervalo",
+                  hintText: "Menciona cada cuantas horas debe tomarlo",
                   hintStyle: const TextStyle(
                       color: Color.fromARGB(119, 0, 0, 0), fontWeight: FontWeight.bold),
                 ),),

@@ -123,7 +123,7 @@ class CreateAlergiaPage extends StatelessWidget {
                   filled: true,
                   fillColor:Colors.white,
                   contentPadding: const EdgeInsets.all(15),
-                  hintText: "Mencione su Alergia",
+                  hintText: "Alergico a(al)",
                   hintStyle: const TextStyle(
                       color: Color.fromARGB(119, 0, 0, 0), fontWeight: FontWeight.bold),
                 ),),

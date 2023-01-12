@@ -1,446 +1,225 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:team9_ud3_project/model/usuarios_model.dart';
-import 'package:team9_ud3_project/preferences/logearse_preferences.dart';
 import 'package:team9_ud3_project/providers/usuarios_provides.dart';
 import 'package:provider/provider.dart';
-import 'package:team9_ud3_project/providers/peso_provider.dart';
-import 'package:team9_ud3_project/widgets/grafico_dona.dart';
-import 'package:team9_ud3_project/widgets/loading_custom.dart';
 
-class GraficoPage extends StatelessWidget {
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:intl/intl.dart';
+
+final fechaController = TextEditingController();
+final pesoController = TextEditingController();
+
+class GraficoPage extends StatefulWidget {
   const GraficoPage({super.key});
+
+  @override
+  State<GraficoPage> createState() => _GraficoPageState();
+}
+
+class _GraficoPageState extends State<GraficoPage> {
+  late List<SalesDData> _Data1;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _Data1 = getDatos();
+  }
 
   @override
   Widget build(BuildContext context) {
     final usuarioProvider = Provider.of<UsuarioProvider>(context);
 
     return Scaffold(
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'NUTRICIÓN',
-                style: GoogleFonts.quicksand(
-                    fontWeight: FontWeight.bold, fontSize: 18),
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'NUTRICIÓN',
+              style: GoogleFonts.quicksand(
+                  fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            Image.asset(
+              'assets/recetas/rslogo.png',
+              height: 50,
+              width: 110,
+            ),
+          ],
+        ),
+        centerTitle: true,
+      ),
+      body: ListView(children: [
+        SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+              width: 150,
+              child: TextField(
+                  controller: pesoController,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(width: 2, color: Colors.blueGrey),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                          width: 2, color: Color.fromARGB(255, 81, 181, 251)),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    filled: true,
+                    fillColor: const Color.fromARGB(255, 149, 246, 255),
+                    contentPadding: const EdgeInsets.all(15),
+                    hintText: "Peso",
+                    hintStyle: const TextStyle(
+                        color: Colors.blue, fontWeight: FontWeight.bold),
+                    icon: const Icon(
+                      Icons.person,
+                      color: Colors.blue,
+                    ),
+                  )),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              width: 150,
+              child: TextField(
+                controller: fechaController,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(width: 2, color: Colors.blueGrey),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        width: 2, color: Color.fromARGB(255, 81, 181, 251)),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  filled: true,
+                  fillColor: const Color.fromARGB(255, 149, 246, 255),
+                  contentPadding: const EdgeInsets.all(15),
+                  icon: const Icon(
+                    Icons.calendar_today_outlined,
+                    color: Colors.blue,
+                  ),
+                  hintText: "Año",
+                  hintStyle: const TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+                onTap: () async {
+                  DateTime? pickeDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2101));
+                  print(fechaController);
+                  if (pickeDate != null) {
+                    setState(() {
+                      fechaController.text = DateFormat.yMd().format(pickeDate);
+                      print(fechaController.text);
+                    });
+                  }
+                },
               ),
-              Image.asset(
-                'assets/recetas/rslogo.png',
-                height: 50,
-                width: 110,
+            ),
+            MaterialButton(
+              minWidth: 100,
+              height: 40,
+              color: const Color.fromARGB(255, 83, 76, 175),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              onPressed: () {
+                //   double.parse(fechaController.text),
+                // double.parse(pesoController.text);
+                final datosfecha = fechaController.text;
+
+                final year = datosfecha.split('/');
+                final anio = int.parse(year[2]);
+                final month = datosfecha.split('/');
+                print('DEMO ------- ${month[1]}');
+                final mes = int.parse(month[1]);
+
+                //final DateTime fecha = int.parse(datosfecha);
+                _Data1.add(SalesDData(
+                    DateTime(anio, mes), double.parse(pesoController.text)));
+                //print(fecha);
+
+                print(datosfecha);
+              },
+              child: const Text(
+                'Añadir',
+                style: TextStyle(color: Colors.white, fontSize: 20),
               ),
+            )
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.82,
+          child: SfCartesianChart(
+            primaryXAxis: DateTimeCategoryAxis(
+              dateFormat: DateFormat.yMd(),
+            ),
+            title: ChartTitle(text: 'Peso (Kg)'),
+            legend: Legend(isVisible: true),
+            series: [
+              /*SplineSeries<DatosGrafico, double>(
+                  dataSource: _Datos,
+                  xValueMapper: (DatosGrafico sales, _) =>
+                      double.parse(sales.fechas),
+                  yValueMapper: (DatosGrafico sales, _) => sales.pesos,
+                  dataLabelSettings: const DataLabelSettings(isVisible: true),
+                  color: Colors.red,
+                  width: 2.5,
+                  opacity: 0.5,
+                  cardinalSplineTension: 0.9),*/
+              //Linea Curva
+              SplineSeries<SalesDData, DateTime>(
+                dataSource: _Data1,
+                xValueMapper: (SalesDData sales, _) => sales.fecha,
+                yValueMapper: (SalesDData sales, _) => sales.peso,
+                color: Colors.red,
+                width: 2.5,
+                dataLabelSettings: const DataLabelSettings(isVisible: true),
+                opacity: 0.5,
+                name: 'Peso',
+              ),
+              // FastLineSeries<SalesDData, DateTime>(
+              //     dataSource: _Data,
+              //     xValueMapper: (SalesDData sales, _) => sales.fecha,
+              //     yValueMapper: (SalesDData sales, _) => sales.peso,
+              //     color: Colors.black,
+              //     width: 2.5,
+              //     opacity: 0.5,
+              //     name: 'Objetivo',
+              //     dashArray: [5.6]),
             ],
           ),
-          centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: FutureBuilder(
-              future: usuarioProvider.getusuario(Preferences.identificador),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  List _snapshot = snapshot.data as List;
-                  return ListView.builder(
-                      itemCount: _snapshot.length,
-                      itemBuilder: (context, index) {
-                        Users usuaarios = _snapshot[index];
-                        return vistaPeso(usarioos: usuaarios);
-                        //vistaPeso(usarioos: usuaarios); Text(usuaarios.nombre);
-                      });
-                }
-                return LoadingCustom(
-                  textoCarga: 'Cargando pesos...',
-                );
-              },
-            ),
-          ),
-        ));
+      ]),
+    );
   }
 }
 
-class vistaPeso extends StatelessWidget {
-  final Users usarioos;
+List<SalesDData> getDatos() {
+  List<SalesDData> data = [
+    SalesDData(DateTime(2023, 1, 4), 68),
+    SalesDData(DateTime(2023, 5), 70),
+  ];
 
-  const vistaPeso({super.key, required this.usarioos});
+  return data;
+}
 
-  @override
-  Widget build(BuildContext context) {
-    final pesosProvider = Provider.of<PesoProvider>(context);
-
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: double.infinity,
-      child: ListView(
-        children: [
-          SizedBox(height: 8),
-          Text(
-            'CONTROL NUTRICIONAL',
-            style: GoogleFonts.quicksand(
-                fontSize: 25, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width * 0.50,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Color.fromARGB(255, 79, 166, 236),
-                  Color.fromARGB(255, 8, 134, 236),
-                ],
-              ),
-            ),
-            child: IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        usarioos.nombre,
-                        style: GoogleFonts.quicksand(
-                            color: Colors.white, fontSize: 20),
-                      ),
-                      IntrinsicHeight(
-                        child: Row(
-                          children: [
-                            Text(
-                              '${usarioos.edad} años',
-                              style: GoogleFonts.quicksand(
-                                  color: Colors.white, fontSize: 20),
-                            ),
-                            const VerticalDivider(
-                              color: Colors.white,
-                              thickness: 1,
-                            ),
-                            Text(
-                              'Altura ${usarioos.altura}cm',
-                              style: GoogleFonts.quicksand(
-                                  color: Colors.white, fontSize: 20),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  VerticalDivider(
-                    color: Colors.white,
-                    indent: 42,
-                    endIndent: 42,
-                    thickness: 0.5,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Peso',
-                        style: GoogleFonts.quicksand(
-                            color: Colors.white, fontSize: 20),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            usarioos.peso,
-                            style: GoogleFonts.quicksand(
-                                color: Colors.white, fontSize: 45),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            'Kg',
-                            style: GoogleFonts.quicksand(
-                                color: Colors.white, fontSize: 20),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          (pesosProvider.msg == 'Normal')
-              ? Container(
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [
-                        Colors.blueAccent,
-                        Colors.green,
-                      ],
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'ESTADO NUTRICIONAL : ',
-                        style: GoogleFonts.quicksand(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Text(
-                        '${pesosProvider.msg}',
-                        style: GoogleFonts.quicksand(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                )
-              : (pesosProvider.msg == 'Delgadez')
-                  ? Container(
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        gradient: LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: [
-                            Colors.yellow,
-                            Colors.orange,
-                          ],
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'ESTADO NUTRICIONAL : ',
-                            style: GoogleFonts.quicksand(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          Text(
-                            '${pesosProvider.msg}',
-                            style: GoogleFonts.quicksand(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    )
-                  : (pesosProvider.msg == 'X')
-                      ? Container(
-                          height: MediaQuery.of(context).size.height * 0.1,
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            gradient: LinearGradient(
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                              colors: [
-                                Colors.grey,
-                                Colors.grey,
-                              ],
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'ESTADO NUTRICIONAL : ',
-                                style: GoogleFonts.quicksand(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              Text(
-                                '${pesosProvider.msg}',
-                                style: GoogleFonts.quicksand(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        )
-                      : Container(
-                          height: MediaQuery.of(context).size.height * 0.1,
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            gradient: LinearGradient(
-                              begin: Alignment.topRight,
-                              end: Alignment.bottomLeft,
-                              colors: [
-                                Colors.orange,
-                                Colors.red,
-                              ],
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'ESTADO NUTRICIONAL : ',
-                                style: GoogleFonts.quicksand(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              Text(
-                                '${pesosProvider.msg}',
-                                style: GoogleFonts.quicksand(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-          SizedBox(
-            height: 25,
-          ),
-          Text(
-            'HORARIOS',
-            style: GoogleFonts.quicksand(
-                fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            'Seleccione un horario para calcular',
-            style: GoogleFonts.quicksand(fontSize: 18),
-          ),
-          SizedBox(
-            height: 200,
-            width: 500,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  SizedBox(
-                    width: 10,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      pesosProvider.getCalorias(int.parse(usarioos.edad));
-                      pesosProvider.getCategoriaxIMC(
-                          double.parse(usarioos.peso),
-                          double.parse(usarioos.altura));
-                      pesosProvider.getProteinas(int.parse(usarioos.peso));
-                      pesosProvider.getCarbohidratos(int.parse(usarioos.peso));
-                    },
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 55, // Image radius
-                          backgroundImage: NetworkImage(
-                              'https://cdn.pixabay.com/photo/2016/11/06/23/31/breakfast-1804457_960_720.jpg'),
-                        ),
-                        Text(
-                          '09:00',
-                          style: GoogleFonts.quicksand(fontSize: 18),
-                        ),
-                        Text(
-                          'Desayuno',
-                          style: GoogleFonts.quicksand(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      pesosProvider
-                          .getCaloriasxAlmuerzo(int.parse(usarioos.edad));
-                      pesosProvider.getProteinas(int.parse(usarioos.peso));
-                      pesosProvider.getCarbohidratos(int.parse(usarioos.peso));
-                    },
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 55, // Image radius
-                          backgroundImage: NetworkImage(
-                              'https://cdn.pixabay.com/photo/2017/09/12/21/47/noodles-2743779_960_720.jpg'),
-                        ),
-                        Text(
-                          '13:00',
-                          style: GoogleFonts.quicksand(fontSize: 18),
-                        ),
-                        Text(
-                          'Almuerzo',
-                          style: GoogleFonts.quicksand(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      pesosProvider.getCaloriasxCena(int.parse(usarioos.edad));
-                      pesosProvider.getProteinas(int.parse(usarioos.peso));
-                      pesosProvider.getCarbohidratos(int.parse(usarioos.peso));
-                    },
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 55, // Image radius
-                          backgroundImage: NetworkImage(
-                              'https://cdn.pixabay.com/photo/2014/09/11/11/17/prawn-441623_960_720.jpg'),
-                        ),
-                        Text(
-                          '20:00',
-                          style: GoogleFonts.quicksand(fontSize: 18),
-                        ),
-                        Text(
-                          'Cena',
-                          style: GoogleFonts.quicksand(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Text(
-            'RESULTADO',
-            style: GoogleFonts.quicksand(
-                fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-          Text(
-            'Para mantener un estado nutricional saludable, usted requiere de',
-            style: GoogleFonts.quicksand(
-                fontSize: 18, fontWeight: FontWeight.w400),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.65,
-            width: double.infinity,
-            child: DonaWidget(),
-          )
-        ],
-      ),
-    );
-  }
+class SalesDData {
+  SalesDData(this.fecha, this.peso);
+  final DateTime fecha;
+  final double peso;
 }

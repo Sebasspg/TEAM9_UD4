@@ -2,6 +2,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/model/medicina_model.dart';
 import 'package:team9_ud3_project/providers/Medicina_provider.dart';
@@ -27,42 +28,125 @@ class _UpdateMedicinaPageState extends State<UpdateMedicinaPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Editar Medicación'),
+           
+        backgroundColor: Colors.white,
+        title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [const Text('Alergias',style: TextStyle( fontWeight: FontWeight.bold,fontSize: 22), ),
+        Image.asset('assets/alergia/login_logo.png', scale: 3,),
+        ],
+        ),
+        
         centerTitle: true,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(5.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            CustomTextFormField(
-              controller: nombreController,
-              hintText: 'Via Oral/ Intramuscular/Intravenoso',
-              keyboardType: TextInputType.name,
+          children: [const Text('EDITAR MEDICAMENTO', textAlign: TextAlign.left,style: TextStyle( fontWeight: FontWeight.bold,fontSize: 25),),
+               TextField(
+                controller: nombreController,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        width: 2, color: Colors.white),
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: const EdgeInsets.all(15),
+                  
+                  hintText: "Via,¿Oral, Intramuscular o Intravenosa?",
+                  
+                ),
             ),
-            CustomTextFormField(
-              controller: categoriaController,
-              hintText: 'Medicamento',
-              keyboardType: TextInputType.name,
+            TextField(
+                controller: categoriaController,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        width: 2, color: Colors.white),
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: const EdgeInsets.all(17),
+                  
+                  hintText: "Nombre del Medicamento",
+                  
+                ),
             ),
-            CustomTextFormField(
-              controller: inicioController,
-              hintText: 'Fecha de Inicio',
-              keyboardType: TextInputType.name,
-            ),
+            TextField(
+                controller: inicioController,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        width: 2, color: Colors.black),
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: const EdgeInsets.all(17),
+                  
+                  hintText: "Fecha de Inicio",
+                  
+                ),
+                onTap: () async {
+                  DateTime? pickeDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2101));
+                  print(inicioController);
+                  if (pickeDate != null) {
+                    ( {
+                      inicioController.text =
+                          DateFormat('dd-MM-yyyy').format(pickeDate),
+                    });
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+                TextField(
+                controller: categoriaController,
+                decoration: InputDecoration(
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        width: 2, color: Colors.white),
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                  filled: true,
+                  fillColor:Colors.white,
+                  contentPadding: const EdgeInsets.all(15),
+                  hintText: "Intervalo",
+                  hintStyle: const TextStyle(
+                      color: Color.fromARGB(119, 0, 0, 0), fontWeight: FontWeight.bold),
+                ),),
 
-             CustomTextFormField(
-              controller: intervaloController,
-              hintText: 'Intervalo',
-              keyboardType: TextInputType.name,
-            ),
-
-            MaterialButton(
-              minWidth: 200,
-              color: Colors.green,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              onPressed: () {
+                      InkWell(
+                child: Container(
+                  height: 50,
+                  width: double.infinity, 
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                       gradient: const LinearGradient(colors: <Color>[
+                     Color.fromARGB(233, 115, 159, 203),
+                     Color.fromARGB(255, 34, 172, 223),
+                     ],
+                     ),),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: const [
+                      Text(
+                        "ACTUALIZAR",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                onTap: () {
                 final productoProvider =
                     Provider.of<MedicinaProvider>(context, listen: false);
 
@@ -73,12 +157,10 @@ class _UpdateMedicinaPageState extends State<UpdateMedicinaPage> {
                     inicioController.text,
                     finController.text,
                     intervaloController.text);
-              },
-              child: const Text(
-                'Actulizar Medicación',
-                style: TextStyle(color: Colors.white),
+                },
+
               ),
-            )
+
           ],
         ),
       ),

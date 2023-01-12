@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/act_fisicas/pages/hacerejercicio.dart';
-import 'package:team9_ud3_project/alergias/menualergias.dart';
+import 'package:team9_ud3_project/alergia/menualergias.dart';
 import 'package:team9_ud3_project/medicacion/pages/menumedicacion_pages.dart';
 import 'package:team9_ud3_project/nutricion/nutri_main.dart';
 import 'package:team9_ud3_project/nutricion/nutripeso_home.dart';

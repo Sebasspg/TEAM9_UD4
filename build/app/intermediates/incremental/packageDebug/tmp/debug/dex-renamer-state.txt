@@ -1,4 +1,4 @@
-#Thu Jan 12 14:23:14 COT 2023
-base.0=D\:\\Personal\\Docu\\GitHUB\\TEAM9_UD4\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Thu Jan 12 15:34:21 COT 2023
+base.0=C\:\\Users\\Usuario\\Desktop\\unidad4flutter\\TEAM9_UD4\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

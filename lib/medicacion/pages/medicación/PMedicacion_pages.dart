@@ -13,42 +13,51 @@ class ProductosMedicinaPage extends StatelessWidget {
     productoData.queryAllM();
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Mis Medicinas',
-          style: TextStyle(
-              fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        backgroundColor: Color.fromARGB(255, 8, 239, 127),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              productoData.deleteAllM();
-            },
-            icon: const Icon(Icons.delete),
-          ),
+           
+        backgroundColor: Colors.white,
+        title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [const Text('MEDICACION',style: TextStyle( fontWeight: FontWeight.bold,fontSize: 22), ),
+        Image.asset('assets/alergia/login_logo.png', scale: 3),
         ],
+        ),
+        
+        centerTitle: true,
+
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            child: Image.network(
-                "https://cdn.pixabay.com/photo/2021/01/13/13/42/coronavirus-5914156_960_720.png"),
-          ),
-          MaterialButton(
-            minWidth: 200,
-            color: Color.fromARGB(255, 8, 239, 127),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const CreateMedicinaPage()));
-            },
-            child: const Text(
-              'Registrar Medicinas',
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Stack(
+              children:[
+            SizedBox(
+              child: Image.asset('assets/medicinas/medicinasmed.png')
+            ),        
+              Column(
+                children:[   
+                  const SizedBox(
+                    height: 45,
+                  ),     
+               Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: const [
+                            Text(
+                              "MIS MEDICINAS",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            )
+                          ],
+                        ),
+                        ],
+              ),
+                        ],
+              ),
+      
+          
           Expanded(
             child: ListView.builder(
               scrollDirection: Axis.vertical,
@@ -64,7 +73,7 @@ class ProductosMedicinaPage extends StatelessWidget {
                 productoData.delete(data.id);
               },
               icon: const Icon(
-                Icons.health_and_safety,
+                Icons.delete_outline_outlined,
                 color: Colors.red,
               ),
             ),
@@ -82,8 +91,40 @@ class ProductosMedicinaPage extends StatelessWidget {
         },
       ),
           ),
+
+                 InkWell(
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                       gradient: const LinearGradient(colors: <Color>[
+                     Color.fromARGB(233, 115, 159, 203),
+                     Color.fromARGB(255, 34, 172, 223),
+                     ],
+                     ),),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const Text(
+                        "AÑADIR MEDICINA",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                      Image.asset('assets/medicinas/flechamed.png', alignment: Alignment.centerRight,scale: 3.5,),
+                    ],
+                  ),
+                ),
+                onTap: () {             
+                  Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const CreateMedicinaPage()));
+
+                }
+
+              ),
           ],
             ),
+      )
     );
   }
 }

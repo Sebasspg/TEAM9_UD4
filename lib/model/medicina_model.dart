@@ -32,4 +32,6 @@ class ProductoMedicina {
       DBMedicina.columnIntervalo: intervalo,
     };
   }
+
+  static insertProductoM(String text, String text2, String text3, String text4, String text5) {}
 }

@@ -217,6 +217,7 @@ class _EditarPerfilState extends State<EditarPerfil> {
                       peso.text,
                       altura.text,
                       values!);
+                  userProvider.getusuario(Preferences.identificador);
                   print(values);
                   ScaffoldMessenger.of(context).showSnackBar(serpiente);
                 },

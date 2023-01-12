@@ -14,7 +14,8 @@ class NutriPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pesosProvider = Provider.of<PesoProvider>(context);
-    final usuarioProvider = Provider.of<UsuarioProvider>(context);
+    final usuarioProvider =
+        Provider.of<UsuarioProvider>(context, listen: false);
 
     return Scaffold(
         appBar: AppBar(

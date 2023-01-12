@@ -19,6 +19,7 @@ class UsuarioProvider extends ChangeNotifier {
   String alturalocal = "-";
   String pesolocal = "0";
   String imagenlocal = "";
+
   final SupabaseClient client = SupabaseClient(
       'https://ezwalmhqmrrhyrynmrjs.supabase.co',
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6d2FsbWhxbXJyaHlyeW5tcmpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzEwMzcwMzQsImV4cCI6MTk4NjYxMzAzNH0.koBQyi-cXpwq5o3GfU20l75xBqeQN5b_37LHlcTYkaY');

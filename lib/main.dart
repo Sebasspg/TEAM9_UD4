@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/login/signin_page.dart';
 import 'package:team9_ud3_project/login/signup_page.dart';
+import 'package:team9_ud3_project/postlogin-register/unmomento.dart';
 import 'package:team9_ud3_project/preferences/logearse_preferences.dart';
 import 'package:team9_ud3_project/principal/controlador_principal.dart';
 import 'package:team9_ud3_project/providers/Medicina_provider.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
             '/signin': (context) => const SignInPage(),
             '/signup': (context) => const SignUpPage(),
             '/simpleapp': (context) => const ControladorPrincipal(),
+            '/unmomento': (context) => const UnMomento(),
           },
         ));
   }

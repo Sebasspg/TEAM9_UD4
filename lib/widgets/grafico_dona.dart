@@ -17,17 +17,18 @@ class DonaWidget extends StatelessWidget {
     ];
 
     return SfCircularChart(
-        palette: [Colors.yellow, Colors.blue, Colors.red, Colors.green],
+        palette: [Color.fromARGB(255, 111, 194, 127), Color.fromARGB(255, 51, 198, 244), Color.fromARGB(255, 254, 210, 39), Color.fromARGB(255, 246, 114, 128)],
         legend: Legend(
+          alignment: ChartAlignment.near,
             isVisible: true,
             overflowMode: LegendItemOverflowMode.wrap,
-            textStyle: TextStyle(fontSize: 15, color: Colors.black)),
+            textStyle: TextStyle(fontSize: 13, color: Colors.black)),
         series: [
           DoughnutSeries<_ChartData, String>(
             dataSource: data,
             xValueMapper: (_ChartData data, _) => data.x,
             yValueMapper: (_ChartData data, _) => data.y,
-            innerRadius: '45%',
+            innerRadius: '53%',
             dataLabelSettings: DataLabelSettings(
                 isVisible: true,
                 textStyle: TextStyle(fontSize: 20, color: Colors.black)),

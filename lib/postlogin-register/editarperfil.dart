@@ -31,52 +31,72 @@ class _EditarPerfilInicialState extends State<EditarPerfilInicial> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          TextButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => UnMomento()));
-                unmomentotiempo();
-              },
-              child: Text('SKIP')),
-        ],
-      ),
       body: Container(
         padding: const EdgeInsets.only(bottom: 80),
         child: PageView(
           controller: _controller,
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.5,
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                image: DecorationImage(
-                  image: AssetImage('assets/nutricion/guxcarrusel.png'),
+            Scaffold(
+              body: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 28),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              'assets/login/login_logo.png',
+                              width: MediaQuery.of(context).size.width * 0.245,
+                              // fit: BoxFit.fill,
+                              // isAntiAlias: true,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const Spacer(flex: 2,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        'Gux necesita unos datos para comenzar',
+                        style: GoogleFonts.quicksand(
+                            color: Colors.black,
+                            fontSize: 27,
+                            fontWeight: FontWeight.w800),
+                      ),
+                    ),
+                    SizedBox(
+                height: MediaQuery.of(context).size.width * 0.06,
+              ),
+                    Image.asset('assets/nutricion/guxcarrusel.png', width: MediaQuery.of(context).size.width * 0.7,),
+                    const Spacer(),
+                  ],
                 ),
               ),
-              child: Text(
-                'Para continuar necesitos tus datos personales',
-                style: GoogleFonts.quicksand(color: Colors.black, fontSize: 45),
-              ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(color: Colors.blue, child: CarruselEditar()),
-            ),
+            CarruselEditar(),
           ],
         ),
       ),
       bottomSheet: Container(
-        padding: EdgeInsets.symmetric(horizontal: 50),
+        padding: EdgeInsets.symmetric(horizontal: 45),
         height: 80,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton(
               onPressed: () => _controller.jumpToPage(2),
-              child: Text('PREVIEW'),
+              child: Text(
+                'ANTERIOR',
+                style: GoogleFonts.quicksand(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black),
+              ),
             ),
             Center(
               child: SmoothPageIndicator(
@@ -88,7 +108,13 @@ class _EditarPerfilInicialState extends State<EditarPerfilInicial> {
               onPressed: () => _controller.nextPage(
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.easeInOut),
-              child: Text('NEXT'),
+              child: Text(
+                'SIGUIENTE',
+                style: GoogleFonts.quicksand(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.black),
+              ),
             ),
           ],
         ),

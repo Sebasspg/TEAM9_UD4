@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'package:team9_ud3_project/model/vacuna_model.dart';
@@ -15,83 +16,123 @@ class VacunaTest extends StatelessWidget {
   Widget build(BuildContext context) {
     final vacunaProvider = Provider.of<VacunasProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          Row(
-            children: [
-              const Text(
-                "REGISTRO DE VACUNAS",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                width: 17,
-              ),
-              Image.asset(
-                'assets/login/login_logo.png',
-                scale: 2.5,
-              ),
-            ],
-          ),
-        ],
-      ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(children: [
+        padding: const EdgeInsets.symmetric(horizontal: 17),
+        child: Column(children: [
+          SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(2, 20, 10, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: FittedBox(
+                                child: FloatingActionButton(
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 0,
+                                  child: Image.asset(
+                                      'assets/menuprincipal/bien/flecha_negra_volver.png'),
+                                  onPressed: () {
+                                    Navigator.pop(
+                                      (context),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.046,
+                            ),
+                            Text(
+                              "REGISTRO DE VACUNAS",
+                              style: GoogleFonts.quicksand(
+                                  fontSize: 12, fontWeight: FontWeight.w800),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Image.asset(
+                      'assets/login/login_logo.png',
+                      width: MediaQuery.of(context).size.width * 0.245,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+            height: MediaQuery.of(context).size.width * 0.06,
+          ),
           Stack(
             children: [
               SizedBox(
                 child: Image.asset("assets/vacunas/vc_imgtodo.png"),
               ),
-              Column(
-                children: [
-                  const SizedBox(
-                    height: 45,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: const [
-                      Text(
-                        "MIS VACUNAS",
-                        style: TextStyle(
+              SizedBox(
+                height: MediaQuery.of(context).size.width * 0.35,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 15, 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          MaterialButton(
+                            height: MediaQuery.of(context).size.width * 0.08,
+                            minWidth: MediaQuery.of(context).size.width * 0.06,
                             color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: 15,
-                      )
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        MaterialButton(
-                          minWidth: 100,
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5)),
-                          onPressed: () {
-                            vacunaProvider
-                                .deleteVacunas(Preferences.identificador);
-                            vacunaProvider
-                                .getVacunas(Preferences.identificador);
-                          },
-                          child: const Text(
-                            'BORRAR TODO',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            onPressed: () {
+                              vacunaProvider
+                                  .deleteVacunas(Preferences.identificador);
+                              vacunaProvider
+                                  .getVacunas(Preferences.identificador);
+                            },
+                            child: Text(
+                              'BORRAR TODO',
+                              style: GoogleFonts.quicksand(
+                        fontSize: 10, fontWeight: FontWeight.w600),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               )
             ],
           ),
-          const SizedBox(
-            height: 10,
+          Expanded(
+            child: ListView.builder(
+                itemCount: vacunaProvider.listvacuna.length,
+                itemBuilder: (context, index) {
+                  final vacunauso = vacunaProvider.listvacuna[index];
+                  return ListTile(
+                    title: Text(vacunauso['nombre'] +
+                        "| Duracion en meses " +
+                        vacunauso['duracion']),
+                    subtitle: Text(vacunauso['fecha']),
+                    trailing: IconButton(
+                      onPressed: () {
+                        vacunaProvider
+                            .deleteVacuna((vacunauso['id']).toString());
+                      },
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                    ),
+                  );
+                }),
           ),
           InkWell(
             child: Container(
@@ -102,51 +143,30 @@ class VacunaTest extends StatelessWidget {
                   gradient: const LinearGradient(
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
-                      colors: [Colors.blue, Colors.green])),
+                      colors: [Color.fromARGB(255, 51, 198, 244),
+                          Color.fromARGB(255, 111, 194, 127)])),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Text(
-                    "AÑADIR VACUNA",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  Image.asset(
-                    "assets/ejercicio/derechablanca.png",
-                    scale: 2,
-                  ),
-                ],
-              ),
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  "AÑADIR VACUNA",
+                  style: GoogleFonts.quicksand(
+                        fontSize: 11, fontWeight: FontWeight.w900, color: Colors.white),
+                ),
+                Image.asset(
+                  'assets/medicinas/flechamed.png',
+                  alignment: Alignment.centerRight,
+                  scale: 4,
+                ),
+              ],
+            ),
             ),
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const addVacuna()));
             },
           ),
-          SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: double.infinity,
-              child: ListView.builder(
-                  itemCount: vacunaProvider.listvacuna.length,
-                  itemBuilder: (context, index) {
-                    final vacunauso = vacunaProvider.listvacuna[index];
-                    return ListTile(
-                      title: Text(vacunauso['nombre'] +
-                          "| Duracion en meses " +
-                          vacunauso['duracion']),
-                      subtitle: Text(vacunauso['fecha']),
-                      trailing: IconButton(
-                        onPressed: () {
-                          vacunaProvider
-                              .deleteVacuna((vacunauso['id']).toString());
-                        },
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                      ),
-                    );
-                  }))
+          
           // child: FutureBuilder(
           //   future: vacunaProvider.getVacunas(Preferences.identificador),
           //   builder: (context, snapshot) {

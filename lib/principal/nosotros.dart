@@ -536,23 +536,6 @@ class _NosotrosBState extends State<NosotrosB> {
             SizedBox(
               height: MediaQuery.of(context).size.width * 0.09,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width * 0.83,
-              height: MediaQuery.of(context).size.width * 0.14,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [colorbienceleste, colorbienverde])),
-              child: Center(
-                child: Text(
-                  "DESCARGAR APK",
-                  style: GoogleFonts.quicksand(
-                      fontSize: 12, fontWeight: FontWeight.w900, color: Colors.white),
-                ),
-              ),
-            ),
             const Spacer(),
           ],
         ),

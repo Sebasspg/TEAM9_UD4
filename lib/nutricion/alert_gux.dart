@@ -10,80 +10,74 @@ class AlertPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final pesosProvider = Provider.of<PesoProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 17),
+        child: Column(
           children: [
-            Text(
-              'NUTRICIÓN',
-              style: GoogleFonts.quicksand(
-                  fontWeight: FontWeight.bold, fontSize: 18),
+            SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(2, 20, 10, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: FittedBox(
+                                child: FloatingActionButton(
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 0,
+                                  child: Image.asset(
+                                      'assets/menuprincipal/bien/flecha_negra_volver.png'),
+                                  onPressed: () {
+                                    Navigator.pop(
+                                      (context),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.046,
+                            ),
+                            Text(
+                              "NUTRICIÓN",
+                              style: GoogleFonts.quicksand(
+                                  fontSize: 12, fontWeight: FontWeight.w800),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Image.asset(
+                      'assets/login/login_logo.png',
+                      width: MediaQuery.of(context).size.width * 0.245,
+                    ),
+                  ],
+                ),
+              ),
             ),
-            Image.asset(
-              'assets/recetas/rslogo.png',
-              height: 50,
-              width: 110,
+            const Spacer(),
+            SizedBox(
+              
+              child: (pesosProvider.msg == 'Normal')
+                  ? Image.asset('assets/nutricion/ntguxbien.png', width: MediaQuery.of(context).size.width * 0.63,)
+                  : (pesosProvider.msg == 'Delgadez')
+                      ? Image.asset('assets/nutricion/ntguxmedio.png', width: MediaQuery.of(context).size.width * 0.8,)
+                      : Image.asset('assets/nutricion/ntguxmal.png', width: MediaQuery.of(context).size.width * 0.8,),
             ),
+            SizedBox(
+            height: MediaQuery.of(context).size.width * 0.05,
+          ),
+            const Spacer(),
           ],
         ),
-        centerTitle: true,
-      ),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.5,
-            width: double.infinity,
-            child: (pesosProvider.msg == 'Normal')
-                ? Image.asset('assets/nutricion/ntguxbien.png')
-                : (pesosProvider.msg == 'Delgadez')
-                    ? Image.asset('assets/nutricion/ntguxmedio.png')
-                    : Image.asset('assets/nutricion/ntguxmal.png'),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          Column(
-            children: [
-              (pesosProvider.msg == 'Normal')
-                  ? Text(
-                      '!FELICIDADES!',
-                      style: GoogleFonts.quicksand(
-                          fontSize: 20, fontWeight: FontWeight.bold),
-                    )
-                  : Text(
-                      '¿Tu peso actual no es el adecuado?',
-                      style: GoogleFonts.quicksand(
-                          fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-              const SizedBox(
-                height: 15,
-              ),
-              (pesosProvider.msg == 'Normal')
-                  ? Text(
-                      'Su estado nutricional es el indicado',
-                      style: GoogleFonts.quicksand(fontSize: 17),
-                      textAlign: TextAlign.center,
-                    )
-                  : Text(
-                      '- Sigue diariamente nuestras recetas y los datos indicados en el gráfico circular durante 1 mes',
-                      style: GoogleFonts.quicksand(fontSize: 17),
-                      textAlign: TextAlign.center,
-                    ),
-              const SizedBox(
-                height: 15,
-              ),
-              (pesosProvider.msg == 'Normal')
-                  ? const Text(
-                      '',
-                    )
-                  : Text(
-                      '- Pasado este tiempo, colóquese sobre una balanza y actualice su perfil con los nuevos resultados',
-                      style: GoogleFonts.quicksand(fontSize: 17),
-                      textAlign: TextAlign.center,
-                    ),
-            ],
-          ),
-        ],
       ),
     );
   }

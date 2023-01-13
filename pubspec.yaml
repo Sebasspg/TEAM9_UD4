@@ -91,6 +91,8 @@ flutter:
     - assets/nutricion/
     - assets/splashscreen/
     - assets/vacunas/
+    - assets/perfil/
+    - assets/caru/
     - assets/menuprincipal/bien/
     - assets/menuprincipal/otro/
     - assets/menuprincipal/bien/arobien.mp4

@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/login/home_page.dart';
 import 'package:team9_ud3_project/providers/logearse_providers.dart';
-import 'package:team9_ud3_project/utils/constant.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -36,12 +35,13 @@ class _SignUpPageState extends State<SignUpPage> {
           context: context,
           builder: (BuildContext context) => AlertDialog(
                 title: SizedBox(
-                  height: 200,
+                  width: MediaQuery.of(context).size.width * 0.04,
                   child: Image.asset("assets/vacunas/rg_gux_register.png"),
                 ),
-                content: const Text(
+                content: Text(
                   'Por favor, revise su bandeja de entrada y verifique su correo',
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.center,style: GoogleFonts.quicksand(
+                        fontSize: 12, fontWeight: FontWeight.w600),
                 ),
                 actions: [
                   TextButton(
@@ -49,7 +49,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         Navigator.of(context).pop("true");
                         Navigator.pop(context, '/signin');
                       },
-                      child: const Text("aceptar"))
+                      child: const Text("Aceptar"))
                 ],
               ));
     }

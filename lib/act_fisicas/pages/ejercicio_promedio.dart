@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/act_fisicas/widgets/plantillaparatarea.dart';
 import 'package:team9_ud3_project/providers/launcher_provider.dart';
@@ -18,42 +20,42 @@ class _EjercicioPromedioState extends State<EjercicioPromedio> {
     {
       'img':
           'https://images-cdn.welcomesoftware.com/Zz1iNzQxMDQwNjY2MjFmODZlMGQxOTM0MjRkY2JjMjlkYQ==',
-      'title': 'Elevaciones de rodilla',
+      'title': 'ELEVACIONES DE RODILLA',
       'subtitle':
-          'Parate con los pies separados al ancho de tus caderas. Levantá una rodilla hacia el pecho y luego hacé lo mismo con la otra. Continuá el movimiento alternando las piernas.',
-      'repetir': '30 veces'
+          'Párate con los pies separados al ancho de tus caderas. Levanta una rodilla hacia el pecho y luego haz lo mismo con la otra. Continúa el movimiento alternando las piernas.',
+      'repetir': '30'
     },
     {
       'img':
           'https://images-cdn.welcomesoftware.com/Zz04NmJhY2U1YjE2OGQxYjk4NDU0OWZiN2NlODY3Y2JhMQ==',
-      'title': 'Burpees',
+      'title': 'BURPEES',
       'subtitle':
-          'Parate con los pies paralelos y, luego, flexioná las rodillas y bajá la cadera hacia el suelo, como si fueras a sentarte. Mantené el pecho elevado y la mirada hacia delante. La espalda debe permanecer lo más recta posible. ',
-      'repetir': '15 veces'
+          'Párate con los pies paralelos y, luego, flexiona las rodillas y baja la cadera hacia el suelo, como si fueras a sentarte. Mantén el pecho elevado y la mirada hacia delante. La espalda debe permanecer lo más recta posible.',
+      'repetir': '15'
     },
     {
       'img':
           'https://images-cdn.welcomesoftware.com/Zz1jMjkzOTgzYzBjNjQ2ZjljMzc2MzI0ZWQwYTIyMzcyZg==',
-      'title': 'Fondos de tríceps',
+      'title': 'FONDOS DE TRÍCEPS',
       'subtitle':
-          'Apoyá las manos sobre el asiento, con los dedos apuntando hacia delante y los brazos extendidos. La espalda tiene que estar erguida y el abdomen contraído. Bajá la parte superior del cuerpo, flexionando los codos hasta que los glúteos casi toquen el suelo. A continuación, volvé a la posición inicial. ',
-      'repetir': '15 veces'
+          'Apoya las manos sobre el asiento, con los dedos apuntando hacia delante y los brazos extendidos. La espalda tiene que estar erguida y el abdomen contraído. Baja la parte superior del cuerpo, flexionando los codos hasta que los glúteos casi toquen el suelo. A continuación, vuelve a la posición inicial.',
+      'repetir': '15'
     },
     {
       'img':
           'https://images-cdn.welcomesoftware.com/Zz1iMDEyZDVkZmIyNDAzZmJmZjliMDYxNThhOWExZTgzOA==',
-      'title': 'Saltos',
+      'title': 'SALTOS',
       'subtitle':
-          'Podés hacer diferentes tipos de saltos. En los saltos en estrella, por ejemplo, te impulsás hacia arriba mientras alejás los brazos y piernas del cuerpo. También podés probar los saltos con rodillas al pecho, subiendo las dos piernas lo más alto posible. ',
-      'repetir': '25 veces'
+          'Puedes hacer diferentes tipos de saltos. En los saltos en estrella, por ejemplo, te impulsas hacia arriba mientras alejas los brazos y piernas del cuerpo. También puedes probar los saltos con rodillas al pecho, subiendo las dos piernas lo más alto posible.',
+      'repetir': '25'
     },
     {
       'img':
           'https://images-cdn.welcomesoftware.com/Zz01ZDY2ZGM3MDUwYjU5YTEzNGMzMTY1MjhhNTYxNDUwYg==',
-      'title': 'Tablas',
+      'title': 'TABLAS',
       'subtitle':
-          'Ubicate boca abajo, apoyá las manos al ancho de hombros y estirá los brazos. Las piernas deben estar rectas, el abdomen contraído y la espalda derecha. Mantené la postura durante, al menos, 20 segundos.',
-      'repetir': 'Por 20 segundos'
+          'Ubícate boca abajo, apoya las manos al ancho de hombros y estira los brazos. Las piernas deben estar rectas, el abdomen contraído y la espalda derecha. Mantén la postura durante, al menos, 20 segundos.',
+      'repetir': '20 s'
     },
   ];
 
@@ -75,24 +77,68 @@ class _EjercicioPromedioState extends State<EjercicioPromedio> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.light,
+    ));
     final redesProvider = Provider.of<LauncherProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 40,
+        automaticallyImplyLeading: false,
         actions: [
-          Row(
-            children: [
-              const Text(
-                "INTERMEDIO",
-                style: TextStyle(fontSize: 18),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width*0.9,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(2, 10, 10, 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: FittedBox(
+                                child: FloatingActionButton(
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 0,
+                                  child: Image.asset(
+                                      'assets/menuprincipal/bien/flecha_negra_volver.png'),
+                                  onPressed: () {
+                                    Navigator.pop(
+                                      (context),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.046,
+                            ),
+                            Text(
+                              "INTERMEDIO",
+                              style: GoogleFonts.quicksand(
+                                  fontSize: 12, fontWeight: FontWeight.w800),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Image.asset(
+                      'assets/login/login_logo.png',
+                      width: MediaQuery.of(context).size.width * 0.245,
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(
-                width: 100,
-              ),
-              Image.asset(
-                'assets/login/login_logo.png',
-                scale: 2.5,
-              ),
-            ],
+            ),
           ),
         ],
       ),

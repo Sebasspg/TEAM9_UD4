@@ -20,93 +20,115 @@ class PlantillaParaTarea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            width: 500,
-            height: 350,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width * 0.86,
             decoration: BoxDecoration(
                 image: DecorationImage(
                     image: NetworkImage("$img"), fit: BoxFit.cover)),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                child: Text(
-                  "$title",
-                  style: const TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-              ),
-              SizedBox(
-                  height: 50,
-                  width: 10,
-                  child: Image.asset("assets/ejercicio/div.png")),
-              Column(
-                children: [
-                  const Text("REPETICIONES"),
-                  Text(
-                    "$repetir",
-                    style: const TextStyle(color: Colors.black, fontSize: 15),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.05,
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.45,
+                  child: Text(
+                    "$title",
+                    style: GoogleFonts.quicksand(
+                        fontSize: 18.3, fontWeight: FontWeight.w800),
+                  ),
+                ),
+                SizedBox(
+                    height: MediaQuery.of(context).size.width * 0.15,
+                    child: Image.asset("assets/ejercicio/div.png")),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.25,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "REPETICIONES",
+                        style: GoogleFonts.quicksand(
+                            fontSize: 11, fontWeight: FontWeight.w800),
+                      ),
+                      Text(
+                        "$repetir",
+                        style: GoogleFonts.quicksand(
+                            fontSize: 30, fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.02,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: SizedBox(
               child: Text("$subtitle",
                   textAlign: TextAlign.justify,
                   style: GoogleFonts.quicksand(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
                       color: Colors.black)),
             ),
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.02,
           ),
-          InkWell(
-            onTap: onPressed,
-            child: Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  gradient: const LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [Colors.blue, Colors.green])),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const Text(
-                    "IR AL TUTORIAL",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  Image.asset(
-                    "assets/ejercicio/derechablanca.png",
-                    scale: 2,
-                  ),
-                ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: InkWell(
+              onTap: onPressed,
+              child: Container(
+                height: MediaQuery.of(context).size.width * 0.13,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    gradient: const LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [Color.fromARGB(255, 51, 198, 244),Color.fromARGB(255, 111, 194, 127)])),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                    Text(
+                      "VER TUTORIAL",
+                      style: GoogleFonts.quicksand(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white),
+                    ),
+                    Image.asset(
+                      "assets/ejercicio/derechablanca.png",
+                      scale: 4,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.03,
+          ),
           Image.asset(
             "assets/ejercicio/abajonegra.png",
-            scale: 2,
+            scale: 4,
           ),
         ],
       ),

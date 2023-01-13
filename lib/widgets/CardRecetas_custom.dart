@@ -11,15 +11,15 @@ class RecetasCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 460,
+      height: MediaQuery.of(context).size.width * 0.89,
       width: double.infinity,
       child: Card(
+        color: Color.fromARGB(255, 230, 231, 232),
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          margin: EdgeInsets.all(10),
-          elevation: 5,
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          margin: EdgeInsets.symmetric(vertical: 10),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(15),
             child: InkWell(
               onTap: () {
                 Navigator.push(
@@ -31,31 +31,41 @@ class RecetasCard extends StatelessWidget {
               },
               child: Column(
                 children: [
-                  Image(
-                    image: NetworkImage(rrecetas.image),
+                  Container(
+                    height: MediaQuery.of(context).size.width * 0.5,
+                    decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: NetworkImage(rrecetas.image),fit: BoxFit.cover,
+                    ),
+                  ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(5),
+                    padding: EdgeInsets.all(20),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           rrecetas.titulo,
-                          style: GoogleFonts.montserrat(
-                              fontWeight: FontWeight.bold, fontSize: 25),
+                          style: GoogleFonts.quicksand(
+                                    fontSize: 20, fontWeight: FontWeight.w800),
                         ),
+                        SizedBox(
+                height: MediaQuery.of(context).size.width * 0.02,
+              ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                    style: GoogleFonts.montserrat(fontSize: 15),
-                                    'Preparacion'),
+                                    style: GoogleFonts.quicksand(
+                                    fontSize: 12, fontWeight: FontWeight.w800),
+                                    'PREPARACIÓN'),
                                 Text(
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
+                                    style: GoogleFonts.quicksand(
+                                    fontSize: 12, fontWeight: FontWeight.w600),
                                     rrecetas.tiempo),
                               ],
                             ),
@@ -63,12 +73,12 @@ class RecetasCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                    style: GoogleFonts.montserrat(fontSize: 15),
+                                    style: GoogleFonts.quicksand(
+                                    fontSize: 12, fontWeight: FontWeight.w800),
                                     'Kcal'),
                                 Text(
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
+                                    style: GoogleFonts.quicksand(
+                                    fontSize: 12, fontWeight: FontWeight.w600),
                                     '172.22')
                               ],
                             ),
@@ -76,15 +86,16 @@ class RecetasCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                    style: GoogleFonts.montserrat(fontSize: 15),
+                                    style: GoogleFonts.quicksand(
+                                    fontSize: 12, fontWeight: FontWeight.w800),
                                     'Tipo de Comida'),
                                 Text(
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
+                                    style: GoogleFonts.quicksand(
+                                    fontSize: 12, fontWeight: FontWeight.w600),
                                     rrecetas.tip_comida)
                               ],
                             ),
+                            Image.asset("assets/recetas/rs flecha.png", scale: 4,)
                           ],
                         )
                       ],

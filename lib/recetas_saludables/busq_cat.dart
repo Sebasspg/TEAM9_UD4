@@ -15,47 +15,93 @@ class BusquePorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final RecetaProvider _dataReceta = Provider.of<RecetaProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'TODAS LAS RECETAS',
-              style: GoogleFonts.quicksand(
-                  fontWeight: FontWeight.bold, fontSize: 18),
-            ),
-            Image.asset(
-              'assets/recetas/rslogo.png',
-              height: 50,
-              width: 110,
-            ),
-          ],
-        ),
-        centerTitle: true,
-      ),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        child: FutureBuilder(
-          future: _dataReceta.getRecetaxCategoria(id_cat),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              List _snapshot = snapshot.data as List;
-              return ListView.builder(
-                itemCount: _snapshot.length,
-                itemBuilder: (context, index) {
-                  Receta rec = _snapshot[index];
-                  return RecetasCard(
-                    recceta: rec,
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: SizedBox(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.width * 0.15,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(2, 20, 10, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: FittedBox(
+                                    child: FloatingActionButton(
+                                      backgroundColor: Colors.transparent,
+                                      elevation: 0,
+                                      child: Image.asset(
+                                          'assets/menuprincipal/bien/flecha_negra_volver.png'),
+                                      onPressed: () {
+                                        Navigator.pop(
+                                          (context),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.046,
+                                ),
+                                Text(
+                                  "TODAS LAS RECETAS",
+                                  style: GoogleFonts.quicksand(
+                                      fontSize: 12, fontWeight: FontWeight.w800),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Image.asset(
+                              'assets/login/login_logo.png',
+                              width: MediaQuery.of(context).size.width * 0.245,
+                            ),
+                            SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.005,
+                ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height*0.91,
+            width: double.infinity,
+            child: FutureBuilder(
+              future: _dataReceta.getRecetaxCategoria(id_cat),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List _snapshot = snapshot.data as List;
+                  return ListView.builder(
+                    itemCount: _snapshot.length,
+                    itemBuilder: (context, index) {
+                      Receta rec = _snapshot[index];
+                      return RecetasCard(
+                        recceta: rec,
+                      );
+                    },
                   );
-                },
-              );
-            }
-            return LoadingCustom(
-              textoCarga: 'Cargando recetas...',
-            );
-          },
-        ),
+                }
+                return LoadingCustom(
+                  textoCarga: 'Cargando recetas...',
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -68,90 +114,104 @@ class RecetasCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.56,
-      width: double.infinity,
-      child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          margin: EdgeInsets.all(10),
-          elevation: 5,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(30),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => DetalleReceta(
-                              rrecetas: recceta,
-                            ))));
-              },
-              child: Column(
-                children: [
-                  Image(
-                    image: NetworkImage(recceta.image),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    child: Column(
-                      children: [
-                        Text(
-                          recceta.titulo,
-                          style: GoogleFonts.montserrat(
-                              fontWeight: FontWeight.bold, fontSize: 25),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    style: GoogleFonts.montserrat(fontSize: 15),
-                                    'Preparacion'),
-                                Text(
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                    recceta.tiempo),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    style: GoogleFonts.montserrat(fontSize: 15),
-                                    'Kcal'),
-                                Text(
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                    '172.22')
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    style: GoogleFonts.montserrat(fontSize: 15),
-                                    'Tipo de Comida'),
-                                Text(
-                                    style: GoogleFonts.montserrat(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                    recceta.tip_comida)
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 17),
+      child: Container(
+        height: MediaQuery.of(context).size.width * 0.89,
+        width: double.infinity,
+        child: Card(
+          color: Color.fromARGB(255, 230, 231, 232),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            margin: EdgeInsets.symmetric(vertical: 10),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => DetalleReceta(
+                                rrecetas: recceta,
+                              ))));
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.width * 0.5,
+                      decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: NetworkImage(recceta.image),fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            recceta.titulo,
+                            style: GoogleFonts.quicksand(
+                                      fontSize: 20, fontWeight: FontWeight.w800),
+                          ),
+                          SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.02,
+                ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      style: GoogleFonts.quicksand(
+                                      fontSize: 12, fontWeight: FontWeight.w800),
+                                      'PREPARACIÓN'),
+                                  Text(
+                                      style: GoogleFonts.quicksand(
+                                      fontSize: 12, fontWeight: FontWeight.w600),
+                                      recceta.tiempo),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      style: GoogleFonts.quicksand(
+                                      fontSize: 12, fontWeight: FontWeight.w800),
+                                      'Kcal'),
+                                  Text(
+                                      style: GoogleFonts.quicksand(
+                                      fontSize: 12, fontWeight: FontWeight.w600),
+                                      '172.22')
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      style: GoogleFonts.quicksand(
+                                      fontSize: 12, fontWeight: FontWeight.w800),
+                                      'Tipo de Comida'),
+                                  Text(
+                                      style: GoogleFonts.quicksand(
+                                      fontSize: 12, fontWeight: FontWeight.w600),
+                                      recceta.tip_comida)
+                                ],
+                              ),
+                              Image.asset("assets/recetas/rs flecha.png", scale: 4,)
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          )),
+            )),
+      ),
     );
   }
 }

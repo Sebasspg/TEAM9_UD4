@@ -37,7 +37,7 @@ class LauncherProvider extends ChangeNotifier {
   //Browser
 
   void goBrowserLauncher() async {
-    String url = 'https://youtube.com';
+    String url = 'https://drive.google.com/file/d/1VnAUQJ1vOEgYyQRzib5p-g4hH-hpZgcH/view?usp=sharing';
     String urlEncode = Uri.encodeFull(url);
     if (await canLaunchUrlString(urlEncode)) {
       await launchUrlString(urlEncode, mode: LaunchMode.externalApplication);

@@ -100,7 +100,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                     //       fontSize: 15.092, fontWeight: FontWeight.w600),
                     // ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.075,
+                      height: MediaQuery.of(context).size.height * 0.054,
                       width: double.infinity,
                       child: FutureBuilder(
                         future: usuarioProdiver
@@ -112,10 +112,12 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                               itemCount: _snapshot.length,
                               itemBuilder: (context, index) {
                                 Users usuarioss = _snapshot[index];
-                                return Text(usuarioss.nombre,
-                                    style: GoogleFonts.quicksand(
-                                        fontSize: 20.5,
-                                        fontWeight: FontWeight.bold));
+                                return Text(
+                                  usuarioss.nombre,
+                                  style: GoogleFonts.quicksand(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w800),
+                                );
                               },
                             );
                           }
@@ -150,7 +152,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                         width: MediaQuery.of(context).size.width * 0.59,
                         child: Center(
                           child: Text(
-                            "ESTADO",
+                            "AL DÍA",
                             style: GoogleFonts.quicksand(
                                 fontSize: 13.718, fontWeight: FontWeight.w600),
                           ),
@@ -200,7 +202,7 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                             //),
                             SizedBox(
                               height:
-                                  MediaQuery.of(context).size.height * 0.125,
+                                  MediaQuery.of(context).size.height * 0.1,
                               width: double.infinity,
                               child: FutureBuilder(
                                 future: usuarioProdiver
@@ -362,11 +364,12 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                           viewportFraction: 0.9,
                         ),
                         items: [
-                          Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: colormediogris),
-                          )
+                          Image.asset("assets/caru/1.png"),
+                          Image.asset("assets/caru/2.png"),
+                          Image.asset("assets/caru/3.png"),
+                          Image.asset("assets/caru/4.png"),
+                          Image.asset("assets/caru/5.png"),
+                          Image.asset("assets/caru/6.png"),
                         ]),
                   ),
                 ),
@@ -418,8 +421,11 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                                       MediaQuery.of(context).size.width * 0.35,
                                   child: Center(
                                     child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        Text(usuarioProdiver.pesolocal),
+                                        Text(usuarioProdiver.pesolocal, style: GoogleFonts.quicksand(
+                                              fontSize: 32,
+                                              fontWeight: FontWeight.w500,),),
                                         /*
                                         SizedBox(
                                           height: MediaQuery.of(context)

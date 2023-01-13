@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
@@ -26,12 +27,13 @@ class _addVacunaState extends State<addVacuna> {
         context: context,
         builder: (BuildContext context) => AlertDialog(
           title: SizedBox(
-            height: 200,
+            height: 180,
             child: Image.asset("assets/vacunas/vc_valid_guxalert.png"),
           ),
-          content: const Text(
-            "¿Seguro de guardar?",
-            textAlign: TextAlign.center,
+          content: Text(
+            "¿Añadir vacuna?",
+            textAlign: TextAlign.center,style: GoogleFonts.quicksand(
+                    fontSize: 15, fontWeight: FontWeight.w600),
           ),
           actions: [
             TextButton(
@@ -49,13 +51,14 @@ class _addVacunaState extends State<addVacuna> {
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     title: SizedBox(
-                      height: 200,
+                      height: 180,
                       child:
                           Image.asset("assets/vacunas/vc_valid_guxcheck.png"),
                     ),
-                    content: const Text(
-                      'Se Registraron correctamente los datos',
-                      textAlign: TextAlign.center,
+                    content: Text(
+                      'Se añadió la vacuna',
+                      textAlign: TextAlign.center, style: GoogleFonts.quicksand(
+                    fontSize: 15, fontWeight: FontWeight.w600),
                     ),
                     actions: [
                       TextButton(
@@ -88,45 +91,81 @@ class _addVacunaState extends State<addVacuna> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          Row(
-            children: [
-              const Text(
-                "AÑADIR VACUNA",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 17),
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(2, 20, 10, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: FittedBox(
+                                child: FloatingActionButton(
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 0,
+                                  child: Image.asset(
+                                      'assets/menuprincipal/bien/flecha_negra_volver.png'),
+                                  onPressed: () {
+                                    Navigator.pop(
+                                      (context),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.046,
+                            ),
+                            Text(
+                              "AÑADIR VACUNA",
+                              style: GoogleFonts.quicksand(
+                                  fontSize: 12, fontWeight: FontWeight.w800),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Image.asset(
+                      'assets/login/login_logo.png',
+                      width: MediaQuery.of(context).size.width * 0.245,
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(
-                width: 70,
+            ),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "NUEVA VACUNA",
+                      style: GoogleFonts.quicksand(
+                          fontSize: 22, fontWeight: FontWeight.w800),
+                    ),
+                    const SizedBox(
+                height: 20,
               ),
-              Image.asset(
-                'assets/login/login_logo.png',
-                scale: 2.5,
-              ),
-            ],
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 100,
-              ),
-              const Text(
-                "NUEVA VACUNA",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold),
-              ),
-              const Text(
+                    Text(
                 "Nombre de la vacuna",
-                style: TextStyle(color: Colors.black, fontSize: 18),
+                style: GoogleFonts.quicksand(
+                            fontSize: 13.001,
+                            fontWeight: FontWeight.w500,
+                            height: 1.9,
+                            color: Colors.black),
               ),
               TextField(
                 controller: nombreController,
@@ -134,9 +173,13 @@ class _addVacunaState extends State<addVacuna> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 "Fecha de Inyeccion",
-                style: TextStyle(color: Colors.black, fontSize: 18),
+               style: GoogleFonts.quicksand(
+                            fontSize: 13.001,
+                            fontWeight: FontWeight.w500,
+                            height: 1.9,
+                            color: Colors.black),
               ),
               TextField(
                 controller: fechaController,
@@ -158,51 +201,61 @@ class _addVacunaState extends State<addVacuna> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
+              Text(
                 "Duracion de la vacuna (en meses)",
-                style: TextStyle(color: Colors.black, fontSize: 18),
+                style: GoogleFonts.quicksand(
+                            fontSize: 13.001,
+                            fontWeight: FontWeight.w500,
+                            height: 1.9,
+                            color: Colors.black),
               ),
               TextField(
                 controller: duracionController,
                 keyboardType: TextInputType.number,
               ),
-              const SizedBox(
-                height: 20,
-              ),
-
-              /*  CustomTextFormField(
-                controller: stockController,
-                hintText: 'Stock',
-                keyboardType: TextInputType.number,
-              ), */
-
-              InkWell(
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      gradient: const LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: [Colors.blue, Colors.green])),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: const [
-                      Text(
-                        "GUARDAR",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
+                          InkWell(
+              child: Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    gradient: const LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [const Color.fromARGB(255, 51, 198, 244), const Color.fromARGB(255, 111, 194, 127)])),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      "GUARDAR",
+                      style: GoogleFonts.quicksand(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w800,
+                            height: 1.9,
+                            color: Colors.white),
+                    ),
+                  ],
                 ),
-                onTap: () {
-                  alertCustom(context);
-                },
               ),
-            ],
-          ),
+              onTap: () {
+                alertCustom(context);
+              },
+            ),
+                  ],
+                ),
+              ),
+            ),
+            
+
+            /*  CustomTextFormField(
+              controller: stockController,
+              hintText: 'Stock',
+              keyboardType: TextInputType.number,
+            ), */
+
+
+            const Spacer(flex: 2,),
+          ],
         ),
       ),
     );

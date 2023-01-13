@@ -14,32 +14,63 @@ class NutriPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pesosProvider = Provider.of<PesoProvider>(context);
-    final usuarioProvider =
-        Provider.of<UsuarioProvider>(context, listen: false);
+    final usuarioProvider = Provider.of<UsuarioProvider>(context);
 
     return Scaffold(
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'NUTRICIÓN',
-                style: GoogleFonts.quicksand(
-                    fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-              Image.asset(
-                'assets/recetas/rslogo.png',
-                height: 50,
-                width: 110,
-              ),
-            ],
-          ),
-          centerTitle: true,
-        ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
+      padding: const EdgeInsets.symmetric(horizontal: 17),
+      child: Column(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(2, 20, 10, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: FittedBox(
+                              child: FloatingActionButton(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                child: Image.asset(
+                                    'assets/menuprincipal/bien/flecha_negra_volver.png'),
+                                onPressed: () {
+                                  Navigator.pop(
+                                    (context),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.046,
+                          ),
+                          Text(
+                            "NUTRICIÓN",
+                            style: GoogleFonts.quicksand(
+                                fontSize: 12, fontWeight: FontWeight.w800),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Image.asset(
+                    'assets/login/login_logo.png',
+                    width: MediaQuery.of(context).size.width * 0.245,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.94,
             child: vistaPeso(),
             // child: FutureBuilder(
             //   future: usuarioProvider.getusuario(Preferences.identificador),
@@ -60,13 +91,14 @@ class NutriPage extends StatelessWidget {
             //   },
             // ),
           ),
-        ));
+        ],
+      ),
+    ));
   }
 }
 
 class vistaPeso extends StatelessWidget {
   const vistaPeso({super.key});
-
   @override
   Widget build(BuildContext context) {
     final pesosProvider = Provider.of<PesoProvider>(context);
@@ -77,13 +109,17 @@ class vistaPeso extends StatelessWidget {
       width: double.infinity,
       child: ListView(
         children: [
-          SizedBox(height: 8),
-          Text(
-            'CONTROL NUTRICIONAL',
-            style: GoogleFonts.quicksand(
-                fontSize: 25, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Text(
+              'CONTROL NUTRICIONAL',
+              style: GoogleFonts.quicksand(
+                  fontSize: 18.5, fontWeight: FontWeight.w800),
+            ),
           ),
-          SizedBox(height: 10),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.05,
+          ),
           Container(
             height: MediaQuery.of(context).size.height * 0.2,
             width: MediaQuery.of(context).size.width * 0.50,
@@ -93,84 +129,100 @@ class vistaPeso extends StatelessWidget {
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
                 colors: [
-                  Color.fromARGB(255, 79, 166, 236),
-                  Color.fromARGB(255, 8, 134, 236),
+                  Color.fromARGB(255, 51, 198, 244),
+                  Color.fromARGB(255, 109, 150, 195),
                 ],
               ),
             ),
             child: IntrinsicHeight(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        usuarioProviders.nombrelocal,
-                        style: GoogleFonts.quicksand(
-                            color: Colors.white, fontSize: 20),
-                      ),
-                      IntrinsicHeight(
-                        child: Row(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          usuarioProviders.nombrelocal,
+                          style: GoogleFonts.quicksand(
+                              fontSize: 16.4,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white),
+                        ),
+                        IntrinsicHeight(
+                          child: Row(
+                            children: [
+                              Text(
+                                '${usuarioProviders.edadlocal} Años',
+                                style: GoogleFonts.quicksand(
+                                    fontSize: 12.4,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
+                              ),
+                              const VerticalDivider(
+                                color: Colors.white,
+                                thickness: 1,
+                              ),
+                              Text(
+                                'Altura: ${usuarioProviders.alturalocal}cm',
+                                style: GoogleFonts.quicksand(
+                                    fontSize: 12.4,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    VerticalDivider(
+                      color: Colors.white,
+                      indent: 42,
+                      endIndent: 42,
+                      thickness: 0.5,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'PESO',
+                          style: GoogleFonts.quicksand(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white),
+                        ),
+                        Row(
                           children: [
                             Text(
-                              '${usuarioProviders.edadlocal} años',
+                              usuarioProviders.pesolocal,
                               style: GoogleFonts.quicksand(
-                                  color: Colors.white, fontSize: 20),
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
                             ),
-                            const VerticalDivider(
-                              color: Colors.white,
-                              thickness: 1,
+                            SizedBox(
+                              width: 5,
                             ),
                             Text(
-                              'Altura ${usuarioProviders.alturalocal}cm',
+                              'Kg',
                               style: GoogleFonts.quicksand(
-                                  color: Colors.white, fontSize: 20),
+                                  fontSize: 16.4,
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.white),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                  VerticalDivider(
-                    color: Colors.white,
-                    indent: 42,
-                    endIndent: 42,
-                    thickness: 0.5,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Peso',
-                        style: GoogleFonts.quicksand(
-                            color: Colors.white, fontSize: 20),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            usuarioProviders.pesolocal,
-                            style: GoogleFonts.quicksand(
-                                color: Colors.white, fontSize: 45),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            'Kg',
-                            style: GoogleFonts.quicksand(
-                                color: Colors.white, fontSize: 20),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
           SizedBox(
-            height: 10,
+            height: MediaQuery.of(context).size.width * 0.03,
           ),
           (pesosProvider.msg == 'Normal')
               ? Container(
@@ -182,29 +234,32 @@ class vistaPeso extends StatelessWidget {
                       begin: Alignment.topRight,
                       end: Alignment.bottomLeft,
                       colors: [
-                        Colors.blueAccent,
-                        Colors.green,
+                        Color.fromARGB(255, 51, 198, 244),
+                        Color.fromARGB(255, 111, 194, 127)
                       ],
                     ),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'ESTADO NUTRICIONAL : ',
-                        style: GoogleFonts.quicksand(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Text(
-                        '${pesosProvider.msg}',
-                        style: GoogleFonts.quicksand(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'ESTADO NUTRICIONAL : ',
+                          style: GoogleFonts.quicksand(
+                              color: Colors.white,
+                              fontSize: 11.5,
+                              fontWeight: FontWeight.w800),
+                        ),
+                        Text(
+                          '${pesosProvider.msg}',
+                          style: GoogleFonts.quicksand(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w900),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               : (pesosProvider.msg == 'Delgadez')
@@ -217,29 +272,32 @@ class vistaPeso extends StatelessWidget {
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
                           colors: [
-                            Colors.yellow,
-                            Colors.orange,
+                            Color.fromARGB(255, 242, 234, 38),
+                            Color.fromARGB(255, 251, 173, 48),
                           ],
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'ESTADO NUTRICIONAL : ',
-                            style: GoogleFonts.quicksand(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          Text(
-                            '${pesosProvider.msg}',
-                            style: GoogleFonts.quicksand(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'ESTADO NUTRICIONAL : ',
+                              style: GoogleFonts.quicksand(
+                                  color: Colors.white,
+                                  fontSize: 11.5,
+                                  fontWeight: FontWeight.w800),
+                            ),
+                            Text(
+                              '${pesosProvider.msg}',
+                              style: GoogleFonts.quicksand(
+                                  color: Colors.white,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   : (pesosProvider.msg == 'X')
@@ -257,24 +315,27 @@ class vistaPeso extends StatelessWidget {
                               ],
                             ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'ESTADO NUTRICIONAL : ',
-                                style: GoogleFonts.quicksand(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              Text(
-                                '${pesosProvider.msg}',
-                                style: GoogleFonts.quicksand(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'ESTADO NUTRICIONAL : ',
+                                  style: GoogleFonts.quicksand(
+                                      color: Colors.white,
+                                      fontSize: 11.5,
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                Text(
+                                  '${pesosProvider.msg}',
+                                  style: GoogleFonts.quicksand(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w900),
+                                ),
+                              ],
+                            ),
                           ),
                         )
                       : Container(
@@ -286,57 +347,69 @@ class vistaPeso extends StatelessWidget {
                               begin: Alignment.topRight,
                               end: Alignment.bottomLeft,
                               colors: [
-                                Colors.orange,
-                                Colors.red,
+                                Color.fromARGB(255, 248, 156, 50),
+                                Color.fromARGB(255, 237, 50, 55),
                               ],
                             ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'ESTADO NUTRICIONAL : ',
-                                style: GoogleFonts.quicksand(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              Text(
-                                '${pesosProvider.msg}',
-                                style: GoogleFonts.quicksand(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
+                          child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'ESTADO NUTRICIONAL : ',
+                          style: GoogleFonts.quicksand(
+                              color: Colors.white,
+                              fontSize: 11.5,
+                              fontWeight: FontWeight.w800),
+                        ),
+                        Text(
+                          '${pesosProvider.msg}',
+                          style: GoogleFonts.quicksand(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w900),
+                        ),
+                      ],
+                    ),
+                  ),
                         ),
           SizedBox(
-            height: 25,
+                height: MediaQuery.of(context).size.width * 0.08,
+              ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: SizedBox(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'HORARIOS',
+                    style: GoogleFonts.quicksand(
+                        fontSize: 14.5, fontWeight: FontWeight.w800),
+                  ),
+                  Text(
+              'Seleccione un horario para calcular',
+              style: GoogleFonts.quicksand(
+                        fontSize: 13.4, fontWeight: FontWeight.w500),
           ),
-          Text(
-            'HORARIOS',
-            style: GoogleFonts.quicksand(
-                fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            'Seleccione un horario para calcular',
-            style: GoogleFonts.quicksand(fontSize: 18),
+                ],
+              ),
+            ),
           ),
           SizedBox(
-            height: 200,
-            width: 500,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  SizedBox(
-                    width: 10,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      pesosProvider
+                height: MediaQuery.of(context).size.width * 0.045,
+              ),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * 0.46,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                InkWell(
+                  onTap: () {
+                    pesosProvider
                           .getCalorias(int.parse(usuarioProviders.edadlocal));
                       pesosProvider.getCategoriaxIMC(
                           double.parse(usuarioProviders.pesolocal),
@@ -345,101 +418,123 @@ class vistaPeso extends StatelessWidget {
                           .getProteinas(int.parse(usuarioProviders.pesolocal));
                       pesosProvider.getCarbohidratos(
                           int.parse(usuarioProviders.pesolocal));
-                    },
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 55, // Image radius
-                          backgroundImage: NetworkImage(
-                              'https://cdn.pixabay.com/photo/2016/11/06/23/31/breakfast-1804457_960_720.jpg'),
-                        ),
-                        Text(
-                          '09:00',
-                          style: GoogleFonts.quicksand(fontSize: 18),
-                        ),
-                        Text(
-                          'Desayuno',
-                          style: GoogleFonts.quicksand(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+                  },
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: MediaQuery.of(context).size.width * 0.135,// Image radius
+                        backgroundImage: NetworkImage(
+                            'https://cdn.pixabay.com/photo/2016/11/06/23/31/breakfast-1804457_960_720.jpg'),
+                      ),
+                      SizedBox(
+                height: MediaQuery.of(context).size.width * 0.01,
+              ),
+                      Text(
+                        '09:00',
+                        style: GoogleFonts.quicksand(
+                            fontSize: 11, fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        'DESAYUNO',
+                        style: GoogleFonts.quicksand(
+                            fontSize: 11, fontWeight: FontWeight.w800),
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      pesosProvider.getCaloriasxAlmuerzo(
+                ),
+                SizedBox(
+                width: MediaQuery.of(context).size.width * 0.043,
+              ),
+                InkWell(
+                  onTap: () {
+                    pesosProvider.getCaloriasxAlmuerzo(
                           int.parse(usuarioProviders.edadlocal));
                       pesosProvider
                           .getProteinas(int.parse(usuarioProviders.pesolocal));
                       pesosProvider.getCarbohidratos(
                           int.parse(usuarioProviders.pesolocal));
-                    },
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 55, // Image radius
-                          backgroundImage: NetworkImage(
-                              'https://cdn.pixabay.com/photo/2017/09/12/21/47/noodles-2743779_960_720.jpg'),
-                        ),
-                        Text(
-                          '13:00',
-                          style: GoogleFonts.quicksand(fontSize: 18),
-                        ),
-                        Text(
-                          'Almuerzo',
-                          style: GoogleFonts.quicksand(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+                  },
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: MediaQuery.of(context).size.width * 0.135, // Image radius
+                        backgroundImage: NetworkImage(
+                            'https://cdn.pixabay.com/photo/2017/09/12/21/47/noodles-2743779_960_720.jpg'),
+                      ),
+                      SizedBox(
+                height: MediaQuery.of(context).size.width * 0.01,
+              ),
+                      Text(
+                        '13:00',
+                        style: GoogleFonts.quicksand(
+                            fontSize: 11, fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        'ALMUERZO',
+                        style: GoogleFonts.quicksand(
+                            fontSize: 11, fontWeight: FontWeight.w800),
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      pesosProvider.getCaloriasxCena(
+                ),
+                SizedBox(
+                width: MediaQuery.of(context).size.width * 0.043,
+              ),
+                InkWell(
+                  onTap: () {
+                    pesosProvider.getCaloriasxCena(
                           int.parse(usuarioProviders.edadlocal));
                       pesosProvider
                           .getProteinas(int.parse(usuarioProviders.pesolocal));
                       pesosProvider.getCarbohidratos(
                           int.parse(usuarioProviders.pesolocal));
-                    },
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 55, // Image radius
-                          backgroundImage: NetworkImage(
-                              'https://cdn.pixabay.com/photo/2014/09/11/11/17/prawn-441623_960_720.jpg'),
-                        ),
-                        Text(
-                          '20:00',
-                          style: GoogleFonts.quicksand(fontSize: 18),
-                        ),
-                        Text(
-                          'Cena',
-                          style: GoogleFonts.quicksand(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
+                  },
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: MediaQuery.of(context).size.width * 0.135, // Image radius
+                        backgroundImage: NetworkImage(
+                            'https://cdn.pixabay.com/photo/2014/09/11/11/17/prawn-441623_960_720.jpg'),
+                      ),
+                      SizedBox(
+                height: MediaQuery.of(context).size.width * 0.01,
+              ),
+                      Text(
+                        '20:00',
+                        style: GoogleFonts.quicksand(
+                            fontSize: 11, fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        'CENA',
+                        style: GoogleFonts.quicksand(
+                            fontSize: 11, fontWeight: FontWeight.w800),
+                      ),
+                    ],
                   ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: SizedBox(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'RESULTADO',
+                    style: GoogleFonts.quicksand(
+                        fontSize: 14.5, fontWeight: FontWeight.w800),
+                  ),
+                  Text(
+              'Para mantener un estado nutricional saludable, usted requiere de...',
+              style: GoogleFonts.quicksand(
+                        fontSize: 13.4, fontWeight: FontWeight.w500),
+          ),
                 ],
               ),
             ),
-          ),
-          Text(
-            'RESULTADO',
-            style: GoogleFonts.quicksand(
-                fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-          Text(
-            'Para mantener un estado nutricional saludable, usted requiere de',
-            style: GoogleFonts.quicksand(
-                fontSize: 18, fontWeight: FontWeight.w400),
           ),
           SizedBox(
             height: 10,

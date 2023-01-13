@@ -1,12 +1,10 @@
-import 'dart:ui';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:team9_ud3_project/postlogin-register/editarperfil.dart';
-import 'package:team9_ud3_project/principal/controlador_principal.dart';
 import 'package:team9_ud3_project/providers/logearse_providers.dart';
-import 'package:team9_ud3_project/utils/constant.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -283,8 +281,108 @@ class _SignInPageState extends State<SignInPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Image.asset(
-                  'assets/login/logingux.png',
+                child: Stack(
+                  children: [
+                    Image.asset(
+                      'assets/login/logingux.png',
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.width * 0.015,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            height: MediaQuery.of(context).size.width * 0.3245,
+                            child: Center(
+                              child: CarouselSlider(
+                                  options: CarouselOptions(
+                                    height: MediaQuery.of(context).size.width *
+                                        0.23,
+                                    enlargeCenterPage: true,
+                                    autoPlay: true,
+                                    enableInfiniteScroll: true,
+                                    autoPlayAnimationDuration: const Duration(
+                                      milliseconds: 600,
+                                    ),
+                                    autoPlayInterval:
+                                        const Duration(seconds: 3),
+                                    viewportFraction: 0.9,
+                                  ),
+                                  items: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.transparent),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "¡Hola!",
+                                            style: GoogleFonts.quicksand(
+                                                fontSize: 16.5,
+                                                fontWeight: FontWeight.w800,
+                                                color: Colors.black),
+                                          ),
+                                          Text(
+                                            "Me llamo Gux, y me siento alegre de recibir tu visita !",
+                                            style: GoogleFonts.quicksand(
+                                                fontSize: 10.5,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: Colors.transparent),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.015,
+                                          ),
+                                          Stack(
+                                            children: [
+                                              Text(
+                                                "Inicie sesión para comenzar, si no tiene una cuenta, presione aquí para registrarte.",
+                                                style: GoogleFonts.quicksand(
+                                                    fontSize: 10.5,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Colors.black),
+                                              ),
+                                              MaterialButton(
+                                                minWidth: MediaQuery.of(context).size.width,
+                                                height: MediaQuery.of(context).size.width*0.17,
+                                                onPressed: (() {
+                                                  Navigator.pushNamed(
+                                                      context, '/signup');
+                                                }),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

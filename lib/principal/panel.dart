@@ -506,7 +506,7 @@ class _PanelPrincipalState extends State<PanelPrincipal> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "COMPATIBILIDAD SANGUÍNEA",
+                      "TODOS LOS TIPOS DE SANGRE",
                       style: GoogleFonts.quicksand(
                         fontSize: 12,
                         fontWeight: FontWeight.w800,
@@ -654,7 +654,7 @@ class _PanelPrincipalState extends State<PanelPrincipal> {
                           color: colormediogris),
                       child: MaterialButton(
                           child: Text(
-                            "o+",
+                            "O+",
                             style: GoogleFonts.quicksand(
                                 fontSize: 17.5, fontWeight: FontWeight.w800),
                           ),
@@ -671,11 +671,14 @@ class _PanelPrincipalState extends State<PanelPrincipal> {
                           color: colormediogris),
                       child: MaterialButton(
                           child: Text(
-                            "o-",
+                            "O-",
                             style: GoogleFonts.quicksand(
                                 fontSize: 17.5, fontWeight: FontWeight.w800),
                           ),
                           onPressed: () {}),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.027,
                     ),
                   ],
                 ),

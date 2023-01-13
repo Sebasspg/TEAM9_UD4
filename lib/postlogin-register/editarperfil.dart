@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:team9_ud3_project/postlogin-register/unmomento.dart';
 import 'package:team9_ud3_project/principal/controlador_principal.dart';
+import 'package:team9_ud3_project/widgets/customTexts.dart';
 
 class EditarPerfilInicial extends StatefulWidget {
   const EditarPerfilInicial({super.key});
@@ -60,12 +61,9 @@ class _EditarPerfilInicialState extends State<EditarPerfilInicial> {
                 style: GoogleFonts.quicksand(color: Colors.black, fontSize: 45),
               ),
             ),
-            Container(
-              color: Colors.blue,
-              child: Text(
-                'Page2',
-                style: GoogleFonts.quicksand(color: Colors.white),
-              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(color: Colors.blue, child: CarruselEditar()),
             ),
           ],
         ),

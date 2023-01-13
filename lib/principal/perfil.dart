@@ -102,40 +102,40 @@ class _PerfilPrincipalState extends State<PerfilPrincipal> {
                   ),
                 ],
               ),
-              // Text(
-              //   usuarioProvider.nombrelocal,
-              //   style: GoogleFonts.quicksand(
-              //       fontSize: 22.7, fontWeight: FontWeight.w800),
-              //   textAlign: TextAlign.center,
-              //),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.079,
-                child: FutureBuilder(
-                  future: usuarioProvider.getusuario(Preferences.identificador),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      List _snapshot = snapshot.data as List;
-                      return ListView.builder(
-                          itemCount: _snapshot.length,
-                          itemBuilder: (context, index) {
-                            Users usuaarios = _snapshot[index];
-                            return Text(
-                              usuaarios.nombre,
-                              style: GoogleFonts.quicksand(
-                                  fontSize: 22.7, fontWeight: FontWeight.w800),
-                              textAlign: TextAlign.center,
-                            );
-                          });
-                    }
-                    return Text(
-                      'User',
-                      style: GoogleFonts.quicksand(
-                          fontSize: 22.7, fontWeight: FontWeight.w800),
-                      textAlign: TextAlign.center,
-                    );
-                  },
-                ),
+              Text(
+                usuarioProvider.nombrelocal,
+                style: GoogleFonts.quicksand(
+                    fontSize: 22.7, fontWeight: FontWeight.w800),
+                textAlign: TextAlign.center,
               ),
+              // SizedBox(
+              //   height: MediaQuery.of(context).size.height * 0.079,
+              //   child: FutureBuilder(
+              //     future: usuarioProvider.getusuario(Preferences.identificador),
+              //     builder: (context, snapshot) {
+              //       if (snapshot.hasData) {
+              //         List _snapshot = snapshot.data as List;
+              //         return ListView.builder(
+              //             itemCount: _snapshot.length,
+              //             itemBuilder: (context, index) {
+              //               Users usuaarios = _snapshot[index];
+              //               return Text(
+              //                 usuaarios.nombre,
+              //                 style: GoogleFonts.quicksand(
+              //                     fontSize: 22.7, fontWeight: FontWeight.w800),
+              //                 textAlign: TextAlign.center,
+              //               );
+              //             });
+              //       }
+              //       return Text(
+              //         'User',
+              //         style: GoogleFonts.quicksand(
+              //             fontSize: 22.7, fontWeight: FontWeight.w800),
+              //         textAlign: TextAlign.center,
+              //       );
+              //     },
+              //   ),
+              // ),
               SizedBox(
                 height: MediaQuery.of(context).size.width * 0.07,
               ),

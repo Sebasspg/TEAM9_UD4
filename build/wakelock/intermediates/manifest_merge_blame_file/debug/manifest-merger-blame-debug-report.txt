@@ -4,8 +4,8 @@
 4
 5    <uses-sdk
 6        android:minSdkVersion="16"
-6-->C:\src\flutter_windows_3.3.8-stable\flutter\.pub-cache\hosted\pub.dartlang.org\wakelock-0.6.2\android\src\main\AndroidManifest.xml
+6-->D:\acc\flutter\.pub-cache\hosted\pub.dartlang.org\wakelock-0.6.2\android\src\main\AndroidManifest.xml
 7        android:targetSdkVersion="16" />
-7-->C:\src\flutter_windows_3.3.8-stable\flutter\.pub-cache\hosted\pub.dartlang.org\wakelock-0.6.2\android\src\main\AndroidManifest.xml
+7-->D:\acc\flutter\.pub-cache\hosted\pub.dartlang.org\wakelock-0.6.2\android\src\main\AndroidManifest.xml
 8
 9</manifest>

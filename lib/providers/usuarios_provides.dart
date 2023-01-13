@@ -11,7 +11,7 @@ class UsuarioProvider extends ChangeNotifier {
   final UsuarioDataService _dataBaseService = new UsuarioDataService();
 
   File? image;
-  String? nameImg;
+  String? nameImg = "";
 
   String edadlocal = "-";
   String tipo_sangrelocal = "-";

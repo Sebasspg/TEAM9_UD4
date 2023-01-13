@@ -30,15 +30,8 @@ class _CarruselEditarState extends State<CarruselEditar> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image.asset(
-              'assets/login/login_logo.png',
-              scale: 3,
-            )
-          ],
-        ),
+        title: Text(''),
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -47,25 +40,33 @@ class _CarruselEditarState extends State<CarruselEditar> {
             const Text(
               "EDITAR PERFIL",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 30,
             ),
             const Text(
               'INFORMACION BÁSICA',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 30,
             ),
             const Text('Nombres'),
             TextFormField(
               controller: nombre,
               decoration: _buildDecoration(),
             ),
-            const Text('Apellido'),
-            TextFormField(
-              controller: apellidos,
-              decoration: _buildDecoration(),
+            SizedBox(
+              height: 30,
             ),
             const Text('Edad'),
             TextFormField(
               controller: edad,
               decoration: _buildDecoration(),
+            ),
+            SizedBox(
+              height: 30,
             ),
             const Text('Genero'),
             Row(
@@ -98,6 +99,9 @@ class _CarruselEditarState extends State<CarruselEditar> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 30,
             ),
             IntrinsicHeight(
               child: Row(
@@ -166,36 +170,39 @@ class _CarruselEditarState extends State<CarruselEditar> {
             SizedBox(
               height: 20,
             ),
-            SizedBox(
-              width: double.infinity,
-              child: MaterialButton(
-                color: Colors.blueAccent,
-                onPressed: () {
-                  final serpiente = SnackBar(
-                    content: Text(
-                      'Datos Actualizados!!!',
-                      style: GoogleFonts.quicksand(fontSize: 20),
-                    ),
-                    backgroundColor: Colors.green,
-                  );
+            Container(
+              width: MediaQuery.of(context).size.width,
+              alignment: Alignment.center,
+              child: SizedBox(
+                height: 50,
+                child: MaterialButton(
+                  color: Colors.blueAccent,
+                  onPressed: () {
+                    final serpiente = SnackBar(
+                      content: Text(
+                        'Datos Actualizados!!!',
+                        style: GoogleFonts.quicksand(fontSize: 20),
+                      ),
+                      backgroundColor: Colors.green,
+                    );
 
-                  userProvider.subirImgStorage();
-                  userProvider.uptusuario(
-                      Preferences.identificador,
-                      nombre.text,
-                      edad.text,
-                      genero,
-                      peso.text,
-                      altura.text,
-                      values!);
-                  //userProvider.getusuario(Preferences.identificador);
-                  print(values);
-                  ScaffoldMessenger.of(context).showSnackBar(serpiente);
-                },
-                child: Text(
-                  'Actualizar datos',
-                  style: GoogleFonts.quicksand(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                    userProvider.uptusuario(
+                        Preferences.identificador,
+                        nombre.text,
+                        edad.text,
+                        genero,
+                        peso.text,
+                        altura.text,
+                        values!);
+                    //userProvider.getusuario(Preferences.identificador);
+                    print(values);
+                    ScaffoldMessenger.of(context).showSnackBar(serpiente);
+                  },
+                  child: Text(
+                    'Actualizar datos',
+                    style: GoogleFonts.quicksand(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),

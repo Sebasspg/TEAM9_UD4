@@ -40,37 +40,37 @@ class NutriPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
-            child: FutureBuilder(
-              future: usuarioProvider.getusuario(Preferences.identificador),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  List _snapshot = snapshot.data as List;
-                  return ListView.builder(
-                      itemCount: _snapshot.length,
-                      itemBuilder: (context, index) {
-                        Users usuaarios = _snapshot[index];
-                        return vistaPeso(usarioos: usuaarios);
-                        //vistaPeso(usarioos: usuaarios); Text(usuaarios.nombre);
-                      });
-                }
-                return LoadingCustom(
-                  textoCarga: 'Cargando pesos...',
-                );
-              },
-            ),
+            child: vistaPeso(),
+            // child: FutureBuilder(
+            //   future: usuarioProvider.getusuario(Preferences.identificador),
+            //   builder: (context, snapshot) {
+            //     if (snapshot.hasData) {
+            //       List _snapshot = snapshot.data as List;
+            //       return ListView.builder(
+            //           itemCount: _snapshot.length,
+            //           itemBuilder: (context, index) {
+            //             Users usuaarios = _snapshot[index];
+            //             return vistaPeso(usarioos: usuaarios);
+            //             //vistaPeso(usarioos: usuaarios); Text(usuaarios.nombre);
+            //           });
+            //     }
+            //     return LoadingCustom(
+            //       textoCarga: 'Cargando pesos...',
+            //     );
+            //   },
+            // ),
           ),
         ));
   }
 }
 
 class vistaPeso extends StatelessWidget {
-  final Users usarioos;
-
-  const vistaPeso({super.key, required this.usarioos});
+  const vistaPeso({super.key});
 
   @override
   Widget build(BuildContext context) {
     final pesosProvider = Provider.of<PesoProvider>(context);
+    final usuarioProviders = Provider.of<UsuarioProvider>(context);
 
     return SizedBox(
       height: MediaQuery.of(context).size.height,
@@ -106,7 +106,7 @@ class vistaPeso extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        usarioos.nombre,
+                        usuarioProviders.nombrelocal,
                         style: GoogleFonts.quicksand(
                             color: Colors.white, fontSize: 20),
                       ),
@@ -114,7 +114,7 @@ class vistaPeso extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              '${usarioos.edad} años',
+                              '${usuarioProviders.edadlocal} años',
                               style: GoogleFonts.quicksand(
                                   color: Colors.white, fontSize: 20),
                             ),
@@ -123,7 +123,7 @@ class vistaPeso extends StatelessWidget {
                               thickness: 1,
                             ),
                             Text(
-                              'Altura ${usarioos.altura}cm',
+                              'Altura ${usuarioProviders.alturalocal}cm',
                               style: GoogleFonts.quicksand(
                                   color: Colors.white, fontSize: 20),
                             ),
@@ -149,7 +149,7 @@ class vistaPeso extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            usarioos.peso,
+                            usuarioProviders.pesolocal,
                             style: GoogleFonts.quicksand(
                                 color: Colors.white, fontSize: 45),
                           ),
@@ -336,12 +336,15 @@ class vistaPeso extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      pesosProvider.getCalorias(int.parse(usarioos.edad));
+                      pesosProvider
+                          .getCalorias(int.parse(usuarioProviders.edadlocal));
                       pesosProvider.getCategoriaxIMC(
-                          double.parse(usarioos.peso),
-                          double.parse(usarioos.altura));
-                      pesosProvider.getProteinas(int.parse(usarioos.peso));
-                      pesosProvider.getCarbohidratos(int.parse(usarioos.peso));
+                          double.parse(usuarioProviders.pesolocal),
+                          double.parse(usuarioProviders.alturalocal));
+                      pesosProvider
+                          .getProteinas(int.parse(usuarioProviders.pesolocal));
+                      pesosProvider.getCarbohidratos(
+                          int.parse(usuarioProviders.pesolocal));
                     },
                     child: Column(
                       children: [
@@ -367,10 +370,12 @@ class vistaPeso extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
+                      pesosProvider.getCaloriasxAlmuerzo(
+                          int.parse(usuarioProviders.edadlocal));
                       pesosProvider
-                          .getCaloriasxAlmuerzo(int.parse(usarioos.edad));
-                      pesosProvider.getProteinas(int.parse(usarioos.peso));
-                      pesosProvider.getCarbohidratos(int.parse(usarioos.peso));
+                          .getProteinas(int.parse(usuarioProviders.pesolocal));
+                      pesosProvider.getCarbohidratos(
+                          int.parse(usuarioProviders.pesolocal));
                     },
                     child: Column(
                       children: [
@@ -396,9 +401,12 @@ class vistaPeso extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      pesosProvider.getCaloriasxCena(int.parse(usarioos.edad));
-                      pesosProvider.getProteinas(int.parse(usarioos.peso));
-                      pesosProvider.getCarbohidratos(int.parse(usarioos.peso));
+                      pesosProvider.getCaloriasxCena(
+                          int.parse(usuarioProviders.edadlocal));
+                      pesosProvider
+                          .getProteinas(int.parse(usuarioProviders.pesolocal));
+                      pesosProvider.getCarbohidratos(
+                          int.parse(usuarioProviders.pesolocal));
                     },
                     child: Column(
                       children: [

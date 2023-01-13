@@ -94,35 +94,35 @@ class _MenuPrincipalState extends State<MenuPrincipal> {
                       style: GoogleFonts.quicksand(
                           fontSize: 15.092, fontWeight: FontWeight.w600),
                     ),
-                    Text(
-                      usuarioProdiver.nombrelocal,
-                      style: GoogleFonts.quicksand(
-                          fontSize: 15.092, fontWeight: FontWeight.w600),
-                    ),
-                    // SizedBox(
-                    //   height: MediaQuery.of(context).size.height * 0.075,
-                    //   width: double.infinity,
-                    //   child: FutureBuilder(
-                    //     future: usuarioProdiver
-                    //         .getusuario(Preferences.identificador),
-                    //     builder: (context, snapshot) {
-                    //       if (snapshot.hasData) {
-                    //         List _snapshot = snapshot.data as List;
-                    //         return ListView.builder(
-                    //           itemCount: _snapshot.length,
-                    //           itemBuilder: (context, index) {
-                    //             Users usuarioss = _snapshot[index];
-                    //             return Text(usuarioss.nombre,
-                    //                 style: GoogleFonts.quicksand(
-                    //                     fontSize: 20.5,
-                    //                     fontWeight: FontWeight.bold));
-                    //           },
-                    //         );
-                    //       }
-                    //       return Text('-');
-                    //     },
-                    //   ),
+                    // Text(
+                    //   usuarioProdiver.nombrelocal,
+                    //   style: GoogleFonts.quicksand(
+                    //       fontSize: 15.092, fontWeight: FontWeight.w600),
                     // ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.075,
+                      width: double.infinity,
+                      child: FutureBuilder(
+                        future: usuarioProdiver
+                            .getusuario(Preferences.identificador),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            List _snapshot = snapshot.data as List;
+                            return ListView.builder(
+                              itemCount: _snapshot.length,
+                              itemBuilder: (context, index) {
+                                Users usuarioss = _snapshot[index];
+                                return Text(usuarioss.nombre,
+                                    style: GoogleFonts.quicksand(
+                                        fontSize: 20.5,
+                                        fontWeight: FontWeight.bold));
+                              },
+                            );
+                          }
+                          return Text('-');
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),
